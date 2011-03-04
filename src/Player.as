@@ -25,11 +25,16 @@ package
 		
 		private function PlayerSetup() : void 
 		{
+			health = GameSetings.PLAYERHP;
 		}
 
 		private function update(event : TimerEvent) : void 
 		{
 		}
 
+		public function remove():void 
+		{
+			updateTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, update);
+		}
 	}
 }

@@ -1,4 +1,5 @@
 package  {
+	import flash.display.Sprite;
 	import flash.events.TimerEvent;
 	import flash.events.Event;
 	import flash.utils.Timer;
@@ -6,7 +7,8 @@ package  {
 	/**
 	 * @flowerModelElementId _lO1uYEWqEeCgZu3bfDvecA
 	 */
-	public class GameHandler {
+	public class GameHandler extends Sprite
+	 {
 		private var __updateTimer:Timer;
 		public var attribute1:Main;
 		
