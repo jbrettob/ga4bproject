@@ -7,9 +7,10 @@ package
 	public class GameSetings extends MovieClip
 	{
 		//Game
-		public static var Paused									:Boolean = false;
+		public static var PAUSED									:Boolean = false;
 		//Player
-		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 10;		public static var player2D									:String	= "2DCaracter";		public static var player3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
+		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 3;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
+		public static var PLAYERYPOS								:Number = 700;
 		
 		
 		

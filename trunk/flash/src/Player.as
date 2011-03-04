@@ -10,12 +10,15 @@ package
 	public class Player extends MovieClip
 	{
 		private var pos:Point;
+		private var moveSpeed;
 		private var health:Number;
 		private var curentCaracter:String;
 		private var alife:Boolean;
 		private var updateTimer:Timer;
 		
 		private var objectHolder:ObjectHolder;
+		
+		private var actor3D:Actor3D;
 		
 		public function Player(main:Main):void
 		{
@@ -27,8 +30,11 @@ package
 		
 		private function PlayerSetup() : void 
 		{
-			health = GameSetings.PLAYERHP;
-			
+			health 									= GameSetings.PLAYERHP;
+			actor3D 								= new Actor3D();
+			this.y 									= GameSetings.PLAYERYPOS;
+			moveSpeed 								= GameSetings.PLAYERMOVESPEED;
+			addChild(actor3D);
 		}
 
 		private function update(event : TimerEvent) : void 
