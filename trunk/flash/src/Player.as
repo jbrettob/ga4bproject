@@ -1,9 +1,9 @@
 package 
 {
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
-	import flash.geom.Point;
 	import flash.display.MovieClip;
+	import flash.events.TimerEvent;
+	import flash.geom.Point;
+	import flash.utils.Timer;
 	/**
 	 * @author Rene Zwaan
 	 */
@@ -15,7 +15,9 @@ package
 		private var alife:Boolean;
 		private var updateTimer:Timer;
 		
-		public function Player():void
+		private var objectHolder:ObjectHolder;
+		
+		public function Player(main:Main):void
 		{
 			updateTimer = new Timer(1,0);
 			updateTimer.addEventListener(TimerEvent.TIMER_COMPLETE,update);
@@ -26,6 +28,7 @@ package
 		private function PlayerSetup() : void 
 		{
 			health = GameSetings.PLAYERHP;
+			
 		}
 
 		private function update(event : TimerEvent) : void 
