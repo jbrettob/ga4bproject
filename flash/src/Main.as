@@ -10,6 +10,7 @@ package
 		public var gameHandler:GameHandler;
 		public var player:Player;
 		public var gameSetings:GameSetings;
+		public var enemyHolder:objectHolder;
 		
 		public function Main():void
 		{
@@ -20,9 +21,9 @@ package
 		{
 			
 			gameSetings = new GameSetings();
-			gameHandler = new GameHandler();
+			enemyHolder = new objectHolder();
 			player = new Player();
-			
+			gameHandler = new GameHandler();
 			
 			addChild(gameSetings);
 			addChild(gameHandler);			addChild(player);
