@@ -10,7 +10,9 @@ package
 		public var gameHandler:GameHandler;
 		public var player:Player;
 		public var gameSetings:GameSetings;
-		public var enemyHolder:ObjectHolder;
+		public var enemyHolder : ObjectHolder;
+		public var keyBoard : Keyboard;
+		
 		
 		public function Main():void
 		{
@@ -23,7 +25,7 @@ package
 			enemyHolder = new ObjectHolder();
 			player = new Player(this);
 			gameHandler = new GameHandler();
-			
+			keyBoard = new Keyboard()
 			addChild(player);
 			
 			trace("lol");

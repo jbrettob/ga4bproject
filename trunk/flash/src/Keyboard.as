@@ -6,10 +6,8 @@ package {
 	 * 
 	 */
 	public class Keyboard extends MovieClip
-	{
-		private var gameHandler:GameHandler;		private var player:Player;
-		
-		public function Keyboard(_gameHandler:GameHandler,_player:Player)
+	{	
+		public function Keyboard()
 		{
 			
 		}
