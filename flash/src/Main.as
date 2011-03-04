@@ -26,7 +26,7 @@ package
 			
 			addChild(player);
 			
-			trace("");
+			trace("lol");
 			
 		}
 		
