@@ -1,39 +1,29 @@
-package 
+package objects 
 {
+	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-	import flash.geom.Point;
-	import flash.display.MovieClip;
 	/**
-	 * @author Rene Zwaan
+	 * @author naamloze_held
 	 */
-	public class Enemy extends MovieClip
+	public class Orb extends MovieClip
 	{
-		private var pos:Point;
-		private var health:Number;
-		private var alife:Boolean;
 		private var updateTimer:Timer;
-		
-		public function Enemy():void
+		public function Orb():void
 		{
 			updateTimer = new Timer(1,0);
 			updateTimer.addEventListener(TimerEvent.TIMER_COMPLETE,update);
 			updateTimer.start();
-			PlayerSetup();
 		}
-		
-		private function PlayerSetup() : void 
-		{
-		}
-
+		// make the orb move down until it gets tuched ??
 		private function update(event : TimerEvent) : void 
 		{
+			
 		}
 		
-		public function remove():void
+		public function remove():void 
 		{
 			updateTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, update);
 		}
-
 	}
 }

@@ -6,11 +6,11 @@ package
 	 * @todo orbs holder
 	 * @
 	 */
-	public class objectHolder extends MovieClip
+	public class ObjectHolder extends MovieClip
 	{
 		public static var enemys					:Array;		public static var enemyProjectiles			:Array;
 		
-		public function objectHolder():void
+		public function ObjectHolder():void
 		{
 			enemys 									= new Array();			enemyProjectiles 						= new Array();
 		}
