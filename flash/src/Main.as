@@ -23,9 +23,10 @@ package
 		{
 			gameSetings = new GameSetings();
 			enemyHolder = new ObjectHolder();
-			player = new Player(this);
 			gameHandler = new GameHandler();
-			keyBoard = new Keyboard()
+			keyBoard = new Keyboard();
+			player = new Player(this);
+			
 			addChild(player);
 			
 			trace("lol");
