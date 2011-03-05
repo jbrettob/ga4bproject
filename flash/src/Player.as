@@ -22,7 +22,7 @@ package
 		
 		public function Player(main:Main):void
 		{
-			updateTimer = new Timer(1,0);
+			updateTimer = new Timer(GameSetings.GAMESPEED,0);
 			updateTimer.addEventListener(TimerEvent.TIMER_COMPLETE,update);
 			updateTimer.start();
 			PlayerSetup();
