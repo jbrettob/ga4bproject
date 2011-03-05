@@ -17,9 +17,6 @@ package
 		public static var SHAPESHIFTERHP							:Number = 1;
 		public static var SHAPESHIFTERMOVESPEED						:Number = 1;
 		
-		
-		
-		
 		public function GameSetings():void
 		{
 			

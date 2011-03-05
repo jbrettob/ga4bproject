@@ -1,14 +1,15 @@
-package  {
+package {
+	import enemies.Enemy;
 	import enemies.ShapeShifter;
-	import flash.display.Sprite;
+
+	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
-	import flash.events.Event;
 	import flash.utils.Timer;
 	
 	/**
 	 * @flowerModelElementId _lO1uYEWqEeCgZu3bfDvecA
 	 */
-	public class GameHandler extends Sprite
+	public class GameHandler extends MovieClip
 	 {
 		private var __updateTimer:Timer;
 		public var attribute1:Main;
@@ -21,19 +22,36 @@ package  {
 			__updateTimer.addEventListener(TimerEvent.TIMER,update);
 			__updateTimer.start();
 			createShapeShifter();
+			createShapeShifter();
+			createShapeShifter();
 		}
 		
 		public function update(event:TimerEvent):void
 		{
-			
+			var i = numChildren;
+			while(i > 0)
+			{
+				if((getChildAt(i -1) as Enemy)._alife == false)
+				{
+					trace (numChildren);
+					removeChildAt(i - 1);
+					trace (numChildren);
+				}
+				i --;
+				
+			}
 		}
 		
 		public function createShapeShifter():void
 		{
-			var shapeShifter:ShapeShifter = new ShapeShifter();
+			var shapeShifter:ShapeShifter = new ShapeShifter(objectHolder);
 			objectHolder.addEnemy(shapeShifter);
-			addChild(shapeShifter);
-			
+			this.addChild(shapeShifter);
+		}
+
+		public function removeThisChild(child:*) : void 
+		{
+			removeChild(child);
 		}
 	}
 }

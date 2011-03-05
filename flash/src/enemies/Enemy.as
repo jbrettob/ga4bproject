@@ -9,13 +9,14 @@ package enemies
 	{
 		private var health:Number;
 		private var alife:Boolean;
-		private var updateTimer:Timer;
+	
 		private var moveSpeed:Number;
 		private var Enemyname:String;
 		
 		
 		public function Enemy():void
 		{
+			
 		}
 
 		public function get _moveSpeed() : Number 
@@ -41,6 +42,14 @@ package enemies
 
 		public function set _health(health : Number) : void {
 			this.health = health;
+		}
+
+		public function get _alife() : Boolean {
+			return alife;
+		}
+
+		public function set _alife(alife : Boolean) : void {
+			this.alife = alife;
 		}
 
 	}
