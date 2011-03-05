@@ -10,7 +10,7 @@ package
 	public class Player extends MovieClip
 	{
 		private var pos:Point;
-		private var moveSpeed;
+		private var moveSpeed:Number;
 		private var health:Number;
 		private var curentCaracter:String;
 		private var alife:Boolean;

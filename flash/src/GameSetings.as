@@ -11,6 +11,12 @@ package
 		//Player
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 3;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
 		public static var PLAYERYPOS								:Number = 700;
+		//Enemys
+		//ShapeShifter
+		public static var SHAPESHIFTERNAME							:String = "shapeshifter";
+		public static var SHAPESHIFTERHP							:Number = 1;
+		public static var SHAPESHIFTERMOVESPEED						:Number = 1;
+		
 		
 		
 		
