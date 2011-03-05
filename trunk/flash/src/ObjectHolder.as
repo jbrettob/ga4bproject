@@ -16,6 +16,11 @@ package
 			enemys 									= new Array();			enemyProjectiles 						= new Array();
 			orbs 									= new Array();
 		}
+		
+		public function addEnemy(_enemy:*):void
+		{
+			enemys.push(_enemy);
+		}
 		/**
 		 * @todo needs testing
 		 */
