@@ -20,9 +20,10 @@ package  {
 			__updateTimer = new Timer(1,0);
 			__updateTimer.addEventListener(TimerEvent.TIMER,update);
 			__updateTimer.start();
+			createShapeShifter();
 		}
 		
-		public function update():void
+		public function update(event:TimerEvent):void
 		{
 			
 		}
@@ -32,6 +33,7 @@ package  {
 			var shapeShifter:ShapeShifter = new ShapeShifter();
 			objectHolder.addEnemy(shapeShifter);
 			addChild(shapeShifter);
+			
 		}
 	}
 }

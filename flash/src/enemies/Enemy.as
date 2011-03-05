@@ -35,5 +35,13 @@ package enemies
 			this.Enemyname = _name;
 		}
 
+		public function get _health() : Number {
+			return health;
+		}
+
+		public function set _health(health : Number) : void {
+			this.health = health;
+		}
+
 	}
 }
