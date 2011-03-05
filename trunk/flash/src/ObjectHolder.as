@@ -21,6 +21,11 @@ package
 		{
 			enemys.push(_enemy);
 		}
+		
+		public function removeEnemy(_enemy:*):void
+		{
+			enemys.splice(_enemy,1);
+		}
 		/**
 		 * @todo needs testing
 		 */
