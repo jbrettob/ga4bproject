@@ -18,7 +18,7 @@ package {
 		public function GameHandler(_objectholder:ObjectHolder):void
 		{
 			objectHolder = _objectholder;
-			__updateTimer = new Timer(1,0);
+			__updateTimer = new Timer(GameSetings.GAMESPEED,0);
 			__updateTimer.addEventListener(TimerEvent.TIMER,update);
 			__updateTimer.start();
 			createShapeShifter();
@@ -28,17 +28,15 @@ package {
 		
 		public function update(event:TimerEvent):void
 		{
-			var i = numChildren;
+			var i:Number = numChildren;
 			while(i > 0)
 			{
 				if((getChildAt(i -1) as Enemy)._alife == false)
 				{
-					trace (numChildren);
+					objectHolder.removeEnemy(i);
 					removeChildAt(i - 1);
-					trace (numChildren);
 				}
 				i --;
-				
 			}
 		}
 		
