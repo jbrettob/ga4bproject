@@ -13,17 +13,13 @@ package enemies
 		private var health:Number;
 		private var alife:Boolean;
 		private var updateTimer:Timer;
+		public var 	name:String;
 		
 		public function Enemy():void
 		{
 			updateTimer = new Timer(1,0);
 			updateTimer.addEventListener(TimerEvent.TIMER_COMPLETE,update);
 			updateTimer.start();
-			PlayerSetup();
-		}
-		
-		private function PlayerSetup() : void 
-		{
 		}
 
 		private function update(event : TimerEvent) : void 
@@ -33,6 +29,8 @@ package enemies
 		public function remove():void
 		{
 			updateTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, update);
+			//needs to be tested 
+			(parent as GameHandler).removeChild(this);
 		}
 
 	}

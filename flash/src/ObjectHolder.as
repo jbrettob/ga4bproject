@@ -9,34 +9,44 @@ package
 	public class ObjectHolder extends MovieClip
 	{
 		public static var enemys					:Array;		public static var enemyProjectiles			:Array;
+		public static var orbs						:Array;
 		
 		public function ObjectHolder():void
 		{
 			enemys 									= new Array();			enemyProjectiles 						= new Array();
+			orbs 									= new Array();
 		}
 		/**
-		 * @todo clear the enemys array
+		 * @todo needs testing
 		 */
 		public function clearEnemys():void
 		{
-			
+			enemys.splice(0,enemys.length);
 		}
 		
 		/**
-		 * @todo clear the enemyProjectiles array
+		 * @todo needs testing
 		 */
 		public function clearEnemyProjectiles():void
 		{
-			
+			enemyProjectiles.splice(0,enemyProjectiles.length);
+		}
+		/**
+		 * @todo needs to be tested
+		 */
+		public function clearOrbs():void
+		{
+			orbs.splice(0,orbs.length);
 		}
 		
 		/**
-		 * @info clears the enemy abd the enemyProjectile
+		 * @info clears the enemy and the enemyProjectile and the orbs
 		 */
 		public function clearAll():void
 		{
 			clearEnemys();
 			clearEnemyProjectiles();
+			clearOrbs();
 		}
 		
 		/**
@@ -47,6 +57,8 @@ package
 			clearAll();
 			enemys 								= null;
 			enemyProjectiles 					= null;
+			orbs 								= null;
+			
 			//Remove events
 			
 		}
