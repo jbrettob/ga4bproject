@@ -26,7 +26,8 @@ package
 			gameHandler = new GameHandler(objectHolder);
 			keyBoard = new Keyboard();
 			player = new Player(this);
-			
+
+			addChild(keyBoard);
 			addChild(player);
 			addChild(gameHandler);
 			

@@ -20,10 +20,13 @@ package
 		
 		private var actor3D:Actor3D;
 		
-		public function Player(main:Main):void
+		private var main:Main;
+		
+		public function Player(_main:Main):void 
 		{
-			updateTimer = new Timer(GameSetings.GAMESPEED,0);
-			updateTimer.addEventListener(TimerEvent.TIMER_COMPLETE,update);
+			main = _main;
+			updateTimer = new Timer(GameSetings.GAMESPEED);
+			updateTimer.addEventListener(TimerEvent.TIMER,update);
 			updateTimer.start();
 			PlayerSetup();
 		}
@@ -39,6 +42,16 @@ package
 
 		private function update(event : TimerEvent) : void 
 		{
+			if (main.keyBoard._D == "down") 
+			{
+				this.x += moveSpeed;
+				trace(moveSpeed);
+			}
+			if (main.keyBoard._A == "down") 
+			{
+				this.x -= moveSpeed;
+				trace(moveSpeed);
+			}
 		}
 
 		public function remove():void 
