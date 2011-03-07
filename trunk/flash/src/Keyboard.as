@@ -1,7 +1,7 @@
 package {
-	import flash.events.KeyboardEvent;
-	import flash.ui.Keyboard;
+	import flash.events.Event;
 	import flash.display.MovieClip;
+	import flash.events.KeyboardEvent;
 	/**
 	 * @author Rene Zwaan
 	 * 
@@ -12,17 +12,70 @@ package {
 		 * up or down
 		 * 
 		 */
-		public static var A:String = "up";
+		private var A:String = "up";		private var D:String = "up";
 		
-		public function Keyboard()
+		public function Keyboard():void
 		{
-			addEventListener(KeyboardEvent.KEY_DOWN,keyDown);
+			addEventListener(Event.ADDED_TO_STAGE, stageEvent);
+		}
+
+		private function stageEvent(event : Event) : void 
+		{
+			trace("new to stage");
+			stage.addEventListener(KeyboardEvent.KEY_DOWN,keyDown);			stage.addEventListener(KeyboardEvent.KEY_UP,keyUp);
+		}
+
+		private function keyUp(event : KeyboardEvent) : void 
+		{
+			switch(event.keyCode)
+			{
+				case 65:
+				{
+					A = "up";
+					break;
+				}
+				case 68:
+				{
+					D = "up";
+					break;
+				}
+			}
 		}
 
 		private function keyDown(event : KeyboardEvent) : void 
 		{
-			trace(event.keyCode);
-			
+			switch(event.keyCode)
+			{
+				case 65:
+				{
+					A = "down";
+					break;
+				}
+				case 68:
+				{
+					D = "down";
+					break;
+				}
+			}
+			trace(A);			trace(D);
+		}
+
+		 public function get _D() : String 
+		 {
+			return D;
+		 }
+
+		 public function set _D(D : String) : void 
+		 {
+			D = D;
+		}
+
+		public function get _A() : String {
+			return A;
+		}
+
+		public function set _A(a : String) : void {
+			A = a;
 		}
 		
 	}

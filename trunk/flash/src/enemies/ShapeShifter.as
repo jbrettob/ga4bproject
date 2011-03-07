@@ -3,7 +3,7 @@ package enemies
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	/**
-	 * @author Rene Zwaam + 
+	 * @author Rene Zwaan + 
 	 */
 	public class ShapeShifter extends Enemy
 	{

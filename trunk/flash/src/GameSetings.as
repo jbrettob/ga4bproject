@@ -8,11 +8,11 @@ package
 	{
 		//Game setings
 		public static var PAUSED									:Boolean = false;
-		public static var GAMESPEED										:Number = 41;
+		public static var GAMESPEED									:Number = 41;
 		public static var GAMEWITH									:Number = 1000;
 		public static var GAMEHEIGHT								:Number = 750;
 		//Player
-		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 3;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
+		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
 		public static var PLAYERYPOS								:Number = 700;
 		//Enemys
 		//ShapeShifter
