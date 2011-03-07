@@ -2,21 +2,20 @@ package
 {
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
-	import flash.geom.Point;
 	import flash.utils.Timer;
 	/**
 	 * @author Rene Zwaan
 	 */
 	public class Player extends MovieClip
 	{
-		private var pos:Point;
+//		private var pos:Point;
 		private var moveSpeed:Number;
 		private var health:Number;
-		private var curentCaracter:String;
-		private var alife:Boolean;
+//		private var curentCaracter:String;
+//		private var alife:Boolean;
 		private var updateTimer:Timer;
 		
-		private var objectHolder:ObjectHolder;
+//		private var objectHolder:ObjectHolder;
 		
 		private var actor3D:Actor3D;
 		

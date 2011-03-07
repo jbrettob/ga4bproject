@@ -22,7 +22,7 @@ package
 		
 		public function GameSetings():void
 		{
-			
+			loadXML();
 		}
 		/**
 		 * @info in here the info gets loaded from a xml

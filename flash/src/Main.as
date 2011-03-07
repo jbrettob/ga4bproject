@@ -30,6 +30,7 @@ package
 			addChild(keyBoard);
 			addChild(player);
 			addChild(gameHandler);
+			addChild(objectHolder);
 			
 			trace("lol");
 			

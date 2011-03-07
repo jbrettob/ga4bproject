@@ -2,7 +2,7 @@
 <launchConfiguration type="com.powerflasher.fdt.ui.MxmlcGroup">
 <stringAttribute key="APP_ARGUMENTS" value=""/>
 <stringAttribute key="ARGUMENTS" value="-static-link-runtime-shared-libraries=true&#10;-target-player={playerVersion}&#10;-library-path+=&quot;{flexSDK}/frameworks/locale/en_US&quot;&#10;-default-size=1000,750&#10;-default-frame-rate=25"/>
-<booleanAttribute key="KILL_PREVIUOS_VIEWER" value="false"/>
+<booleanAttribute key="KILL_PREVIUOS_VIEWER" value="true"/>
 <stringAttribute key="LAUNCHER_DEPENDENCIES" value="[Self]"/>
 <stringAttribute key="MAIN_CLASS" value="src/Main.as"/>
 <stringAttribute key="OUTPUT" value="bin/swf/Main.swf"/>
@@ -17,7 +17,7 @@
 <stringAttribute key="PROJECT_NAME" value="KingGamion"/>
 <stringAttribute key="PUBLISHER_ID" value=""/>
 <booleanAttribute key="START_SWF_ENABLED" value="true"/>
-<stringAttribute key="START_SWF_LOCATION" value="bin/Main.swf"/>
+<stringAttribute key="START_SWF_LOCATION" value="bin/swf/Main.swf"/>
 <stringAttribute key="START_SWF_WITH" value="Adobe Flash Player"/>
 <booleanAttribute key="USE_PROJECT_COMPILER_ARGUMENTS" value="false"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
