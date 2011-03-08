@@ -57,7 +57,6 @@ package {
 					break;
 				}
 			}
-			trace(A);			trace(D);
 		}
 
 		 public function get _D() : String 

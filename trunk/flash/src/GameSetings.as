@@ -13,7 +13,7 @@ package
 		public static var GAMEHEIGHT								:Number = 750;
 		//Player
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
-		public static var PLAYERYPOS								:Number = 700;
+		public static var PLAYERYPOS								:Number = 650;
 		//Enemys
 		//ShapeShifter
 		public static var SHAPESHIFTERNAME							:String = "shapeshifter";

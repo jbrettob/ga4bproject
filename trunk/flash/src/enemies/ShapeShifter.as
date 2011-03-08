@@ -52,9 +52,8 @@ package enemies
 
 		private function setupVars():void
 		{
-			_name = GameSetings.SHAPESHIFTERNAME;
-			_moveSpeed = GameSetings.SHAPESHIFTERMOVESPEED;
-			_health = GameSetings.SHAPESHIFTERHP;
+			moveSpeed = GameSetings.SHAPESHIFTERMOVESPEED;
+			health = GameSetings.SHAPESHIFTERHP;
 		}
 
 		public function remove():void
@@ -65,7 +64,7 @@ package enemies
 			removeChild(actorShapeShifter);
 			actorShapeShifter = null;
 			// set false so perrent will remove this
-			_alife = false;
+			alife = false;
 		}
 	}
 }

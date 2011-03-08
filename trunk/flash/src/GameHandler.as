@@ -31,7 +31,7 @@ package {
 			var i:Number = numChildren;
 			while(i > 0)
 			{
-				if((getChildAt(i -1) as Enemy)._alife == false)
+				if((getChildAt(i -1) as Enemy).alife == false)
 				{
 					objectHolder.removeEnemy(i);
 					removeChildAt(i - 1);
