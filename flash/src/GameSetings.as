@@ -7,7 +7,7 @@ package
 	public class GameSetings extends MovieClip
 	{
 		// Debu setting
-		public static var SHOW_LOG									:Boolean = false;
+		public static var SHOW_LOG									:Boolean = true;
 		// Game setings
 		public static var PAUSED									:Boolean = false;
 		public static var GAMESPEED									:Number = 41;
@@ -15,7 +15,7 @@ package
 		public static var GAMEHEIGHT								:Number = 750;
 		// Player
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
-		public static var PLAYERYPOS								:Number = 700;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 500;		public static var PLAYERSTARTPOS							:Number = 500;
+		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 700;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 950;		public static var PLAYERSTARTPOS							:Number = 500;
 				
 		// Enemys
 		// ShapeShifter
