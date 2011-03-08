@@ -48,6 +48,7 @@ package enemies
 			
 			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.x, this.y);
 			this._objectHolder.addChild(projectile);
+			this._objectHolder.addEnemyProjectiles(projectile);
 		}
 
 		private function setupVars():void
