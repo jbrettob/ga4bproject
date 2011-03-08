@@ -44,12 +44,10 @@ package
 			if (main.keyBoard._D == "down") 
 			{
 				this.x += moveSpeed;
-				trace(moveSpeed);
 			}
 			if (main.keyBoard._A == "down") 
 			{
 				this.x -= moveSpeed;
-				trace(moveSpeed);
 			}
 		}
 

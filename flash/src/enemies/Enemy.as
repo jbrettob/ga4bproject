@@ -1,59 +1,54 @@
-package enemies
+package enemies 
 {
 	import flash.display.MovieClip;
-
+	import flash.utils.Timer;
 	/**
 	 * @author Rene Zwaan
 	 */
 	public class Enemy extends MovieClip
 	{
-		private var health:Number;
-		private var alife:Boolean = true;
-		private var moveSpeed:Number;
-		private var Enemyname:String;
-
+		private var _health:Number;
+		private var _alife:Boolean;
+		private var _moveSpeed:Number;
+		
+		
 		public function Enemy():void
 		{
+			
 		}
 
-		public function get _moveSpeed():Number
+		public function get moveSpeed() : Number 
 		{
-			return moveSpeed;
+			return _moveSpeed;
 		}
 
-		public function set _moveSpeed(moveSpeed:Number):void
-		{
-			this.moveSpeed = moveSpeed;
+		public function set moveSpeed(moveSpeed : Number) : void {
+			this._moveSpeed = moveSpeed;
 		}
 
-		public function get _name():String
-		{
-			return Enemyname;
+		public function get ebemyName() : String {
+			return _enemyname;
 		}
 
-		public function set _name(_name:String):void
-		{
-			this.Enemyname = _name;
+		public function set name(_name : String) : void {
+			this._enemyname = _name;
 		}
 
-		public function get _health():Number
-		{
-			return health;
+		public function get health() : Number {
+			return _health;
 		}
 
-		public function set _health(health:Number):void
-		{
-			this.health = health;
+		public function set health(health : Number) : void {
+			this._health = health;
 		}
 
-		public function get _alife():Boolean
-		{
-			return alife;
+		public function get alife() : Boolean {
+			return _alife;
 		}
 
-		public function set _alife(alife:Boolean):void
-		{
-			this.alife = alife;
+		public function set alife(alife : Boolean) : void {
+			this._alife = alife;
 		}
+
 	}
 }
