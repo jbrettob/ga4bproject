@@ -10,75 +10,75 @@ package
 	 */
 	public class ObjectHolder extends MovieClip
 	{
-		public static var enemys					:Array;		public static var enemyProjectiles			:Array;
-		public static var orbs						:Array;		public static var playerProjectiles			:Array;
+		private var _enemys						:Array;		private var _enemyProjectiles			:Array;
+		private var _orbs						:Array;		private var _playerProjectiles			:Array;
 		
 		public function ObjectHolder():void
 		{
-			enemys 									= new Array();			enemyProjectiles 						= new Array();
-			orbs 									= new Array();
-			playerProjectiles						= new Array();
+			_enemys 								= new Array();			_enemyProjectiles 						= new Array();
+			_orbs 									= new Array();
+			_playerProjectiles						= new Array();
 		}
 		
 		//Enemy
 		public function addEnemy(_enemy:*):void
 		{
-			enemys.push(_enemy);
+			_enemys.push(_enemy);
 		}
 		
 		public function removeEnemy(_enemy:*):void
 		{
-			enemys.splice(_enemy,1);
+			_enemys.splice(_enemy,1);
 		}
 		
 		public function clearEnemys():void
 		{
-			enemys.splice(0,enemys.length);
+			_enemys.splice(0,_enemys.length);
 		}
 		
 		//player projectiles
 		public function addplayerProjectiles(_playerProjectiles:*):void {
-			playerProjectiles.push(_playerProjectiles);
+			_playerProjectiles.push(_playerProjectiles);
 		}
 		
 		public function removePlayerProjectiles(_playerProjectiles:*):void {
-			playerProjectiles.splice(_playerProjectiles, 1);
+			_playerProjectiles.splice(_playerProjectiles, 1);
 		}
 		
 		public function clearPlayerProjectiles():void
 		{
-			playerProjectiles.splice(0,playerProjectiles.length);
+			_playerProjectiles.splice(0,_playerProjectiles.length);
 		}
 		
 		//enemy projectiles
 		 public function addEnemyProjectiles(_playerProjectiles:*):void
 		{
-			enemys.push(_playerProjectiles);
+			_enemys.push(_playerProjectiles);
 		}
 		
 		public function removeEnemyProjectiles(_playerProjectiles:*):void
 		{
-			enemys.splice(_playerProjectiles,1);
+			_enemys.splice(_playerProjectiles,1);
 		}
 		public function clearEnemyProjectiles():void
 		{
-			enemyProjectiles.splice(0,enemyProjectiles.length);
+			_enemyProjectiles.splice(0,_enemyProjectiles.length);
 		}
 		
 		// Orbs 
 		public function addOrb(_Orb:*):void 
 		{
-			orbs.push(_Orb);
+			_orbs.push(_Orb);
 		}
 		
 		public function removeOrb(_Orb:*):void 
 		{
-			orbs.splice(_Orb, 1);
+			_orbs.splice(_Orb, 1);
 		}
 	
 		public function clearOrbs():void
 		{
-			orbs.splice(0,orbs.length);
+			_orbs.splice(0,_orbs.length);
 		}
 		
 		/**
@@ -102,13 +102,44 @@ package
 		public function removeGame():void
 		{
 			clearAll();
-			enemys 								= null;
-			enemyProjectiles 					= null;
-			orbs 								= null;
-			playerProjectiles					= null;
+			_enemys 								= null;
+			_enemyProjectiles 					= null;
+			_orbs 								= null;
+			_playerProjectiles					= null;
 			
 			//Remove events
-			
+		}
+
+		public function get enemys() : Array {
+			return _enemys;
+		}
+
+		public function set enemys(enemys : Array) : void {
+			_enemys = enemys;
+		}
+
+		public function get enemyProjectiles() : Array {
+			return _enemyProjectiles;
+		}
+
+		public function set enemyProjectiles(enemyProjectiles : Array) : void {
+			_enemyProjectiles = enemyProjectiles;
+		}
+
+		public function get orbs() : Array {
+			return _orbs;
+		}
+
+		public function set orbs(orbs : Array) : void {
+			_orbs = orbs;
+		}
+
+		public function get playerProjectiles() : Array {
+			return _playerProjectiles;
+		}
+
+		public function set playerProjectiles(playerProjectiles : Array) : void {
+			_playerProjectiles = playerProjectiles;
 		}
 	}
 }
