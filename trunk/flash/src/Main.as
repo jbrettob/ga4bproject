@@ -1,5 +1,6 @@
 package
 {
+	import objects.Hud;
 	import objects.BGCastle;
 
 	import flash.display.MovieClip;
@@ -11,12 +12,13 @@ package
 	 */
 	public class Main extends MovieClip
 	{
-		public var gameHandler:GameHandler;
-		public var player:Player;
-		public var gameSetings:GameSetings;
-		public var objectHolder:ObjectHolder;
-		public var keyBoard:Keyboard;
-		public var BgCastle:BGCastle;
+		public var gameHandler				:GameHandler;
+		public var player					:Player;
+		public var gameSetings				:GameSetings;
+		public var objectHolder				:ObjectHolder;
+		public var keyBoard					:Keyboard;
+		public var BgCastle					:BGCastle;
+		public var hud						:Hud;
 
 		public function Main():void
 		{
@@ -32,16 +34,20 @@ package
 			gameHandler = new GameHandler(objectHolder);
 			keyBoard = new Keyboard();
 			player = new Player(this);
+			objectHolder.player = player;
+			hud = new Hud();
 			addChild(BgCastle);
 			addChild(keyBoard);
 			addChild(player);
 			addChild(gameHandler);
 			addChild(objectHolder);
+			addChild(hud);
 
 		}
 
 		public function removeGame():void
 		{
+			
 		}
 	}
 }

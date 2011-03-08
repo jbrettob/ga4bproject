@@ -10,6 +10,7 @@ package
 	 */
 	public class ObjectHolder extends MovieClip
 	{
+		private var _player						:Player;
 		private var _enemys						:Array;		private var _enemyProjectiles			:Array;
 		private var _orbs						:Array;		private var _playerProjectiles			:Array;
 		
@@ -140,6 +141,14 @@ package
 
 		public function set playerProjectiles(playerProjectiles : Array) : void {
 			_playerProjectiles = playerProjectiles;
+		}
+
+		public function get player() : Player {
+			return _player;
+		}
+
+		public function set player(player : Player) : void {
+			_player = player;
 		}
 	}
 }
