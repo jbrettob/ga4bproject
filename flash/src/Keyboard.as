@@ -1,4 +1,5 @@
 package {
+	import flash.events.MouseEvent;
 	import flash.events.Event;
 	import flash.display.MovieClip;
 	import flash.events.KeyboardEvent;
@@ -23,6 +24,12 @@ package {
 		{
 			trace("new to stage");
 			stage.addEventListener(KeyboardEvent.KEY_DOWN,keyDown);			stage.addEventListener(KeyboardEvent.KEY_UP,keyUp);
+			stage.addEventListener(MouseEvent.CLICK, listener);
+		}
+
+		private function listener(event : MouseEvent) : void 
+		{
+			
 		}
 
 		private function keyUp(event : KeyboardEvent) : void 

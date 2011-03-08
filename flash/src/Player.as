@@ -1,7 +1,7 @@
 package 
 {
-	import enemies.Enemy;
 	import Projectiles.ProjectileActorShapeShifter;
+
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -10,18 +10,12 @@ package
 	 */
 	public class Player extends MovieClip
 	{
-//		private var pos:Point;
 		private var moveSpeed:Number;
 		private var health:Number;
-//		private var curentCaracter:String;
-//		private var alife:Boolean;
 		private var updateTimer:Timer;
-		
-//		private var objectHolder:ObjectHolder;
-		
 		private var actor3D:Actor3D;
-		
 		private var main:Main;
+		private var aimer:Aimer;
 		
 		public function Player(_main:Main):void 
 		{
@@ -30,6 +24,15 @@ package
 			updateTimer.addEventListener(TimerEvent.TIMER,update);
 			updateTimer.start();
 			PlayerSetup();
+			ainmerSetup();
+		}
+
+		private function ainmerSetup() : void 
+		{
+			aimer = new Aimer();
+			aimer.y = mouseY;
+			aimer.x = mouseX;
+			this.addChild(aimer);
 		}
 		
 		private function PlayerSetup() : void 
@@ -45,7 +48,8 @@ package
 		{
 			moveHandler();
 			checkColition();
-			
+			aimer.x = mouseX;
+			aimer.y = mouseY;
 		}
 
 		private function moveHandler():void
@@ -56,12 +60,12 @@ package
 
 		private function checkColition() : void 
 		{
-			for each (var i : ProjectileActorShapeShifter in main.objectHolder.enemyProjectiles) {
-				if (actor3D.hitTestObject(i) == true)
-				{
-					 trace("hit");
+			for each (var i : ProjectileActorShapeShifter in main.objectHolder.enemyProjectiles) 
+			{
+				if (actor3D.hitTestObject(i) == true) {
+//					this.health -= i.damage;
+					 i.destroy();
 				}
-				
 			}
 		}
 		

@@ -1,5 +1,7 @@
 package
 {
+	import objects.BGCastle;
+	import flash.ui.Mouse;
 	import flash.display.MovieClip;
 	/**
 	 * @author futago
@@ -12,15 +14,19 @@ package
 		public var gameSetings:GameSetings;
 		public var objectHolder : ObjectHolder;
 		public var keyBoard : Keyboard;
+		public var BgCastle : BGCastle;
+		
 		
 		
 		public function Main():void
 		{
 			newGame();
+			Mouse.hide();
 		}
 
 		private function newGame() : void 
 		{
+			BgCastle = new BGCastle();
 			gameSetings = new GameSetings();
 			objectHolder = new ObjectHolder();
 			gameHandler = new GameHandler(objectHolder);
@@ -33,7 +39,6 @@ package
 			addChild(objectHolder);
 			
 			trace("lol");
-			
 		}
 		
 		public function removeGame():void
