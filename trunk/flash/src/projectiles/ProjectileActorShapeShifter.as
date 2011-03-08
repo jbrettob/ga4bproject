@@ -61,9 +61,7 @@ package projectiles
 				this._sprite = null;
 			}
 
-			this.objectHolder.removeEnemyProjectiles(this);
-
-			this.debug('enemyProjectiles count: ' + this.objectHolder.enemyProjectiles.length);
+			this.objectHolder.removePlayerProjectiles(this);
 
 			super.destroy();
 		}
