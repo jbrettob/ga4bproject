@@ -1,5 +1,5 @@
-package
-{
+package {
+	import com.jbrettob.log.Log;
 	import projectiles.ProjectileActorShapeShifter;
 
 	import flash.display.MovieClip;
@@ -64,6 +64,7 @@ package
 			for each (var i : ProjectileActorShapeShifter in main.objectHolder.enemyProjectiles) 
 			{
 				if (actor3D.hitTestObject(i) == true) {
+					Log.debug('hit', this);
 //					this.health -= i.damage;
 					 i.destroy();
 				}
