@@ -1,69 +1,65 @@
 package enemies
 {
-	import Projectiles.ProjectileActorShapeShifter;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
+	import projectiles.ProjectileActorShapeShifter;
+
+	import com.jbrettob.display.Actor;
 
 	/**
-	 * @author Rene Zwaan 
+	 * @author Jayce Rettob
 	 */
-	public class ShapeShifter extends Enemy
+	public class ShapeShifter extends Actor
 	{
-		private var actorShapeShifter:ActorShapeShifter;
-		private var updateTimer:Timer;
-		private var _objectHolder:ObjectHolder;
+		private var _sprite:ActorShapeShifter;
 
 		public function ShapeShifter(objectHolder:ObjectHolder):void
 		{
-			this._objectHolder = objectHolder;
+			this.objectHolder = objectHolder;
 
-			updateTimer = new Timer(GameSetings.GAMESPEED);
-			updateTimer.addEventListener(TimerEvent.TIMER, update);
-			updateTimer.start();
-			setUpShapeShifter();
+			super();
 		}
 
-		private function setUpShapeShifter():void
+		override public function init():void
 		{
-			actorShapeShifter = new ActorShapeShifter();
-			addChild(actorShapeShifter);
-			setupVars();
+			this._sprite = new ActorShapeShifter();
+			this.addChild(this._sprite);
+
+			this.moveSpeed = GameSetings.SHAPESHIFTERMOVESPEED;
+			this.health = GameSetings.SHAPESHIFTERHP;
+			
+			super.init();
 		}
 
-		// Deze word 24x per Sec aan geroepen
-		private function update(event:TimerEvent):void
+		override public function update():void
 		{
-			this.y += .5;
+			this.y += this.moveSpeed;
 
 			var rand:Number = Math.round(Math.random() * 50);
 			if (rand >= 50)
 			{
 				this.shootProjectile();
+				this.health --;
 			}
+
+			super.update();
 		}
 
 		private function shootProjectile():void
-		{	
-			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.x, this.y);
-			this._objectHolder.addChild(projectile);
-			this._objectHolder.addEnemyProjectiles(projectile);
-		}
-
-		private function setupVars():void
 		{
-			moveSpeed = GameSetings.SHAPESHIFTERMOVESPEED;
-			health = GameSetings.SHAPESHIFTERHP;
+			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolder, this.x, this.y);
+			this.objectHolder.addChild(projectile);
+			this.objectHolder.addEnemyProjectiles(projectile);
 		}
+		
 
-		public function remove():void
+		override public function destroy():void
 		{
-			// removing events
-			updateTimer.removeEventListener(TimerEvent.TIMER, update);
-			// other
-			removeChild(actorShapeShifter);
-			actorShapeShifter = null;
-			// set false so perrent will remove this
-			alife = false;
+			if (this._sprite)
+			{
+				this.removeChild(this._sprite);
+				this._sprite = null;
+			}
+			
+			super.destroy();
 		}
 	}
 }

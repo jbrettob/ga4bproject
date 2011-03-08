@@ -1,10 +1,11 @@
-package 
+package
 {
-	import Projectiles.ProjectileActorShapeShifter;
+	import projectiles.ProjectileActorShapeShifter;
 
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+
 	/**
 	 * @author Rene Zwaan
 	 */
