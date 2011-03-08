@@ -1,45 +1,66 @@
-package Projectiles
+package projectiles
 {
-	import flash.events.TimerEvent;
-	import flash.display.MovieClip;
-	import flash.events.Event;
-	import flash.utils.Timer;
-
+	import com.jbrettob.display.Actor;
 	/**
-	 * @author jaycerettob
+	 * @author Jayce Rettob
 	 */
-	public class ProjectileActorShapeShifter extends MovieClip
+	public class ProjectileActorShapeShifter extends Actor
 	{
-		private var _updateTimer:Timer;
 		private var _sprite:ProjectileShapeShifter;
 		
-		public function ProjectileActorShapeShifter(posX:Number, posY:Number)
+		private var _damage:Number = 1;
+		
+		public function ProjectileActorShapeShifter(objectHolder:ObjectHolder, posX:Number, posY:Number)
 		{
+			this.objectHolder = objectHolder;
+			
 			this.x = posX;
 			this.y = posY;
 			
-			this.addEventListener(Event.ADDED_TO_STAGE, handleAddedToStage);
-		}
-
-		private function handleAddedToStage(event:Event):void
-		{
+			if (this._damage <= 0) this._damage = 1;
 			
+			super();
+		}
+		
+		override public function init():void
+		{
 			this._sprite = new ProjectileShapeShifter();
 			this.addChild(this._sprite);
 			
-			this._updateTimer = new Timer(GameSetings.GAMESPEED);
-			this._updateTimer.addEventListener(TimerEvent.TIMER, update);
-			this._updateTimer.start();
+			super.init();
 		}
 
-		private function update(event:TimerEvent):void
+		override public function update():void
 		{
 			this.y += 4;
+			
+			if (this.y >= GameSetings.GAMEHEIGHT)
+			{
+				this.destroy();
+			}
+			
+			super.update();
 		}
 		
-		public function destroy():void
+		public function get damage():Number
 		{
+			return this._damage;
+		}
+		
+		
+		override public function destroy():void
+		{
+			if (this._sprite)
+			{
+				this.removeChild(this._sprite);
+				this._sprite = null;
+			}
 			
+			this.objectHolder.removeEnemyProjectiles(this);
+			
+			this.debug('enemyProjectiles count: ' + this.objectHolder.enemyProjectiles.length);
+			
+			super.destroy();
 		}
 	}
 }

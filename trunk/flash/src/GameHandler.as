@@ -1,10 +1,14 @@
-package {
-	import enemies.Enemy;
+package
+{
 	import enemies.ShapeShifter;
+
+	import com.jbrettob.display.Actor;
 
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+
+
 	
 	/**
 	 * @flowerModelElementId _lO1uYEWqEeCgZu3bfDvecA
@@ -31,7 +35,7 @@ package {
 			var i:Number = numChildren;
 			while(i > 0)
 			{
-				if((getChildAt(i -1) as Enemy).alife == false)
+				if((getChildAt(i -1) as Actor).alife == false)
 				{
 					objectHolder.removeEnemy(i);
 					removeChildAt(i - 1);

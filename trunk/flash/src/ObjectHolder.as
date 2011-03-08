@@ -51,7 +51,7 @@ package
 		}
 		
 		//enemy projectiles
-		 public function addEnemyProjectiles(_playerProjectiles:*):void
+		public function addEnemyProjectiles(_playerProjectiles:*):void
 		{
 			_enemyProjectiles.push(_playerProjectiles);
 		}
