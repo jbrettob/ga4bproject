@@ -1,14 +1,13 @@
 package enemies 
 {
 	import flash.display.MovieClip;
-	import flash.utils.Timer;
 	/**
 	 * @author Rene Zwaan
 	 */
 	public class Enemy extends MovieClip
 	{
 		private var _health:Number;
-		private var _alife:Boolean;
+		private var _alife:Boolean = true;
 		private var _moveSpeed:Number;
 		
 		
