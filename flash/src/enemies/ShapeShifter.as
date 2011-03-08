@@ -40,7 +40,8 @@ package enemies {
 			
 			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
 			{
-				this.destroy();
+				// TODO: temp
+				this.y = 0;
 			}
 
 			super.update();
