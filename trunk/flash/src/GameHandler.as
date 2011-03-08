@@ -49,6 +49,7 @@ package
 			var shapeShifter:ShapeShifter = new ShapeShifter(objectHolder);
 			objectHolder.addEnemy(shapeShifter);
 			shapeShifter.x = Math.random() * GameSetings.GAMEWITH;
+			shapeShifter.y = -(Math.random() * 300);
 			this.addChild(shapeShifter);
 		}
 

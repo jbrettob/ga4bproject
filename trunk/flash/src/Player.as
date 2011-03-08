@@ -40,6 +40,7 @@ package {
 		{
 			health 									= GameSetings.PLAYERHP;
 			actor3D 								= new Actor3D();
+			this.x 									= GameSetings.PLAYERXPOS;
 			this.y 									= GameSetings.PLAYERYPOS;
 			moveSpeed 								= GameSetings.PLAYERMOVESPEED;
 			addChild(actor3D);
@@ -54,8 +55,8 @@ package {
 		}
 
 		private function moveHandler() : void {
-			if (main.keyBoard._D == "down" && actor3D.x < GameSetings.PLAYERMAXRIGHT) actor3D.x += moveSpeed;
-			if (main.keyBoard._A == "down" && actor3D.x > GameSetings.PLAYERMAXLEFT) actor3D.x -= moveSpeed;
+			if (main.keyBoard._D == "down" && this.x < GameSetings.PLAYERMAXRIGHT) this.x += moveSpeed;
+			if (main.keyBoard._A == "down" && this.x > GameSetings.PLAYERMAXLEFT) this.x -= moveSpeed;
 		}
 
 		private function checkColition() : void 

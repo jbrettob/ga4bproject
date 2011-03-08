@@ -33,10 +33,14 @@ package enemies {
 			this.y += this.moveSpeed;
 
 			var rand:Number = Math.round(Math.random() * 50);
-			if (rand >= 50)
+			if (rand >= 50 && this.x >= 10 && this.x <= (GameSetings.GAMEHEIGHT - 50))
 			{
 				this.shootProjectile();
-				this.health --;
+			}
+			
+			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
+			{
+				this.destroy();
 			}
 
 			super.update();
@@ -44,11 +48,13 @@ package enemies {
 
 		private function shootProjectile():void
 		{
-			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolder, this.x, this.y);
+			var distX:Number = this.objectHolder.player.x - this.x;
+			var distY:Number = this.objectHolder.player.y - this.y;
+			 
+			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolder, this.x, this.y, distX,distY);
 			this.objectHolder.addChild(projectile);
 			this.objectHolder.addEnemyProjectiles(projectile);
 		}
-		
 
 		override public function destroy():void
 		{
