@@ -43,9 +43,7 @@ package enemies
 		}
 
 		private function shootProjectile():void
-		{
-			trace('boom');
-			
+		{	
 			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.x, this.y);
 			this._objectHolder.addChild(projectile);
 			this._objectHolder.addEnemyProjectiles(projectile);

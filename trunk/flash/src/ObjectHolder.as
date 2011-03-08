@@ -53,12 +53,12 @@ package
 		//enemy projectiles
 		 public function addEnemyProjectiles(_playerProjectiles:*):void
 		{
-			_enemys.push(_playerProjectiles);
+			_enemyProjectiles.push(_playerProjectiles);
 		}
 		
 		public function removeEnemyProjectiles(_playerProjectiles:*):void
 		{
-			_enemys.splice(_playerProjectiles,1);
+			_enemyProjectiles.splice(_playerProjectiles,1);
 		}
 		public function clearEnemyProjectiles():void
 		{
@@ -103,9 +103,9 @@ package
 		{
 			clearAll();
 			_enemys 								= null;
-			_enemyProjectiles 					= null;
-			_orbs 								= null;
-			_playerProjectiles					= null;
+			_enemyProjectiles 						= null;
+			_orbs 									= null;
+			_playerProjectiles						= null;
 			
 			//Remove events
 		}
