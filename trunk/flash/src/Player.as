@@ -1,5 +1,7 @@
 package 
 {
+	import enemies.Enemy;
+	import Projectiles.ProjectileActorShapeShifter;
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -41,16 +43,28 @@ package
 
 		private function update(event : TimerEvent) : void 
 		{
-			if (main.keyBoard._D == "down") 
-			{
-				this.x += moveSpeed;
-			}
-			if (main.keyBoard._A == "down") 
-			{
-				this.x -= moveSpeed;
-			}
+			moveHandler();
+			checkColition();
+			
 		}
 
+		private function moveHandler():void
+		{
+			if (main.keyBoard._D == "down") this.x += moveSpeed;
+			if (main.keyBoard._A == "down") this.x -= moveSpeed;
+		}
+
+		private function checkColition() : void 
+		{
+			for each (var i : ProjectileActorShapeShifter in main.objectHolder.enemyProjectiles) {
+				if (actor3D.hitTestObject(i) == true)
+				{
+					 trace("hit");
+				}
+				
+			}
+		}
+		
 		public function remove():void 
 		{
 			updateTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, update);
