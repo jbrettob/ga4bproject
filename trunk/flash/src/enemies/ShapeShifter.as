@@ -1,5 +1,4 @@
-package enemies
-{
+package enemies {
 	import projectiles.ProjectileActorShapeShifter;
 
 	import com.jbrettob.display.Actor;

@@ -38,7 +38,6 @@ package
 			addChild(gameHandler);
 			addChild(objectHolder);
 
-			trace("lol");
 		}
 
 		public function removeGame():void
