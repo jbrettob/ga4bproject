@@ -26,14 +26,6 @@ package enemies
 			this._moveSpeed = moveSpeed;
 		}
 
-		public function get ebemyName() : String {
-			return _enemyname;
-		}
-
-		public function set name(_name : String) : void {
-			this._enemyname = _name;
-		}
-
 		public function get health() : Number {
 			return _health;
 		}
