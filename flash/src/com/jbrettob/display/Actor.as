@@ -1,6 +1,11 @@
 package com.jbrettob.display
 {
+	import com.greensock.TweenLite;
+	import com.greensock.plugins.ColorTransformPlugin;
+	import com.greensock.plugins.TintPlugin;
+	import com.greensock.plugins.TweenPlugin;
 	import com.jbrettob.log.Log;
+
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.TimerEvent;
@@ -20,6 +25,8 @@ package com.jbrettob.display
 
 		public function Actor():void
 		{
+			TweenPlugin.activate([TintPlugin, ColorTransformPlugin]);
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
 		}
 
@@ -57,6 +64,16 @@ package com.jbrettob.display
 			{
 				this.destroy();
 			}
+		}
+		
+		public function hitColorTween():void
+		{
+			TweenLite.to(this, .05, {colorTransform:{tint:0xff0000, tintAmount:0.75}, onComplete:this.resetColorTween, overwrite: true});
+		}
+		
+		public function resetColorTween():void
+		{
+			TweenLite.to(this, .02, {colorTransform:{tint:0xff0000, tintAmount:0}, overwrite: true});
 		}
 
 		public function get moveSpeed():Number
@@ -99,6 +116,8 @@ package com.jbrettob.display
 				this._timer.stop();
 				this._timer = null;
 			}
+			
+			TweenLite.killTweensOf(this);
 		}
 		
 		// Log for flash traces

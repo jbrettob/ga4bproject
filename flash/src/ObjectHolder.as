@@ -38,12 +38,12 @@ package
 		}
 		
 		//player projectiles
-		public function addplayerProjectiles(_playerProjectiles:*):void {
-			_playerProjectiles.push(_playerProjectiles);
+		public function addplayerProjectiles(projectile:*):void {
+			_playerProjectiles.push(projectile);
 		}
 		
-		public function removePlayerProjectiles(_playerProjectiles:*):void {
-			_playerProjectiles.splice(_playerProjectiles, 1);
+		public function removePlayerProjectiles(projectile:*):void {
+			_playerProjectiles.splice(projectile, 1);
 		}
 		
 		public function clearPlayerProjectiles():void
