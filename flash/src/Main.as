@@ -1,7 +1,8 @@
-package
-{
-	import objects.Hud;
+package {
 	import objects.BGCastle;
+	import objects.Hud;
+
+	import player.Player;
 
 	import flash.display.MovieClip;
 	import flash.ui.Mouse;
@@ -16,7 +17,7 @@ package
 		public var player					:Player;
 		public var gameSetings				:GameSetings;
 		public var objectHolder				:ObjectHolder;
-		public var keyBoard					:Keyboard;
+		public var keyBoard					:InputHandler;
 		public var BgCastle					:BGCastle;
 		public var hud						:Hud;
 
@@ -32,7 +33,7 @@ package
 			gameSetings = new GameSetings();
 			objectHolder = new ObjectHolder();
 			gameHandler = new GameHandler(objectHolder);
-			keyBoard = new Keyboard();
+			keyBoard = new InputHandler();
 			player = new Player(this);
 			objectHolder.player = player;
 			hud = new Hud();
