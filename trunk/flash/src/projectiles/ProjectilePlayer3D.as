@@ -6,15 +6,20 @@ package projectiles
 	 */
 	public class ProjectilePlayer3D extends Projectile
 	{
-		private var _projectile:Projectile3D;
+		private var _sprite:Projectile3D;
 		
 		public function ProjectilePlayer3D(_objectHolder:ObjectHolder, posX:Number, posY:Number, toX:Number, toY:Number):void
 		{
 			super(_objectHolder, posX, posY, toX, toY);
-			trace(posX);
+		}
+		
+		
+		override public function init():void
+		{
+			this._sprite = new Projectile3D();
+			this.addChild(this._sprite);
+			
 			super.init();
-			_projectile = new Projectile3D();
-			this.addChild(_projectile);
 		}
 		
 		override public function update():void
@@ -29,5 +34,22 @@ package projectiles
 
 			super.update();
 		}
+
+		override public function destroy():void
+		{
+			if (this._sprite)
+			{
+				if(this.contains(this._sprite))
+				{
+					this.removeChild(this._sprite);
+				}
+				this._sprite = null;
+			}
+			
+			this.objectHolder.removePlayerProjectiles(this);
+			
+			super.destroy();
+		}
+
 	}
 }

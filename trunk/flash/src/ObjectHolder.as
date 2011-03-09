@@ -1,6 +1,10 @@
 package 
 {
+	import com.jbrettob.log.Log;
 	import player.Player;
+
+	import com.jbrettob.display.Actor;
+	import com.jbrettob.display.Projectile;
 
 	import flash.display.MovieClip;
 	/**
@@ -36,35 +40,74 @@ package
 		
 		public function clearEnemys():void
 		{
+			for each (var i : Actor in  this._enemys)
+			{
+				if (this.contains(i))
+				{
+					this.removeChild(i);
+				}
+				
+				i.destroy();
+			}
+			
 			_enemys.splice(0,_enemys.length);
 		}
 		
 		//player projectiles
-		public function addplayerProjectiles(projectile:*):void {
+		public function addplayerProjectiles(projectile:Projectile):void {
 			_playerProjectiles.push(projectile);
 		}
 		
-		public function removePlayerProjectiles(projectile:*):void {
+		public function removePlayerProjectiles(projectile:Projectile):void
+		{
+			for each (var i : Projectile in this._playerProjectiles)
+			{
+				if (i == projectile)
+				{
+					Log.debug('hooi', this);
+					if (this.contains(i)) this.removeChild(i);
+				}
+			}
+			
 			_playerProjectiles.splice(projectile, 1);
 		}
 		
 		public function clearPlayerProjectiles():void
 		{
+			for each (var i : Projectile in  this._playerProjectiles)
+			{
+				if (this.contains(i))
+				{
+					if (this.contains(i)) this.removeChild(i);
+				}
+				
+				i.destroy();
+			}
+			
 			_playerProjectiles.splice(0,_playerProjectiles.length);
 		}
 		
 		//enemy projectiles
-		public function addEnemyProjectiles(_playerProjectiles:*):void
+		public function addEnemyProjectiles(projectile:Projectile):void
 		{
-			_enemyProjectiles.push(_playerProjectiles);
+			_enemyProjectiles.push(projectile);
 		}
 		
-		public function removeEnemyProjectiles(_playerProjectiles:*):void
+		public function removeEnemyProjectiles(projectile:Projectile):void
 		{
-			_enemyProjectiles.splice(_playerProjectiles,1);
+			_enemyProjectiles.splice(projectile,1);
 		}
 		public function clearEnemyProjectiles():void
 		{
+			for each (var i : Projectile in  this._enemyProjectiles)
+			{
+				if (this.contains(i))
+				{
+					this.removeChild(i);
+				}
+				
+				i.destroy();
+			}
 			_enemyProjectiles.splice(0,_enemyProjectiles.length);
 		}
 		
@@ -81,6 +124,16 @@ package
 	
 		public function clearOrbs():void
 		{
+			for each (var i : Actor in  this._orbs)
+			{
+				if (this.contains(i))
+				{
+					this.removeChild(i);
+				}
+				
+				i.destroy();
+			}
+			
 			_orbs.splice(0,_orbs.length);
 		}
 		

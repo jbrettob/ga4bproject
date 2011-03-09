@@ -3,6 +3,7 @@ package enemies
 	import projectiles.ProjectileActorShapeShifter;
 
 	import com.jbrettob.display.Actor;
+	import com.jbrettob.display.Projectile;
 
 	/**
 	 * @author Jayce Rettob
@@ -32,6 +33,8 @@ package enemies
 		override public function update():void
 		{
 			this.y += this.moveSpeed;
+			
+			this.checkCollision();
 
 			var rand:Number = Math.round(Math.random() * 50);
 			if (rand >= 45 && this.x >= 10 && this.x <= (GameSetings.GAMEHEIGHT - 100))
@@ -41,12 +44,33 @@ package enemies
 
 			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
 			{
-				// TODO: temp
+				// TODO: testing purpose
 				this.y = 0;
-				this.x = Math.random() * GameSetings.GAMEWITH;
+				this.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
 			}
 
 			super.update();
+		}
+
+		private function checkCollision():void
+		{
+			// TODO: half working
+			for each (var i:Projectile in this.objectHolder.playerProjectiles)
+			{
+				if (this.hitTestObject(i))
+				{
+					this.log('hit');
+					
+					this.health -= i.damage;
+					i.destroy();
+					this.hitColorTween();
+					
+					if (this.health <= 0)
+					{
+						this.destroy();
+					}
+				}
+			}
 		}
 
 		private function shootProjectile():void
@@ -57,8 +81,6 @@ package enemies
 			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolder, this.x, this.y, distX, distY);
 			this.objectHolder.addChild(projectile);
 			this.objectHolder.addEnemyProjectiles(projectile);
-			
-			this.hitColorTween();
 		}
 
 		override public function destroy():void
