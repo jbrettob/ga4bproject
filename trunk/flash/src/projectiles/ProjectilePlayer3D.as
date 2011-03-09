@@ -25,8 +25,8 @@ package projectiles
 		
 		override public function update():void
 		{
-			this.x += this.toX * .01;
-			this.y += this.toY * .01;
+			this.x += this.toX * .02;
+			this.y += this.toY * .02;
 
 			if (this.y <= 0)
 			{

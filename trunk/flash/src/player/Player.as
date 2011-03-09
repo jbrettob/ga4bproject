@@ -95,7 +95,7 @@ package player
 				case GameSetings.ACTOR3D:
 				{
 					var projectile3D : ProjectilePlayer3D;
-					projectile3D = new ProjectilePlayer3D(main.objectHolder, this.x, this.y, mouseX, mouseY);
+					projectile3D = new ProjectilePlayer3D(main.objectHolder, this.x, (this.y - 85), mouseX, mouseY);
 					objectHolder.addplayerProjectiles(projectile3D);
 						objectHolder.addChild(projectile3D);
 						allowFire = false;

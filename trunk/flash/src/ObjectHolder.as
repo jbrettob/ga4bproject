@@ -62,7 +62,7 @@ package
 		public function removePlayerProjectiles(projectile:Projectile):void
 		{
 			if (this.contains(projectile)) this.removeChild(projectile);
-			_playerProjectiles.splice(projectile,1);
+			_playerProjectiles.splice(projectile,0);
 		}
 		
 		public function clearPlayerProjectiles():void

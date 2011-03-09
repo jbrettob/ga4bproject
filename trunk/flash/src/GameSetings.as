@@ -7,7 +7,7 @@ package
 	public class GameSetings extends MovieClip
 	{
 		// Debu setting
-		public static var SHOW_LOG									:Boolean = true;
+		public static var SHOW_LOG									:Boolean = false;
 		// Game setings
 		public static var PAUSED									:Boolean = false;
 		public static var GAMESPEED									:Number = 41;
