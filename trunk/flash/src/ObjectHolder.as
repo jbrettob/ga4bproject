@@ -4,7 +4,6 @@ package
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
-	import com.jbrettob.log.Log;
 
 	import flash.display.MovieClip;
 	/**
