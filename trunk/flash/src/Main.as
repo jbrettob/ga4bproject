@@ -21,6 +21,7 @@ package {
 		public var keyBoard					:InputHandler;
 		public var BgCastle					:BGCastle;
 		public var hud						:Hud;
+		public var bg						:BG;					
 
 		public function Main():void
 		{
@@ -30,14 +31,17 @@ package {
 
 		private function newGame():void
 		{
-			BgCastle = new BGCastle();
-			gameSetings = new GameSetings();
-			objectHolder = new ObjectHolder();
-			gameHandler = new GameHandler(objectHolder);
-			keyBoard = new InputHandler();
-			player = new Player(this);
+			bg 					= new BG();
+			BgCastle 			= new BGCastle();
+			gameSetings 		= new GameSetings();
+			objectHolder 		= new ObjectHolder();
+			gameHandler 		= new GameHandler(objectHolder);
+			keyBoard 			= new InputHandler();
+			player 				= new Player(this);
 			objectHolder.player = player;
-			hud = new Hud();
+			hud 				= new Hud();
+			bg.y += 25;
+			addChild(bg);
 			addChild(BgCastle);
 			addChild(keyBoard);
 			addChild(player);

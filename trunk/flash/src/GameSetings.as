@@ -15,10 +15,13 @@ package
 		public static var GAMEHEIGHT								:Number = 750;
 		// Player
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
-		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 700;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 750;		public static var PLAYERSTARTPOS							:Number = 500;
-				// Enemys
+		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 700;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 750;		//actor3D
+		public static var ACTOR3DSHOOTDELAY							:Number = 500;
 		// Actors
-		public static var ACTOR2D									:String = "actor2d";		public static var ACTOR3D									:String = "actor3d";		public static var ACTORPRO									:String = "actorpro";
+		public static var ACTOR2D									:String = "actor2d";		public static var ACTOR3D									:String = "actor3d";		public static var ACTORPRO									:String = "actorpro";		
+		// Enemys
+		
+		
 		// ShapeShifter
 		public static var SHAPESHIFTERNAME							:String = "shapeshifter";
 		public static var SHAPESHIFTERHP							:Number = 2;
