@@ -41,7 +41,6 @@ package {
 
 		private function keyUp(event : KeyboardEvent) : void 
 		{
-			trace(event.keyCode);
 			switch(event.keyCode)
 			{
 				case 65:
