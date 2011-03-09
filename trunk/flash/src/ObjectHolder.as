@@ -1,5 +1,7 @@
 package 
 {
+	import player.Player;
+
 	import flash.display.MovieClip;
 	/**
 	 * @author Rene Zwaan
