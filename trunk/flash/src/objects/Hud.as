@@ -14,6 +14,7 @@ package objects
 		
 		private var _sprite:Interface_Hud;
 		private var _lives:Number = 0;
+		private var _upgradeTimer:UpgradeTimer;
 
 		public function Hud():void
 		{
@@ -37,6 +38,13 @@ package objects
 			this.addChild(this._sprite);
 
 			_HUD_WIDTH = this._sprite.width;
+			
+			
+			this._upgradeTimer = new UpgradeTimer();
+			this._upgradeTimer.x = 10;
+			this._upgradeTimer.y = ( (GameSetings.GAMEHEIGHT - this._upgradeTimer.height) - 20);
+			
+			this.addChild(this._upgradeTimer); 
 			
 			this.updateLives();
 		}
@@ -70,6 +78,11 @@ package objects
 				this.removeChild(this._sprite);
 				this._sprite = null;
 			}
+		}
+		
+		public function get upgradeTimer():UpgradeTimer
+		{
+			return this._upgradeTimer;
 		}
 
 		// logging for traces
