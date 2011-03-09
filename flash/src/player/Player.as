@@ -1,6 +1,8 @@
-package player {
-	import projectiles.ProjectilePlayer3D;
+package player
+{
 	import projectiles.ProjectileActorShapeShifter;
+	import projectiles.ProjectilePlayer3D;
+
 	import com.jbrettob.display.Actor;
 
 	/**
@@ -15,9 +17,17 @@ package player {
 		public function Player(_main:Main):void 
 		{
 			main = _main;
+			
+			super();
+		}
+		
+		override public function init():void
+		{
 			objectHolder = main.objectHolder;
 			PlayerSetup();
 			ainmerSetup();
+			
+			super.init();
 		}
 
 		private function ainmerSetup() : void 
@@ -36,6 +46,9 @@ package player {
 			this.y 									= GameSetings.PLAYERYPOS;
 			moveSpeed 								= GameSetings.PLAYERMOVESPEED;
 			addChild(actor);
+			
+			// TODO: lives
+			main.hud.lives = 3;
 		}
 
 		override public function update() : void 
@@ -84,6 +97,7 @@ package player {
 		
 		private function checkColition() : void 
 		{
+			if (this.health <= 0) this.destroy();
 			for each (var i : ProjectileActorShapeShifter in main.objectHolder.enemyProjectiles) 
 			{
 				if (actor.hitTestObject(i) == true) 
@@ -94,9 +108,12 @@ package player {
 			}
 		}
 		
-		public function remove():void 
+		
+		override public function destroy():void
 		{
-			destroy();
+			main.objectHolder.clearAll();
+			
+			super.destroy();
 		}
 	}
 }

@@ -25,7 +25,7 @@ package {
 		{
 			stage.addEventListener(KeyboardEvent.KEY_DOWN,keyDown);			stage.addEventListener(KeyboardEvent.KEY_UP,keyUp);
 			stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
-			stage.addEventListener(MouseEvent.MOUSE_UP, mouseUp)
+			stage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
 		}
 
 		private function mouseDown(event : MouseEvent) : void 
