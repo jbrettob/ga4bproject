@@ -9,7 +9,7 @@ package com.jbrettob.log
 		{
 			if (GameSetings.SHOW_LOG)
 			{
-				trace('Log: ' + object + ' : ' + output);
+				trace('Log: ' + (object) + ' : ' + output);
 			}
 		}
 		
@@ -17,7 +17,7 @@ package com.jbrettob.log
 		{
 			if (GameSetings.SHOW_LOG)
 			{
-				trace('Debug: ' + object + ' : ' + output);
+				trace('Debug: ' + (object) + ' : ' + output);
 			}
 		}
 	}
