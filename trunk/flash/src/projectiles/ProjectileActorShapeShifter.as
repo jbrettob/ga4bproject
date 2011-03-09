@@ -1,44 +1,34 @@
 package projectiles
 {
-	import com.jbrettob.display.Actor;
+	import com.jbrettob.display.Projectile;
 
 	/**
 	 * @author Jayce Rettob
 	 */
-	public class ProjectileActorShapeShifter extends Actor
+	public class ProjectileActorShapeShifter extends Projectile
 	{
-		private var _sprite:ProjectileShapeShifter;
-		private var _damage:Number = 1;
-		private var _toX:Number = 0;
-		private var _toY:Number = 0;
 
 		public function ProjectileActorShapeShifter(objectHolder:ObjectHolder, posX:Number, posY:Number, toX:Number, toY:Number)
 		{
 			this.objectHolder = objectHolder;
 
-			this.x = posX;
-			this.y = posY;
+			if (this.damage <= 0) this.damage = 1;
 
-			this._toX = toX;
-			this._toY = toY;
-
-			if (this._damage <= 0) this._damage = 1;
-
-			super();
+			super(this.objectHolder, posX, posY, toX, toY);
 		}
 
 		override public function init():void
 		{
-			this._sprite = new ProjectileShapeShifter();
-			this.addChild(this._sprite);
+			this.sprite = new ProjectileShapeShifter();
+			this.addChild(this.sprite);
 
 			super.init();
 		}
 
 		override public function update():void
 		{
-			this.x += this._toX * .01;
-			this.y += this._toY * .01;
+			this.x += this.toX * .01;
+			this.y += this.toY * .01;
 
 			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
 			{
@@ -48,17 +38,12 @@ package projectiles
 			super.update();
 		}
 
-		public function get damage():Number
-		{
-			return this._damage;
-		}
-
 		override public function destroy():void
 		{
-			if (this._sprite)
+			if (this.sprite)
 			{
-				this.removeChild(this._sprite);
-				this._sprite = null;
+				this.removeChild(this.sprite);
+				this.sprite = null;
 			}
 
 			this.objectHolder.removePlayerProjectiles(this);
