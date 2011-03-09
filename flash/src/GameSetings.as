@@ -26,6 +26,7 @@ package
 		public static var SHAPESHIFTERNAME							:String = "shapeshifter";
 		public static var SHAPESHIFTERHP							:Number = 2;
 		public static var SHAPESHIFTERMOVESPEED						:Number = 2;
+		public static var SHAPESHIFTERSCORE							:Number = 10;
 		
 		public function GameSetings():void
 		{

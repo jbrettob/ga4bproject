@@ -1,5 +1,7 @@
 package com.jbrettob.display
 {
+	import objects.Hud;
+
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.ColorTransformPlugin;
 	import com.greensock.plugins.TintPlugin;
@@ -23,6 +25,7 @@ package com.jbrettob.display
 		private var _alife:Boolean = true;
 		private var _moveSpeed:Number;
 		private var _timer:Timer;
+		private var _score:Number = 0;
 
 		public function Actor():void
 		{
@@ -63,6 +66,7 @@ package com.jbrettob.display
 
 			if (this._health <= 0)
 			{
+				Hud.getInstance().score = this.score;
 				this.destroy();
 			}
 		}
@@ -111,6 +115,16 @@ package com.jbrettob.display
 		public function set alife(alife:Boolean):void
 		{
 			this._alife = alife;
+		}
+		
+		public function get score():Number
+		{
+			return this._score;
+		}
+
+		public function set score(value:Number):void
+		{
+			this._score = value;
 		}
 		
 		public function destroy():void

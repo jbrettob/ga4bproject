@@ -59,7 +59,7 @@ package player
 			addChild(actor);
 			
 			// TODO: lives
-			main.hud.lives = 3;
+			main.hud.lives = 1;
 		}
 
 		override public function update() : void 
