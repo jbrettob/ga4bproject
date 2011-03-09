@@ -1,10 +1,10 @@
 package 
 {
-	import com.jbrettob.log.Log;
 	import player.Player;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
+	import com.jbrettob.log.Log;
 
 	import flash.display.MovieClip;
 	/**
@@ -60,16 +60,16 @@ package
 		
 		public function removePlayerProjectiles(projectile:Projectile):void
 		{
+			// TODO: half not working
 			for each (var i : Projectile in this._playerProjectiles)
 			{
 				if (i == projectile)
 				{
-					Log.debug('hooi', this);
-					if (this.contains(i)) this.removeChild(i);
+					 if (this.contains(i)) this.removeChild(i);
 				}
 			}
 			
-			_playerProjectiles.splice(projectile, 1);
+			_playerProjectiles.splice(projectile, _playerProjectiles.length);
 		}
 		
 		public function clearPlayerProjectiles():void
@@ -202,8 +202,9 @@ package
 			return _player;
 		}
 
-		public function set player(player : Player) : void {
-			_player = player;
+		public function set player(output : Player) : void
+		{
+			_player = output;
 		}
 	}
 }
