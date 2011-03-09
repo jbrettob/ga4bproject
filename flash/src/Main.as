@@ -1,4 +1,5 @@
 package {
+	import com.jbrettob.media.sound.SoundChannel;
 	import objects.BGCastle;
 	import objects.Hud;
 
@@ -44,6 +45,11 @@ package {
 			addChild(objectHolder);
 			addChild(hud);
 
+			SoundChannel.getInstance().init();
+			
+			SoundChannel.getInstance().playSound();
+			
+			SoundChannel.getInstance().stopSound();
 		}
 
 		public function removeGame():void
