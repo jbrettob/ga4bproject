@@ -1,4 +1,5 @@
 package {
+	import enemies.DeathLine;
 	import com.jbrettob.media.sound.SoundChannel;
 	import objects.BGCastle;
 	import objects.Hud;
@@ -21,7 +22,8 @@ package {
 		public var keyBoard					:InputHandler;
 		public var BgCastle					:BGCastle;
 		public var hud						:Hud;
-		public var bg						:BG;					
+		public var bg						:BG;
+		public var dl						:DeathLine;					
 
 		public function Main():void
 		{
@@ -40,6 +42,8 @@ package {
 			player 				= new Player(this);
 			objectHolder.player = player;
 			hud 				= new Hud();
+			dl 					= new DeathLine(keyBoard,hud.upgradeTimer);
+			
 			bg.y += 25;
 			addChild(bg);
 			addChild(BgCastle);
@@ -48,6 +52,7 @@ package {
 			addChild(gameHandler);
 			addChild(objectHolder);
 			addChild(hud);
+			addChild(dl);
 
 			SoundChannel.getInstance().init();
 			SoundChannel.getInstance().playSound();

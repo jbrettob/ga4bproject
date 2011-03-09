@@ -15,6 +15,7 @@ package {
 		 */
 		private var _A:String = "up";		private var _D:String = "up";
 		private var _leftMouse:String = "up";
+		private var _spaceBarr:String = "up";
 		
 		public function InputHandler():void
 		{
@@ -40,6 +41,7 @@ package {
 
 		private function keyUp(event : KeyboardEvent) : void 
 		{
+			trace(event.keyCode);
 			switch(event.keyCode)
 			{
 				case 65:
@@ -51,6 +53,10 @@ package {
 				{
 					_D = "up";
 					break;
+				}
+				case 32:
+				{
+					_spaceBarr = "up";
 				}
 			}
 		}
@@ -68,6 +74,10 @@ package {
 				{
 					_D = "down";
 					break;
+				}
+				case 32:
+				{
+					_spaceBarr = "down";
 				}
 			}
 		}
@@ -96,6 +106,14 @@ package {
 
 		public function set D(d : String) : void {
 			_D = d;
+		}
+
+		public function get spaceBarr() : String {
+			return _spaceBarr;
+		}
+
+		public function set spaceBarr(spaceBarr : String) : void {
+			_spaceBarr = spaceBarr;
 		}
 		
 	}

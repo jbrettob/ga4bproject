@@ -62,7 +62,6 @@ package objects
 		{
 			if (this._canUse)
 			{
-				
 				this.exp = 0;
 				this._canUse = false;
 			}

@@ -54,10 +54,13 @@ package enemies
 
 			if (this._canShoot)
 			{
-				this.shootProjectile();
-				
-				this._canShoot = false;
-				this._canShootTimer.start();
+				if (this.y < 400)
+				{
+					this.shootProjectile();
+					
+					this._canShoot = false;
+					this._canShootTimer.start();
+				}
 			}
 
 			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
