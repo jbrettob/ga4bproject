@@ -59,16 +59,10 @@ package enemies
 			{
 				if (this.hitTestObject(i))
 				{
-					this.log('hit');
-					
 					this.health -= i.damage;
-					i.destroy();
 					this.hitColorTween();
 					
-					if (this.health <= 0)
-					{
-						this.destroy();
-					}
+					i.destroy();
 				}
 			}
 		}

@@ -1,9 +1,9 @@
 package player
 {
-	import projectiles.ProjectileActorShapeShifter;
 	import projectiles.ProjectilePlayer3D;
 
 	import com.jbrettob.display.Actor;
+	import com.jbrettob.display.Projectile;
 
 	/**
 	 * @author Rene Zwaan
@@ -98,11 +98,12 @@ package player
 		private function checkColition() : void 
 		{
 			if (this.health <= 0) this.destroy();
-			for each (var i : ProjectileActorShapeShifter in main.objectHolder.enemyProjectiles) 
+			for each (var i : Projectile in main.objectHolder.enemyProjectiles) 
 			{
 				if (actor.hitTestObject(i) == true) 
 				{
 					this.health -= i.damage;
+					this.hitColorTween();
 					i.destroy();
 				}
 			}
