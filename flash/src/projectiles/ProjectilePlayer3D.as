@@ -8,6 +8,7 @@ package projectiles
 	{
 		private var _sprite:Projectile3D;
 		
+		
 		public function ProjectilePlayer3D(_objectHolder:ObjectHolder, posX:Number, posY:Number, toX:Number, toY:Number):void
 		{
 			super(_objectHolder, posX, posY, toX, toY);

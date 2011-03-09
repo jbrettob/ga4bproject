@@ -1,5 +1,7 @@
 package player
 {
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	import projectiles.ProjectilePlayer3D;
 
 	import com.jbrettob.display.Actor;
@@ -13,12 +15,21 @@ package player
 		private var actor:playerCaracterHolder;
 		private var main:Main;
 		private var aimer:Aimer;
+		private var shootTimer:Timer;
+		private var allowFire:Boolean = true;
 		
 		public function Player(_main:Main):void 
 		{
 			main = _main;
-			
+			shootTimer = new Timer(GameSetings.ACTOR3DSHOOTDELAY);
+			shootTimer.addEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
+			shootTimer.start();
 			super();
+		}
+
+		private function setAlouwFiretoTrue(event : TimerEvent) : void
+		{
+			allowFire = true;
 		}
 		
 		override public function init():void
@@ -73,6 +84,8 @@ package player
 		
 		private function newProjectile():void
 		{
+			if (allowFire == true)
+			{
 			switch(actor.currentCaracter)
 			{
 				case GameSetings.ACTOR2D:
@@ -84,13 +97,17 @@ package player
 					var projectile3D : ProjectilePlayer3D;
 					projectile3D = new ProjectilePlayer3D(main.objectHolder, this.x, this.y, mouseX, mouseY);
 					objectHolder.addplayerProjectiles(projectile3D);
-					objectHolder.addChild(projectile3D);
+						objectHolder.addChild(projectile3D);
+						allowFire = false;
+						shootTimer.reset();
+						shootTimer.start();
 					break;
 				}
 				case GameSetings.ACTORPRO:
 				{
 					break;
 				}
+			}
 			}
 			
 		}
