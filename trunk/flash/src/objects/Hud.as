@@ -11,18 +11,28 @@ package objects
 	public class Hud extends MovieClip
 	{
 		private static var _HUD_WIDTH:Number = 0;
+		private static var _instance:Hud;
 		
 		private var _sprite:Interface_Hud;
-		private var _lives:Number = 0;
 		private var _upgradeTimer:UpgradeTimer;
+		
+		private var _lives:Number = 0;
+		private var _score:Number = 0;
 
 		public function Hud():void
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
 		}
+		
+		static public function getInstance():Hud
+		{
+			return _instance;
+		}
 
 		private function handleAddedToStage(event:Event):void
 		{
+			_instance = this;
+			
 			this.init();
 		}
 
@@ -47,11 +57,17 @@ package objects
 			this.addChild(this._upgradeTimer); 
 			
 			this.updateLives();
+			this.updateScore();
 		}
 
 		private function updateLives():void
 		{
 			if (this._sprite) this._sprite.txtLives.text = String(this._lives);
+		}
+		
+		private function updateScore():void
+		{
+			if (this._sprite) this._sprite.txtScore.text = String(this._score);
 		}
 
 		static public function get HUD_WIDTH():Number
@@ -64,11 +80,24 @@ package objects
 			return this._lives;
 		}
 
-		public function set lives(output:Number):void
+		public function set lives(value:Number):void
 		{
-			this._lives = output;
+			this._lives = value;
 
 			this.updateLives();
+		}
+		
+		public function get score():Number
+		{
+			return this._lives;
+		}
+
+		public function set score(value:Number):void
+		{
+			this._score += value;
+			this.log('score: ' + value);
+ 
+			this.updateScore();
 		}
 
 		public function destroy():void

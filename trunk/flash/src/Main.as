@@ -50,10 +50,7 @@ package {
 			addChild(hud);
 
 			SoundChannel.getInstance().init();
-			
 			SoundChannel.getInstance().playSound();
-			
-			SoundChannel.getInstance().stopSound();
 		}
 
 		public function removeGame():void

@@ -1,9 +1,12 @@
 package enemies
 {
+	import flash.events.TimerEvent;
 	import projectiles.ProjectileActorShapeShifter;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
+
+	import flash.utils.Timer;
 
 	/**
 	 * @author Jayce Rettob
@@ -11,6 +14,8 @@ package enemies
 	public class ShapeShifter extends Actor
 	{
 		private var _sprite:ActorShapeShifter;
+		private var _canShoot:Boolean = true;
+		private var _canShootTimer:Timer;
 
 		public function ShapeShifter(objectHolder:ObjectHolder):void
 		{
@@ -26,8 +31,19 @@ package enemies
 
 			this.moveSpeed = GameSetings.SHAPESHIFTERMOVESPEED;
 			this.health = GameSetings.SHAPESHIFTERHP;
+			this.score = GameSetings.SHAPESHIFTERSCORE;
+			
+			var newTimer:Number = Math.round(Math.random() * 1000) + 3500;
+			this._canShootTimer = new Timer(newTimer, 1);
+			this._canShootTimer.addEventListener(TimerEvent.TIMER, this.handleCanShootTimer);
+			this._canShootTimer.start();
 
 			super.init();
+		}
+
+		private function handleCanShootTimer(event:TimerEvent):void
+		{
+			this._canShoot = true;
 		}
 
 		override public function update():void
@@ -36,10 +52,12 @@ package enemies
 			
 			this.checkCollision();
 
-			var rand:Number = Math.round(Math.random() * 50);
-			if (rand >= 45 && this.x >= 10 && this.x <= (GameSetings.GAMEHEIGHT - 100))
+			if (this._canShoot)
 			{
 				this.shootProjectile();
+				
+				this._canShoot = false;
+				this._canShootTimer.start();
 			}
 
 			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
@@ -84,6 +102,8 @@ package enemies
 				this.removeChild(this._sprite);
 				this._sprite = null;
 			}
+			
+			this.objectHolder.removeEnemy(this);
 
 			super.destroy();
 		}

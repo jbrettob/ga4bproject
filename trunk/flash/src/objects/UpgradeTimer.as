@@ -53,7 +53,7 @@ package objects
 			{
 				this.log('Cannon is ready');
 				
-				this.exp >= this._maxExp;
+				this.exp = this._maxExp;
 				this._canUse = true;
 			}
 		}
@@ -63,7 +63,7 @@ package objects
 			if (this._canUse)
 			{
 				
-				this._exp = 0;
+				this.exp = 0;
 				this._canUse = false;
 			}
 		}
