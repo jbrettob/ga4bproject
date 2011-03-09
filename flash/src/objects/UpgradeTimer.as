@@ -77,7 +77,7 @@ package objects
 			}
 			this._exp = amount;
 			
-			var newWidth:Number = 109 /  (this._maxExp / this._exp);
+			var newWidth:Number = 100 /  (this._maxExp / this._exp);
 			
 			TweenLite.to(this.mcFillColor, 2, { width: newWidth, overwrite: true } );
 		}
