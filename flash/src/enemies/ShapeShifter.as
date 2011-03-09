@@ -34,7 +34,7 @@ package enemies
 			this.y += this.moveSpeed;
 
 			var rand:Number = Math.round(Math.random() * 50);
-			if (rand >= 50 && this.x >= 10 && this.x <= (GameSetings.GAMEHEIGHT - 50))
+			if (rand >= 45 && this.x >= 10 && this.x <= (GameSetings.GAMEHEIGHT - 100))
 			{
 				this.shootProjectile();
 			}

@@ -1,4 +1,5 @@
 package {
+	import com.jbrettob.display.Projectile;
 	import com.jbrettob.log.Log;
 	import projectiles.ProjectileActorShapeShifter;
 
@@ -61,11 +62,15 @@ package {
 
 		private function checkColition() : void 
 		{
-			for each (var i : ProjectileActorShapeShifter in main.objectHolder.enemyProjectiles) 
+			if (this.health <= 0)
+			{
+				this.remove();
+			}
+			for each (var i : Projectile in main.objectHolder.enemyProjectiles) 
 			{
 				if (actor3D.hitTestObject(i) == true) {
 					Log.debug('hit', this);
-//					this.health -= i.damage;
+					this.health -= i.damage;
 					 i.destroy();
 				}
 			}
@@ -74,6 +79,10 @@ package {
 		public function remove():void 
 		{
 			updateTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, update);
+			updateTimer.stop();
+			updateTimer = null;
+			
+			main.hud.lives --;
 		}
 	}
 }

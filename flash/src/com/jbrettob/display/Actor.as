@@ -19,6 +19,7 @@ package com.jbrettob.display
 		public var objectHolder:ObjectHolder;
 		
 		private var _health:Number;
+		private var _maxHealth:Number;
 		private var _alife:Boolean = true;
 		private var _moveSpeed:Number;
 		private var _timer:Timer;
@@ -75,12 +76,13 @@ package com.jbrettob.display
 		{
 			TweenLite.to(this, .02, {colorTransform:{tint:0xff0000, tintAmount:0}, overwrite: true});
 		}
-
+		
+		// setters & getters
 		public function get moveSpeed():Number
 		{
 			return _moveSpeed;
 		}
-
+		
 		public function set moveSpeed(moveSpeed:Number):void
 		{
 			this._moveSpeed = moveSpeed;
@@ -94,6 +96,11 @@ package com.jbrettob.display
 		public function set health(health:Number):void
 		{
 			this._health = health;
+		}
+		
+		public function get maxHealth():Number
+		{
+			return this._maxHealth;
 		}
 
 		public function get alife():Boolean
@@ -120,11 +127,7 @@ package com.jbrettob.display
 			TweenLite.killTweensOf(this);
 		}
 		
-		// Log for flash traces
-		// Possible make a static class for it and implent it in all the classes for easy debugging
-		// GameSetting.SHOW_TRACE = true or false
-		
-		
+		// logging for traces
 		public function log(output:String):void
 		{
 			Log.log(output, this);
