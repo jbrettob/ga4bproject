@@ -25,6 +25,8 @@ package
 			_enemys 								= new Array();			_enemyProjectiles 						= new Array();
 			_orbs 									= new Array();
 			_playerProjectiles						= new Array();
+			
+			
 		}
 		
 		//Enemy
@@ -60,16 +62,8 @@ package
 		
 		public function removePlayerProjectiles(projectile:Projectile):void
 		{
-			// TODO: half not working
-			for each (var i : Projectile in this._playerProjectiles)
-			{
-				if (i == projectile)
-				{
-					 if (this.contains(i)) this.removeChild(i);
-				}
-			}
-			
-			_playerProjectiles.splice(projectile, _playerProjectiles.length);
+			if (this.contains(projectile)) this.removeChild(projectile);
+			_playerProjectiles.splice(projectile,1);
 		}
 		
 		public function clearPlayerProjectiles():void

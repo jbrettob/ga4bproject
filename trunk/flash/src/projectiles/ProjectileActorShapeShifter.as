@@ -46,7 +46,7 @@ package projectiles
 				this.sprite = null;
 			}
 
-			this.objectHolder.removePlayerProjectiles(this);
+			this.objectHolder.removeEnemyProjectiles(this);
 
 			super.destroy();
 		}
