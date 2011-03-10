@@ -1,7 +1,10 @@
-package enemies {
-	import objects.UpgradeTimer;
+package enemies
+{
 	import objects.Hud;
+
+	import com.greensock.TweenLite;
 	import com.jbrettob.display.Actor;
+
 	/**
 	 * @author Rene Zwaan
 	 */
@@ -9,16 +12,15 @@ package enemies {
 	{
 		private var dl:ActorDeadLine;
 		private var _inputHandler:InputHandler;
-		private var _upgradeTimer:UpgradeTimer;
-		
-		public function DeathLine(__inputHandler:InputHandler,__hud:UpgradeTimer):void
+
+		public function DeathLine(__inputHandler:InputHandler):void
 		{
 			_inputHandler = __inputHandler;
-			_upgradeTimer = __hud;
 			dl = new ActorDeadLine();
 			this.addChild(dl);
 			this.y += 20;
 		}
+
 		override public function update():void
 		{
 			this.y += 0.1;
@@ -26,20 +28,18 @@ package enemies {
 			super.update();
 		}
 
-		private function input() : void 
+		private function input():void
 		{
-	
-			if(_inputHandler.spaceBarr == "down")
+			if (_inputHandler.spaceBarr == "down")
 			{
-				if(_upgradeTimer != null)
+				if (Hud.getInstance().upgradeTimer)
 				{
-				if(_upgradeTimer.canUse == true)
-				{
-					_upgradeTimer.useUpgrade();
-					this.y -= 20;
+					if (Hud.getInstance().upgradeTimer.canUse == true)
+					{
+						Hud.getInstance().upgradeTimer.useUpgrade();
+						TweenLite.to(this, 1, {y:20, overwrite:true});
+					}
 				}
-				}
-				else{_upgradeTimer = (parent as Main).hud.upgradeTimer;}
 			}
 		}
 	}

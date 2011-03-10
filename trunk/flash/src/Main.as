@@ -42,7 +42,7 @@ package {
 			player 				= new Player(this);
 			objectHolder.player = player;
 			hud 				= new Hud();
-			dl 					= new DeathLine(keyBoard,hud.upgradeTimer);
+			dl 					= new DeathLine(keyBoard);
 			
 			bg.y += 25;
 			addChild(bg);
