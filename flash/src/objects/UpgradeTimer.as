@@ -1,20 +1,21 @@
 package objects
 {
-	import flash.events.TimerEvent;
 	import com.greensock.TweenLite;
 	import com.jbrettob.log.Log;
 
 	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	/**
-	 * @author jaycerettob
+	 * @author Jayce Rettob
 	 */
 	public class UpgradeTimer extends HUD_UpgradeTimer
 	{
 		private var _exp:Number = 0;
-		private var _maxExp:Number = 200;
+		private var _maxExp:Number = 1;
 		private var _addMinExp:Number = 20;
 		private var _canUse:Boolean = false;
+		private var _timer:Timer;
 		
 		public function UpgradeTimer():void
 		{
@@ -23,6 +24,8 @@ package objects
 
 		private function handleAddedToStage(event:Event):void
 		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
+			
 			this.init();
 		}
 
@@ -30,14 +33,14 @@ package objects
 		{
 			this.mcFillColor.width = 0;
 			
-			var timer:Timer = new Timer(5000);
-			timer.addEventListener(TimerEvent.TIMER, handleTimer);
-			timer.start();
+			this._timer = new Timer(5000);
+			this._timer.addEventListener(TimerEvent.TIMER, this.handleTimer);
+			this._timer.start();
 		}
 
 		private function handleTimer(event:TimerEvent):void
 		{
-			this.addUpgrade(Math.round(Math.random() * 50));
+			this.addUpgrade(Math.random() * 0.5);
 		}
 		
 		public function addUpgrade(amount:Number = 0):void
@@ -54,7 +57,9 @@ package objects
 				this.log('Cannon is ready');
 				
 				this.exp = this._maxExp;
+				
 				this._canUse = true;
+				this._timer.stop();
 			}
 		}
 		
@@ -64,19 +69,16 @@ package objects
 			{
 				this.exp = 0;
 				this._canUse = false;
+				
+				this._timer.start();
 			}
 		}
 		
 		public function set exp(amount:Number):void
 		{
-			if (this._exp >= this._maxExp)
-			{
-				this._exp = this._maxExp;
-				return;
-			}
 			this._exp = amount;
 			
-			var newWidth:Number = 100 /  (this._maxExp / this._exp);
+			var newWidth:Number = 100 * this._exp;
 			
 			TweenLite.to(this.mcFillColor, 2, { width: newWidth, overwrite: true } );
 		}

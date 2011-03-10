@@ -15,7 +15,6 @@ package objects
 		
 		private var _sprite:Interface_Hud;
 		private var _upgradeTimer:UpgradeTimer;
-		
 		private var _lives:Number = 0;
 		private var _score:Number = 0;
 
@@ -23,7 +22,7 @@ package objects
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
 		}
-		
+
 		static public function getInstance():Hud
 		{
 			return _instance;
@@ -31,8 +30,10 @@ package objects
 
 		private function handleAddedToStage(event:Event):void
 		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
+
 			_instance = this;
-			
+
 			this.init();
 		}
 
@@ -48,14 +49,13 @@ package objects
 			this.addChild(this._sprite);
 
 			_HUD_WIDTH = this._sprite.width;
-			
-			
+
 			this._upgradeTimer = new UpgradeTimer();
 			this._upgradeTimer.x = 10;
 			this._upgradeTimer.y = ( (GameSetings.GAMEHEIGHT - this._upgradeTimer.height) - 20);
-			
-			this.addChild(this._upgradeTimer); 
-			
+
+			this.addChild(this._upgradeTimer);
+
 			this.updateLives();
 			this.updateScore();
 		}
@@ -64,7 +64,7 @@ package objects
 		{
 			if (this._sprite) this._sprite.txtLives.text = String(this._lives);
 		}
-		
+
 		private function updateScore():void
 		{
 			if (this._sprite) this._sprite.txtScore.text = String(this._score);
@@ -86,7 +86,7 @@ package objects
 
 			this.updateLives();
 		}
-		
+
 		public function get score():Number
 		{
 			return this._lives;
@@ -95,8 +95,7 @@ package objects
 		public function set score(value:Number):void
 		{
 			this._score += value;
-			this.log('score: ' + value);
- 
+
 			this.updateScore();
 		}
 
@@ -108,7 +107,7 @@ package objects
 				this._sprite = null;
 			}
 		}
-		
+
 		public function get upgradeTimer():UpgradeTimer
 		{
 			return this._upgradeTimer;

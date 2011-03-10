@@ -1,5 +1,6 @@
 package com.jbrettob.media.sound
 {
+	import flash.events.Event;
 	import com.jbrettob.log.Log;
 
 	import flash.display.Sprite;
@@ -46,18 +47,28 @@ package com.jbrettob.media.sound
 			this.isInit = true;
 		}
 		
-		public function playSound():void
+		public function playSound(value:Number = 0):void
 		{
 			var newSound:Sound = new _MUSIC_MEDIEVAL3();
+			if (value >= 1)
+			{
+				newSound.addEventListener(Event.COMPLETE, handleSoundComplete);
+			}
 			newSound.play();
 			
 			Log.debug('sound: ' + getQualifiedClassName(SoundChannel._MUSIC_MEDIEVAL3), this);
 			
 			this._soundArray.push(newSound);
 		}
+
+		private function handleSoundComplete(event:Event):void
+		{
+			Sound(event.target).play();
+		}
 		
 		public function stopSound():void
 		{
+			// TODO: make it happen!!
 			Log.debug('stopSound: ' + getQualifiedClassName(SoundChannel._MUSIC_MEDIEVAL3), this);
 		}
 	}
