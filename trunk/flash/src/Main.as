@@ -34,6 +34,7 @@ package {
 		private function addetToStage(event : Event) : void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, addetToStage);
+			
 			newGame();
 			Mouse.hide();
 		}
@@ -54,6 +55,9 @@ package {
 			dl 					= new DeathLine(keyBoard);
 			
 			bg.y += 25;
+			
+			BgCastle.y = GameSetings.GAMEHEIGHT;
+			
 			addChild(bg);
 			addChild(BgCastle);
 			addChild(keyBoard);

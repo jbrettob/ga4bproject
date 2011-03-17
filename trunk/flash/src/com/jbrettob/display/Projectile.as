@@ -1,33 +1,35 @@
 package com.jbrettob.display
 {
 	import flash.display.MovieClip;
+
 	/**
 	 * @author jaycerettob
 	 */
 	public class Projectile extends Actor
 	{
-		public var toX:Number = 0;
-		public var toY:Number = 0;
+		public var xSpeed:Number = 0;
+		public var ySpeed:Number = 0;
+		public var speed:Number = 10;
 		public var sprite:MovieClip;
-		
 		private var _damage:Number = 1;
 
-		public function Projectile(getObjectHolder:ObjectHolder, posX:Number, posY:Number, toX:Number, toY:Number)
+		public function Projectile(getObjectHolder:ObjectHolder, posX:Number, posY:Number)
 		{
 			this.objectHolder = getObjectHolder;
-			
+
 			this.x = posX;
 			this.y = posY;
 
-			this.toX = toX;
-			this.toY = toY;
-			
 			super();
 		}
 
 		override public function init():void
 		{
 			super.init();
+
+			if (this.rotation != 0)
+			{
+			}
 		}
 
 		override public function update():void

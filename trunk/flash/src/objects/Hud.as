@@ -45,9 +45,9 @@ package objects
 		private function setupHud():void
 		{
 			this._sprite = new Interface_Hud();
-			this._sprite.x = (GameSetings.GAMEWITH - this._sprite.width);
+			this._sprite.x = (GameSetings.GAMEWITH);
 			this.addChild(this._sprite);
-
+			
 			_HUD_WIDTH = this._sprite.width;
 
 			this._upgradeTimer = new UpgradeTimer();
@@ -67,7 +67,7 @@ package objects
 
 		private function updateScore():void
 		{
-			if (this._sprite) this._sprite.txtScore.text = String(this._score);
+			if (this._sprite) this._sprite.mcScore.txtScore.text = String(this._score);
 		}
 
 		static public function get HUD_WIDTH():Number

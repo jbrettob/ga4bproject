@@ -11,22 +11,26 @@ package
 		// Game setings
 		public static var PAUSED									:Boolean = false;
 		public static var GAMESPEED									:Number = 41;
-		public static var GAMEWITH									:Number = 1000;
+		public static var GAMEWITH									:Number = 820;
 		public static var GAMEHEIGHT								:Number = 750;
 		// Player
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
-		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 700;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 750;		//actor3D
+		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 660;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 750;		//actor3D
 		public static var ACTOR3DSHOOTDELAY							:Number = 500;
 		// Actors
-		public static var ACTOR2D									:String = "actor2d";		public static var ACTOR3D									:String = "actor3d";		public static var ACTORPRO									:String = "actorpro";		
+		public static var ACTOR2D									:String = "actor2d";
+		public static var ACTOR2DPROJECTILESPEED					:Number = 10;		public static var ACTOR3D									:String = "actor3d";
+		public static var ACTOR3DPROJECTILESPEED					:Number = 5;		public static var ACTORPRO									:String = "actorpro";
+		public static var ACTORPROPROJECTILESPEED					:Number = 8;
 		// Enemys
 		
 		
 		// ShapeShifter
 		public static var SHAPESHIFTERNAME							:String = "shapeshifter";
 		public static var SHAPESHIFTERHP							:Number = 2;
-		public static var SHAPESHIFTERMOVESPEED						:Number = 2;
+		public static var SHAPESHIFTERMOVESPEED						:Number = 1;
 		public static var SHAPESHIFTERSCORE							:Number = 10;
+		public static var SHAPESHIFTERPROJECTILESPEED				:Number = 8;
 		
 		public function GameSetings():void
 		{

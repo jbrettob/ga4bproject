@@ -7,19 +7,24 @@ package projectiles
 	 */
 	public class ProjectileActorShapeShifter extends Projectile
 	{
-
-		public function ProjectileActorShapeShifter(objectHolder:ObjectHolder, posX:Number, posY:Number, toX:Number, toY:Number)
+		public function ProjectileActorShapeShifter(objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number)
 		{
-			this.objectHolder = objectHolder;
+			super(objectHolder, posX, posY);
+			
+			this.speed = GameSetings.SHAPESHIFTERPROJECTILESPEED;
 
 			if (this.damage <= 0) this.damage = 1;
-
-			super(this.objectHolder, posX, posY, toX, toY);
+			
+			this.rotation = degrees;
+			
+			var bulletAngle:Number = ((this.rotation) * Math.PI / 180);
+			this.xSpeed = Math.cos(bulletAngle) * this.speed;
+			this.ySpeed = Math.sin(bulletAngle) * this.speed;
 		}
 
 		override public function init():void
 		{
-			this.sprite = new ProjectileShapeShifter();
+			this.sprite = new ProjectileBug();
 			this.addChild(this.sprite);
 
 			super.init();
@@ -27,8 +32,8 @@ package projectiles
 
 		override public function update():void
 		{
-			this.x += this.toX * .01;
-			this.y += this.toY * .01;
+			this.x += this.xSpeed;
+			this.y += this.ySpeed;
 
 			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
 			{
