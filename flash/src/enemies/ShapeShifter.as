@@ -1,11 +1,11 @@
 package enemies
 {
-	import flash.events.TimerEvent;
 	import projectiles.ProjectileActorShapeShifter;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
 
+	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 
 	/**
@@ -32,7 +32,7 @@ package enemies
 			this.moveSpeed = GameSetings.SHAPESHIFTERMOVESPEED;
 			this.health = GameSetings.SHAPESHIFTERHP;
 			this.score = GameSetings.SHAPESHIFTERSCORE;
-			
+
 			var newTimer:Number = Math.round(Math.random() * 1000) + 3500;
 			this._canShootTimer = new Timer(newTimer, 1);
 			this._canShootTimer.addEventListener(TimerEvent.TIMER, this.handleCanShootTimer);
@@ -49,7 +49,7 @@ package enemies
 		override public function update():void
 		{
 			this.y += this.moveSpeed;
-			
+
 			this.checkCollision();
 
 			if (this._canShoot)
@@ -57,7 +57,7 @@ package enemies
 				if (this.y < 400)
 				{
 					this.shootProjectile();
-					
+
 					this._canShoot = false;
 					this._canShootTimer.start();
 				}
@@ -82,7 +82,7 @@ package enemies
 				{
 					this.health -= i.damage;
 					this.hitColorTween();
-					
+
 					i.destroy();
 				}
 			}
@@ -90,10 +90,13 @@ package enemies
 
 		private function shootProjectile():void
 		{
-			var distX:Number = this.objectHolder.player.x - this.x;
-			var distY:Number = this.objectHolder.player.y - this.y;
+			var distX:Number = this.objectHolder.player.x - (this.x);
+			var distY:Number = (this.objectHolder.player.y) - (this.y);
 
-			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolder, this.x, this.y, distX, distY);
+			var radians:Number = Math.atan2(distY, distX);
+			var degrees:Number = radians * 180 / Math.PI;
+			
+			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolder, this.x, this.y, degrees);
 			this.objectHolder.addChild(projectile);
 			this.objectHolder.addEnemyProjectiles(projectile);
 		}
@@ -105,7 +108,7 @@ package enemies
 				this.removeChild(this._sprite);
 				this._sprite = null;
 			}
-			
+
 			this.objectHolder.removeEnemy(this);
 
 			super.destroy();

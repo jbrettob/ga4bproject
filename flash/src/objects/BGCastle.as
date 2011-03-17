@@ -10,7 +10,7 @@ package objects
 		
 		public function BGCastle() : void 
 		{
-			this.y += GameSetings.GAMEHEIGHT;
+//			this.y = GameSetings.GAMEHEIGHT;
 			castle = new Castle();
 			addChild(castle);
 		}

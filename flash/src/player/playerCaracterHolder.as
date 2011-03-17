@@ -1,5 +1,6 @@
 package player 
 {
+	import flash.events.Event;
 	import flash.display.MovieClip;
 	/**
 	 * @author Rene Zwaan
@@ -7,13 +8,24 @@ package player
 	public class playerCaracterHolder extends MovieClip
 	{
 		private var actor2D:Actor2D;		private var actor3D:Actor3D;		private var actorPro:ActorPro;
-		private var _currentCaracter:String = "actor3d";
+		private var _currentCaracter:String = GameSetings.ACTOR3D;
 			
 		public function playerCaracterHolder():void 
 		{
-			actor2D = new Actor2D();			actor3D = new Actor3D();			actorPro = new ActorPro();
+			this.addEventListener(Event.ADDED_TO_STAGE, handleAddedToStage);
+		}
 
-			addChild(actor2D);			addChild(actor3D);			addChild(actorPro);
+		private function handleAddedToStage(event:Event):void
+		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, handleAddedToStage);
+			
+			actor2D = new Actor2D();
+			actor3D = new Actor3D();
+			actorPro = new ActorPro();
+
+			addChild(actor2D);
+			addChild(actor3D);
+			addChild(actorPro);
 
 			actor2D.visible = false;
 			actorPro.visible = false;
@@ -21,31 +33,30 @@ package player
 		
 		public function changeCaracterTo(_name:String):void
 		{
-			trace(_name);
 			switch(_name)
 			{
-				case "actor2d":
+				case GameSetings.ACTOR2D:
 				{
 					actor2D.visible = true;
 					actor3D.visible = false;
 					actorPro.visible = false;
-					_currentCaracter = _name;
+					_currentCaracter = GameSetings.ACTOR2D;
 					break;
 				}
-				case "actor3d":
+				case GameSetings.ACTOR3D:
 				{
 					actor2D.visible = false;
 					actor3D.visible = true;
 					actorPro.visible = false;
-					_currentCaracter = _name;
+					_currentCaracter =  GameSetings.ACTOR3D;
 					break;
 				}
-				case "actorpro":
+				case GameSetings.ACTORPRO:
 				{
 					actor3D.visible = false;
 					actor2D.visible = false;
 					actorPro.visible = true;
-					_currentCaracter = _name;
+					_currentCaracter = GameSetings.ACTORPRO;
 					break;
 				}
 			}

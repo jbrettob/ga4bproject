@@ -16,15 +16,25 @@ package enemies
 		public function DeathLine(__inputHandler:InputHandler):void
 		{
 			_inputHandler = __inputHandler;
+			
+			super();
+		}
+		
+		
+		override public function init():void
+		{
 			dl = new ActorDeadLine();
 			this.addChild(dl);
 			this.y += 20;
+			
+			super.init();
 		}
 
 		override public function update():void
 		{
-			this.y += 0.1;
+			this.y += 0.05;
 			input();
+			
 			super.update();
 		}
 
