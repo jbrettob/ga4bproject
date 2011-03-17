@@ -2,7 +2,7 @@ package objects
 {
 	import flash.display.MovieClip;
 	/**
-	 * @author naamloze_held
+	 * @author Rene Zwaan
 	 */
 	public class BGCastle extends MovieClip
 	{

@@ -1,11 +1,13 @@
 package player
 {
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
+	import projectiles.ProjectilePlayer2D;
 	import projectiles.ProjectilePlayer3D;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
+
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 
 	/**
 	 * @author Rene Zwaan
@@ -79,6 +81,7 @@ package player
 		{
 			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT) this.x += moveSpeed;
 			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT) this.x -= moveSpeed;
+			if (main.keyBoard.one == "down") actor.changeCaracterTo(GameSetings.ACTOR2D);			if (main.keyBoard.two == "down") actor.changeCaracterTo(GameSetings.ACTOR3D);			if (main.keyBoard.tree == "down") actor.changeCaracterTo(GameSetings.ACTORPRO);
 			if (main.keyBoard.leftMouse == "down") newProjectile();
 		}
 		
@@ -90,6 +93,13 @@ package player
 			{
 				case GameSetings.ACTOR2D:
 				{
+					var projectile2D : ProjectilePlayer2D;
+					projectile2D = new ProjectilePlayer2D(main.objectHolder, this.x, (this.y - 85), mouseX, mouseY);
+					objectHolder.addplayerProjectiles(projectile2D);
+						objectHolder.addChild(projectile2D);
+						allowFire = false;
+						shootTimer.reset();
+						shootTimer.start();
 					break;
 				}
 				case GameSetings.ACTOR3D:
@@ -105,6 +115,13 @@ package player
 				}
 				case GameSetings.ACTORPRO:
 				{
+					var projectile3D : ProjectilePlayer3D;
+					projectile3D = new ProjectilePlayer3D(main.objectHolder, this.x, (this.y - 85), mouseX, mouseY);
+					objectHolder.addplayerProjectiles(projectile3D);
+						objectHolder.addChild(projectile3D);
+						allowFire = false;
+						shootTimer.reset();
+						shootTimer.start();
 					break;
 				}
 			}

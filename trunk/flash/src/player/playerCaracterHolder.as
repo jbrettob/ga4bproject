@@ -21,6 +21,7 @@ package player
 		
 		public function changeCaracterTo(_name:String):void
 		{
+			trace(_name);
 			switch(_name)
 			{
 				case "actor2d":

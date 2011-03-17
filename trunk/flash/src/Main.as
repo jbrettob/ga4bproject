@@ -1,4 +1,5 @@
 package {
+	import flash.events.Event;
 	import enemies.DeathLine;
 	import com.jbrettob.media.sound.SoundChannel;
 	import objects.BGCastle;
@@ -27,9 +28,17 @@ package {
 
 		public function Main():void
 		{
+			this.addEventListener(Event.ADDED_TO_STAGE, addetToStage);
+		}
+
+		private function addetToStage(event : Event) : void
+		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, addetToStage);
 			newGame();
 			Mouse.hide();
 		}
+		
+		
 
 		private function newGame():void
 		{
@@ -40,8 +49,8 @@ package {
 			gameHandler 		= new GameHandler(objectHolder);
 			keyBoard 			= new InputHandler();
 			player 				= new Player(this);
-			objectHolder.player = player;
 			hud 				= new Hud();
+			objectHolder.player = player;
 			dl 					= new DeathLine(keyBoard);
 			
 			bg.y += 25;

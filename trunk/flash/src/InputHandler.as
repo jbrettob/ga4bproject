@@ -5,7 +5,6 @@ package {
 	import flash.events.KeyboardEvent;
 	/**
 	 * @author Rene Zwaan
-	 * 
 	 */
 	public class InputHandler extends MovieClip
 	{	
@@ -15,7 +14,8 @@ package {
 		 */
 		private var _A:String = "up";		private var _D:String = "up";
 		private var _leftMouse:String = "up";
-		private var _spaceBarr:String = "up";
+		private var _spaceBarr:String = "up";		private var _one:String = "up";		private var _two:String = "up";		private var _tree:String = "up";
+		
 		
 		public function InputHandler():void
 		{
@@ -56,6 +56,22 @@ package {
 				case 32:
 				{
 					_spaceBarr = "up";
+					break;
+				}
+				case 49:
+				{
+					_one = "up";
+					break;
+				}
+				case 50:
+				{
+					_two = "up";
+					break;
+				}
+				case 51:
+				{
+					_tree = "up";
+					break;
 				}
 			}
 		}
@@ -77,10 +93,26 @@ package {
 				case 32:
 				{
 					_spaceBarr = "down";
+					break;
 				}
+				case 49:
+				{
+					_one = "down";
+					break;
+				}
+				case 50:
+				{
+					_two = "down";
+					break;
+				}
+				case 51:
+				{
+					_tree = "down";
+					break;
+				}
+				
 			}
 		}
-
 		 
 
 		public function get leftMouse() : String {
@@ -113,6 +145,36 @@ package {
 
 		public function set spaceBarr(spaceBarr : String) : void {
 			_spaceBarr = spaceBarr;
+		}
+
+		public function get tree() : String
+		{
+			return _tree;
+		}
+
+		public function set tree(tree : String) : void
+		{
+			_tree = tree;
+		}
+
+		public function get one() : String
+		{
+			return _one;
+		}
+
+		public function set one(one : String) : void
+		{
+			_one = one;
+		}
+
+		public function get two() : String
+		{
+			return _two;
+		}
+
+		public function set twee(twee : String) : void
+		{
+			_two = twee;
 		}
 		
 	}
