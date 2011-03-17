@@ -4,7 +4,7 @@ package objects
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	/**
-	 * @author Rene Zwaan + 
+	 * @author Rene Zwaan
 	 */
 	public class Orb extends MovieClip
 	{

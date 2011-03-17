@@ -7,11 +7,8 @@ package
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-
-
-	
 	/**
-	 * @flowerModelElementId _lO1uYEWqEeCgZu3bfDvecA
+	 * @author Rene Zwaan
 	 */
 	public class GameHandler extends MovieClip
 	 {
