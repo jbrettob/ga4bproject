@@ -41,6 +41,7 @@ package player
 					actor3D.visible = false;
 					actorPro.visible = false;
 					_currentCaracter = GameSetings.ACTOR2D;
+					(parent as Player)._shootTimer.delay = GameSetings.ACTOR2DPROJECTILERELOADSPEED;
 					break;
 				}
 				case GameSetings.ACTOR3D:
@@ -49,6 +50,7 @@ package player
 					actor3D.visible = true;
 					actorPro.visible = false;
 					_currentCaracter =  GameSetings.ACTOR3D;
+					(parent as Player)._shootTimer.delay = GameSetings.ACTOR3DPROJECTILERELOADSPEED;
 					break;
 				}
 				case GameSetings.ACTORPRO:
@@ -57,6 +59,7 @@ package player
 					actor2D.visible = false;
 					actorPro.visible = true;
 					_currentCaracter = GameSetings.ACTORPRO;
+					(parent as Player)._shootTimer.delay = GameSetings.ACTORPROPROJECTILERELOADSPEED;
 					break;
 				}
 			}

@@ -15,22 +15,26 @@ package
 		public static var GAMEHEIGHT								:Number = 750;
 		// Player
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
-		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 660;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 750;		//actor3D
-		public static var ACTOR3DSHOOTDELAY							:Number = 500;
+		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 620;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 750;		//actor3D
 		// Actors
 		public static var ACTOR2D									:String = "actor2d";
-		public static var ACTOR2DPROJECTILESPEED					:Number = 10;		public static var ACTOR3D									:String = "actor3d";
-		public static var ACTOR3DPROJECTILESPEED					:Number = 5;		public static var ACTORPRO									:String = "actorpro";
-		public static var ACTORPROPROJECTILESPEED					:Number = 8;
-		// Enemys
+		public static var ACTOR2DPROJECTILESPEED					:Number = 10;		public static var ACTOR2DPROJECTILEDAMAGE					:Number = 1;		public static var ACTOR2DPROJECTILERELOADSPEED				:Number = 400;
+				public static var ACTOR3D									:String = "actor3d";
+		public static var ACTOR3DPROJECTILESPEED					:Number = 5;		public static var ACTOR3DPROJECTILEDAMAGE					:Number = 3;		public static var ACTOR3DPROJECTILERELOADSPEED				:Number = 500;
+				public static var ACTORPRO									:String = "actorpro";
+		public static var ACTORPROPROJECTILESPEED					:Number = 20;		public static var ACTORPROPROJECTILEDAMAGE					:Number = 1;		public static var ACTORPROPROJECTILERELOADSPEED				:Number = 600;		// Enemys
+		// Deathline
+		public static var DEATHLINESTARTHEIGHT						:Number = 60;		public static var DEATHLINEMOVESPEED						:Number = 0.05;		//castle
+		public static var CASTLEHEIGHT								:Number = 810;
+		
 		
 		
 		// ShapeShifter
 		public static var SHAPESHIFTERNAME							:String = "shapeshifter";
-		public static var SHAPESHIFTERHP							:Number = 2;
+		public static var SHAPESHIFTERHP							:Number = 5;
 		public static var SHAPESHIFTERMOVESPEED						:Number = 1;
 		public static var SHAPESHIFTERSCORE							:Number = 10;
-		public static var SHAPESHIFTERPROJECTILESPEED				:Number = 8;
+		public static var SHAPESHIFTERPROJECTILESPEED				:Number = 4;
 		
 		public function GameSetings():void
 		{
