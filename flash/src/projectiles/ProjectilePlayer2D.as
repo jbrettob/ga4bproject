@@ -1,5 +1,6 @@
 package projectiles
 {
+	import flash.geom.Point;
 	import com.jbrettob.display.Projectile;
 
 	import flash.display.Sprite;
@@ -10,6 +11,7 @@ package projectiles
 	public class ProjectilePlayer2D extends Projectile
 	{
 		private var _sprite:Sprite;
+		private var mousePos:Point;
 
 		public function ProjectilePlayer2D(_objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number):void
 		{
@@ -26,6 +28,7 @@ package projectiles
 		override public function init():void
 		{
 			this._sprite = new Projectile2D();
+			mousePos = new Point(stage.mouseX,stage.mouseY);
 			this.addChild(_sprite);
 
 			super.init();
@@ -35,6 +38,15 @@ package projectiles
 		{
 			this.x += this.xSpeed;
 			this.y += this.ySpeed;
+
+			if (Point.distance(new Point(this.x, this.y), mousePos) <= 10)
+			{
+				destroy();
+			}
+			else
+			{
+				trace(Point.distance(new Point(this.x, this.y), mousePos));
+			}
 
 			if (this.y <= 0)
 			{
@@ -61,3 +73,7 @@ package projectiles
 		}
 	}
 }
+
+
+
+
