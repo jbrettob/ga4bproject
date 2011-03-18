@@ -25,14 +25,14 @@ package enemies
 		{
 			dl = new ActorDeadLine();
 			this.addChild(dl);
-			this.y += 20;
+			this.y = GameSetings.DEATHLINESTARTHEIGHT;
 			
 			super.init();
 		}
 
 		override public function update():void
 		{
-			this.y += 0.05;
+			this.y += GameSetings.DEATHLINEMOVESPEED;
 			input();
 			
 			super.update();

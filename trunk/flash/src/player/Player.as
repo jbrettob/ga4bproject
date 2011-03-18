@@ -35,8 +35,8 @@ package player
 		override public function init():void
 		{
 			objectHolder = main.objectHolder;
-			
-			shootTimer = new Timer(GameSetings.ACTOR3DSHOOTDELAY);
+
+			shootTimer = new Timer(GameSetings.ACTOR3DPROJECTILESPEED);
 			shootTimer.addEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
 			shootTimer.start();
 			
@@ -150,6 +150,16 @@ package player
 			main.objectHolder.clearAll();
 
 			super.destroy();
+		}
+
+		public function get _shootTimer() : Timer
+		{
+			return shootTimer;
+		}
+
+		public function set _shootTimer(shootTimer : Timer) : void
+		{
+			this.shootTimer = shootTimer;
 		}
 	}
 }

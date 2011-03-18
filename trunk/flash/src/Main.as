@@ -56,7 +56,6 @@ package {
 			
 			bg.y += 25;
 			
-			BgCastle.y = GameSetings.GAMEHEIGHT;
 			
 			addChild(bg);
 			addChild(BgCastle);
