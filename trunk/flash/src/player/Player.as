@@ -1,8 +1,8 @@
 package player
 {
-	import projectiles.ProjectilePlayerPRO;
 	import projectiles.ProjectilePlayer2D;
 	import projectiles.ProjectilePlayer3D;
+	import projectiles.ProjectilePlayerPRO;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
@@ -63,8 +63,7 @@ package player
 			moveSpeed = GameSetings.PLAYERMOVESPEED;
 			addChild(actor);
 
-			// TODO: lives
-			main.hud.lives = 1;
+			main.hud.lives = GameSetings.PLAYER_LIVES;
 		}
 
 		override public function update():void
@@ -147,7 +146,7 @@ package player
 
 		override public function destroy():void
 		{
-			main.objectHolder.clearAll();
+			main.removeGame();
 
 			super.destroy();
 		}

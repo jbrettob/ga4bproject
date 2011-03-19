@@ -28,7 +28,7 @@ package projectiles
 			this.damage = GameSetings.ACTORPROPROJECTILEDAMAGE;
 			this._sprite = new ProjectilePRO();
 			this.addChild(this._sprite);
-			_mousePoint = new Point(stage.mouseX,stage.mouseY)
+			_mousePoint = new Point(stage.mouseX,stage.mouseY);
 			super.init();
 		}
 

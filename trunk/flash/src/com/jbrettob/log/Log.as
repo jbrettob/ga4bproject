@@ -1,7 +1,7 @@
 package com.jbrettob.log
 {
 	/**
-	 * @author jaycerettob
+	 * @author Jayce Rettob
 	 */
 	public class Log
 	{

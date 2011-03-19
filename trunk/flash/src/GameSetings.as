@@ -1,6 +1,7 @@
 package 
 {
 	import flash.display.MovieClip;
+	import flash.display.StageQuality;
 	/**
 	 * @author Rene Zwaan
 	 */
@@ -13,7 +14,9 @@ package
 		public static var GAMESPEED									:Number = 41;
 		public static var GAMEWITH									:Number = 820;
 		public static var GAMEHEIGHT								:Number = 750;
+		public static var GAMEQUALITY								:String = StageQuality.HIGH;
 		// Player
+		public static var PLAYER_LIVES								:Number = 3;
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
 		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 620;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 750;		//actor3D
 		// Actors
@@ -51,8 +54,6 @@ package
 		
 		public function remove():void
 		{
-			
 		}
-		
 	}
 }

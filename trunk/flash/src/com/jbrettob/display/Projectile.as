@@ -3,7 +3,7 @@ package com.jbrettob.display
 	import flash.display.MovieClip;
 
 	/**
-	 * @author jaycerettob
+	 * @author Jayce Rettob
 	 */
 	public class Projectile extends Actor
 	{

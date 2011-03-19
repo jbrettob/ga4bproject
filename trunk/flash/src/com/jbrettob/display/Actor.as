@@ -67,6 +67,7 @@ package com.jbrettob.display
 			if (this._health <= 0)
 			{
 				Hud.getInstance().score = this.score;
+				Hud.getInstance().upgradeTimer.addUpgrade(10);
 				this.destroy();
 			}
 		}

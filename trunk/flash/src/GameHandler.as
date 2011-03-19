@@ -65,6 +65,21 @@ package
 			shapeShifter.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
 			this.addChild(shapeShifter);
 		}
+		
+		public function pauseGame():void
+		{
+			this.__updateTimer.stop();
+		}
+		
+		public function unpauseGame():void
+		{
+			this.__updateTimer.start();
+		}
+		
+		public function removeAll():void
+		{
+			this.__updateTimer.stop();
+		}
 
 		public function removeThisChild(child:*) : void 
 		{
