@@ -1,14 +1,19 @@
-package {
-	import flash.events.Event;
+package
+{
 	import enemies.DeathLine;
-	import com.jbrettob.media.sound.SoundChannel;
+
 	import objects.BGCastle;
 	import objects.Hud;
 
 	import player.Player;
 
+	import popup.PopUp;
+
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.media.sound.SoundChannelKing;
+
 	import flash.display.MovieClip;
-	import flash.ui.Mouse;
+	import flash.events.Event;
 
 	/**
 	 * @author futago
@@ -24,7 +29,8 @@ package {
 		public var BgCastle					:BGCastle;
 		public var hud						:Hud;
 		public var bg						:BG;
-		public var dl						:DeathLine;					
+		public var dl						:DeathLine;
+		public var popUp					:PopUp;
 
 		public function Main():void
 		{
@@ -36,7 +42,7 @@ package {
 			this.removeEventListener(Event.ADDED_TO_STAGE, addetToStage);
 			
 			newGame();
-			Mouse.hide();
+//			Mouse.hide();
 		}
 		
 		
@@ -53,6 +59,7 @@ package {
 			hud 				= new Hud();
 			objectHolder.player = player;
 			dl 					= new DeathLine(keyBoard);
+			popUp				= new PopUp();
 			
 			bg.y += 25;
 			
@@ -63,16 +70,26 @@ package {
 			addChild(player);
 			addChild(gameHandler);
 			addChild(objectHolder);
-			addChild(hud);
 			addChild(dl);
+			addChild(hud);
+			addChild(popUp);
+			
+			hud.addEventListener('POPUP_SHOW_MENU', this.handlePopupShowMenu);
 
-			SoundChannel.getInstance().init();
-			SoundChannel.getInstance().playSound();
+			SoundChannelKing.getInstance().init();
+			SoundChannelKing.getInstance().playMusic(Sounds.BACKGROUND_MUSIC_01);
+		}
+
+		private function handlePopupShowMenu(event:Event):void
+		{
+			trace('handlePopupShowMenu');
+			this.popUp.shown();
 		}
 
 		public function removeGame():void
 		{
-			
+			this.objectHolder.clearAll();
+			this.gameHandler.removeAll();
 		}
 	}
 }
