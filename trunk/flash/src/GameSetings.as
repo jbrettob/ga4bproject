@@ -23,7 +23,7 @@ package
 		public static var ACTOR2D									:String = "actor2d";
 		public static var ACTOR2DPROJECTILESPEED					:Number = 10;		public static var ACTOR2DPROJECTILEDAMAGE					:Number = 1;		public static var ACTOR2DPROJECTILERELOADSPEED				:Number = 400;
 				public static var ACTOR3D									:String = "actor3d";
-		public static var ACTOR3DPROJECTILESPEED					:Number = 5;		public static var ACTOR3DPROJECTILEDAMAGE					:Number = 3;		public static var ACTOR3DPROJECTILERELOADSPEED				:Number = 500;
+		public static var ACTOR3DPROJECTILESPEED					:Number = 5;		public static var ACTOR3DPROJECTILEDAMAGE					:Number = 3;		public static var ACTOR3DPROJECTILERELOADSPEED				:Number = 1000;
 				public static var ACTORPRO									:String = "actorpro";
 		public static var ACTORPROPROJECTILESPEED					:Number = 20;		public static var ACTORPROPROJECTILEDAMAGE					:Number = 1;		public static var ACTORPROPROJECTILERELOADSPEED				:Number = 600;		// Enemys
 		// Deathline
@@ -35,7 +35,9 @@ package
 		public static var SHAPESHIFTERHP							:Number = 5;
 		public static var SHAPESHIFTERMOVESPEED						:Number = 1;
 		public static var SHAPESHIFTERSCORE							:Number = 10;
-		public static var SHAPESHIFTERPROJECTILESPEED				:Number = 4;
+		public static var SHAPESHIFTERPROJECTILESPEED				:Number = 4;		public static var SHAPESHIFTERMINSHOOTWAIT					:Number = 5500;		public static var SHAPESHIFTERMAXSHOOTWAIT					:Number = 1000;		// orbs
+		public static var ORBMOVESPEED								:Number = 4;		public static var ORBMAX									:Number = 10;
+		
 		
 		public function GameSetings():void
 		{

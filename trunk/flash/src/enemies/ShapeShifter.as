@@ -33,7 +33,7 @@ package enemies
 			this.health = GameSetings.SHAPESHIFTERHP;
 			this.score = GameSetings.SHAPESHIFTERSCORE;
 
-			var newTimer:Number = Math.round(Math.random() * 1000) + 3500;
+			var newTimer : Number = Math.round(Math.random() * GameSetings.SHAPESHIFTERMINSHOOTWAIT) + GameSetings.SHAPESHIFTERMINSHOOTWAIT;
 			this._canShootTimer = new Timer(newTimer, 1);
 			this._canShootTimer.addEventListener(TimerEvent.TIMER, this.handleCanShootTimer);
 			this._canShootTimer.start();
