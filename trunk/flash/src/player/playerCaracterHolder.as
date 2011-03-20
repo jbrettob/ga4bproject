@@ -33,6 +33,15 @@ package player
 		
 		public function changeCaracterTo(_name:String):void
 		{
+			if (_name != _currentCaracter)
+			{
+				var smoke:Cloud = new Cloud();
+				smoke.scaleX = 0.4;
+				smoke.scaleY = 0.4;
+				smoke.x -= 30;
+				smoke.y -= 60;
+				
+				addChild(smoke);
 			switch(_name)
 			{
 				case GameSetings.ACTOR2D:
@@ -62,6 +71,7 @@ package player
 					(parent as Player)._shootTimer.delay = GameSetings.ACTORPROPROJECTILERELOADSPEED;
 					break;
 				}
+			}
 			}
 		}
 
