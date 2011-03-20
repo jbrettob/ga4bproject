@@ -43,10 +43,6 @@ package projectiles
 			{
 				destroy();
 			}
-			else
-			{
-				trace(Point.distance(new Point(this.x, this.y), mousePos));
-			}
 
 			if (this.y <= 0)
 			{

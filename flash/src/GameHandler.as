@@ -1,5 +1,6 @@
 package
 {
+	import objects.Orb;
 	import enemies.ShapeShifter;
 
 	import com.jbrettob.display.Actor;
@@ -18,6 +19,7 @@ package
 		
 		private var _canAddEnemy:Boolean = false;
 		private var _canAddEnemyTimer:Timer;
+		private var _canAddOrbTimer:Timer;
 		
 		public function GameHandler(_objectholder:ObjectHolder):void
 		{
@@ -29,6 +31,17 @@ package
 			this._canAddEnemyTimer = new Timer(1000,1);
 			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddEnemyTimer.start();
+			
+			this._canAddOrbTimer = new Timer(5000,0);
+			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
+			this._canAddOrbTimer.start();
+		}
+
+		private function handleAddOrbTimer(event : TimerEvent) : void 
+		{
+			var orb:Orb = new Orb();
+			objectHolder.addChild(orb);
+			objectHolder.addOrb(orb);
 		}
 
 		private function handleAddEnemyTimer(event:TimerEvent):void

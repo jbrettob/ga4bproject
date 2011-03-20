@@ -1,5 +1,6 @@
 package player
 {
+	import objects.Orb;
 	import projectiles.ProjectilePlayer2D;
 	import projectiles.ProjectilePlayer3D;
 	import projectiles.ProjectilePlayerPRO;
@@ -42,6 +43,7 @@ package player
 			
 			PlayerSetup();
 			ainmerSetup();
+			actor.changeCaracterTo(GameSetings.ACTOR3D);
 
 			super.init();
 		}
@@ -142,6 +144,17 @@ package player
 					i.destroy();
 				}
 			}
+			
+			
+			for each (var o : Orb in main.objectHolder.orbs)
+			{
+				if (actor.hitTestObject(o._orb) == true)
+				{
+					// add idea
+					o.remove();
+				}
+			}
+			
 		}
 
 		override public function destroy():void
