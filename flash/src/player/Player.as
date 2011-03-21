@@ -1,12 +1,14 @@
 package player
 {
 	import objects.Orb;
+
 	import projectiles.ProjectilePlayer2D;
 	import projectiles.ProjectilePlayer3D;
 	import projectiles.ProjectilePlayerPRO;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
+	import com.jbrettob.log.Log;
 
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -17,13 +19,15 @@ package player
 	public class Player extends Actor
 	{
 		private var actor:playerCaracterHolder;
-		private var main:Main;
+		private var main:Game;
 		private var aimer:Aimer;
 		private var shootTimer:Timer;
 		private var allowFire:Boolean = true;
 
-		public function Player(_main:Main):void
+		public function Player(_main:Game):void
 		{
+			Log.log('Player: ' + Math.random(), this);
+			
 			main = _main;
 			super();
 		}
@@ -35,6 +39,8 @@ package player
 
 		override public function init():void
 		{
+			Log.log('init: ' + Math.random(), this);
+			
 			objectHolder = main.objectHolder;
 
 			shootTimer = new Timer(GameSetings.ACTOR3DPROJECTILESPEED);
@@ -44,6 +50,7 @@ package player
 			PlayerSetup();
 			ainmerSetup();
 			actor.changeCaracterTo(GameSetings.ACTOR3D);
+			
 			super.init();
 		}
 
@@ -57,6 +64,8 @@ package player
 
 		private function PlayerSetup():void
 		{
+			Log.log('PlayerSetup: ' + Math.random(), this);
+			
 			health = GameSetings.PLAYERHP;
 			actor = new playerCaracterHolder();
 			this.x = GameSetings.PLAYERXPOS;

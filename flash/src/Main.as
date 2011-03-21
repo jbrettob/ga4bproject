@@ -1,95 +1,47 @@
 package
 {
-	import enemies.DeathLine;
-
-	import objects.BGCastle;
-	import objects.Hud;
-
-	import player.Player;
-
-	import popup.PopUp;
-
-	import com.jbrettob.enum.Sounds;
-	import com.jbrettob.media.sound.SoundChannelKing;
+	import com.jbrettob.log.Log;
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
 
 	/**
-	 * @author futago
-	 * @flowerModelElementId _QbQ0MEUaEeCheqrE2fpzuQ
+	 * @author Jayce Rettob
 	 */
 	public class Main extends MovieClip
 	{
-		public var gameHandler				:GameHandler;
-		public var player					:Player;
-		public var gameSetings				:GameSetings;
-		public var objectHolder				:ObjectHolder;
-		public var keyBoard					:InputHandler;
-		public var BgCastle					:BGCastle;
-		public var hud						:Hud;
-		public var bg						:BG;
-		public var dl						:DeathLine;
-		public var popUp					:PopUp;
-
-		public function Main():void
+		private var _game:Game;
+		
+		public function Main()
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, addetToStage);
+			this.log('MainMenu: ' + Math.random());
+			
+			this.init();
 		}
 
-		private function addetToStage(event : Event) : void
+		private function init():void
 		{
-			this.removeEventListener(Event.ADDED_TO_STAGE, addetToStage);
+			this.log('init: ' + Math.random());
 			
-			newGame();
-//			Mouse.hide();
+			this.showGame();
+		}
+
+		private function showGame():void
+		{
+			this.log('showGame: ' + Math.random());
+			
+			this._game = new Game();
+			this.addChild(this._game);
 		}
 		
+		public function log(value:String):void
+		{
+			Log.log(value, this);
+		}
 		
-
-		private function newGame():void
+		public function debug(value:String):void
 		{
-			bg 					= new BG();
-			BgCastle 			= new BGCastle();
-			gameSetings 		= new GameSetings();
-			objectHolder 		= new ObjectHolder();
-			gameHandler 		= new GameHandler(objectHolder);
-			keyBoard 			= new InputHandler();
-			player 				= new Player(this);
-			hud 				= new Hud();
-			objectHolder.player = player;
-			dl 					= new DeathLine(keyBoard);
-			popUp				= new PopUp();
-			
-			bg.y += 25;
-			
-			
-			addChild(bg);
-			addChild(BgCastle);
-			addChild(keyBoard);
-			addChild(player);
-			addChild(gameHandler);
-			addChild(objectHolder);
-			addChild(dl);
-			addChild(hud);
-			addChild(popUp);
-			
-			hud.addEventListener('POPUP_SHOW_MENU', this.handlePopupShowMenu);
-
-			SoundChannelKing.getInstance().init();
-			SoundChannelKing.getInstance().playMusic(Sounds.BACKGROUND_MUSIC_01);
-		}
-
-		private function handlePopupShowMenu(event:Event):void
-		{
-			trace('handlePopupShowMenu');
-			this.popUp.shown();
-		}
-
-		public function removeGame():void
-		{
-			this.objectHolder.clearAll();
-			this.gameHandler.removeAll();
+			Log.debug(value, this);
 		}
 	}
 }
