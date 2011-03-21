@@ -44,7 +44,6 @@ package player
 			PlayerSetup();
 			ainmerSetup();
 			actor.changeCaracterTo(GameSetings.ACTOR3D);
-
 			super.init();
 		}
 
