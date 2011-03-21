@@ -98,10 +98,10 @@ package objects
 					this.showMenu();
 					break;
 				case this._sprite.mcDropDownMenu.mcMusic:
-					SoundChannelKing.getInstance().muteALlMusic();
+					SoundChannelKing.getInstance().muteUnMuteAllMusic();
 					break;
 				case this._sprite.mcDropDownMenu.mcSound:
-					SoundChannelKing.getInstance().muteALlSound();
+					SoundChannelKing.getInstance().muteUnMuteALlSound();
 					break;
 				case this._sprite.mcDropDownMenu.mcQuality:
 					this.switchQuality();

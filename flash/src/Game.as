@@ -9,9 +9,7 @@ package
 
 	import popup.PopUp;
 
-	import com.jbrettob.enum.Sounds;
 	import com.jbrettob.log.Log;
-	import com.jbrettob.media.sound.SoundChannelKing;
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -83,9 +81,6 @@ package
 			
 			hud.addEventListener('POPUP_SHOW_MENU', this.handlePopupShowMenu);
 			popUp.addEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
-
-			SoundChannelKing.getInstance().init();
-			SoundChannelKing.getInstance().playMusic(Sounds.BACKGROUND_MUSIC_01);
 		}
 
 		private function handleGameToMainMenu(event:Event):void
