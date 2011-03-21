@@ -1,5 +1,6 @@
 package popup
 {
+	import com.jbrettob.log.Log;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -33,7 +34,7 @@ package popup
 		private function handleAddedToStage(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
-			
+
 			_instance = this;
 
 			this.init();
@@ -57,11 +58,11 @@ package popup
 			this._sprite.mcReturnToGame.mouseChildren = false;
 			this._sprite.mcMainMenu.mouseChildren = false;
 			this._sprite.mcOptions.mouseChildren = false;
-			
+
 			TextField(this._sprite.mcMainMenu['txtLabel']).text = 'Return to Main Menu';
 			TextField(this._sprite.mcOptions['txtLabel']).text = 'Options';
 			TextField(this._sprite.mcReturnToGame['txtLabel']).text = 'Return to game';
-			
+
 			this._sprite.mcOptions.buttonMode = true;
 			this._sprite.mcReturnToGame.buttonMode = true;
 			this._sprite.mcMainMenu.buttonMode = true;
@@ -77,11 +78,19 @@ package popup
 				case this._sprite.mcReturnToGame:
 				case this._sprite.mcClose:
 					this.shown();
-				break;
-				
+					break;
+				case this._sprite.mcMainMenu:
+					this.showMainMenu();
+					break;
 				default:
 					trace('clicked: ' + event.target);
 			}
+		}
+
+		private function showMainMenu():void
+		{
+			Log.log('showMainMenu', this);
+			this.dispatchEvent(new Event('GAME_TOMAINMENU'));
 		}
 
 		public function shown():void

@@ -57,13 +57,34 @@ package
 				this._menu = null;
 			}
 		}
+		
+		private function removeGame():void
+		{
+			if (this._game)
+			{
+				this.removeChild(this._game);
+				this._game.removeGame();
+				this._game.removeEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
+				this._game = null;
+			}
+		}
 
 		private function showGame():void
 		{
+			this.removeGame();
+			
 			this._game = new Game();
+			this._game.addEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
 			this.addChild(this._game);
 			
 			this.stage.focus = this._game;
+		}
+
+		private function handleGameToMainMenu(event:Event):void
+		{
+			this.removeGame();
+			
+			//this.showMainMenu();
 		}
 		
 		public function log(value:String):void
