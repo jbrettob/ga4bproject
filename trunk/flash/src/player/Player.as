@@ -21,8 +21,9 @@ package player
 		private var actor:playerCaracterHolder;
 		private var main:Game;
 		private var aimer:Aimer;
-		private var shootTimer:Timer;
+		private var shootTimer:Timer;		private var smokeTimer:Timer;
 		private var allowFire:Boolean = true;
+		private var smoke:Cloud;
 
 		public function Player(_main:Game):void
 		{
@@ -44,11 +45,19 @@ package player
 			shootTimer.addEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
 			shootTimer.start();
 			
+			smokeTimer = new Timer(GameSetings.ACTOR3DPROJECTILESPEED);
+			smokeTimer.addEventListener(TimerEvent.TIMER, setSmoketoTrue);
+			smokeTimer.start();
+			
 			PlayerSetup();
 			ainmerSetup();
 			//actor.changeCaracterTo(GameSetings.ACTOR3D);
 			
 			super.init();
+		}
+
+		private function setSmoketoTrue(event : TimerEvent) : void
+		{
 		}
 
 		private function ainmerSetup():void
@@ -68,9 +77,29 @@ package player
 			this.y = GameSetings.PLAYERYPOS;
 			moveSpeed = GameSetings.PLAYERMOVESPEED;
 			addChild(actor);
+			smokeSetup();
 
 			main.hud.lives = GameSetings.PLAYER_LIVES;
 		}
+
+		private function smokeSetup() : void
+		{
+				smoke = new Cloud();
+				smoke.scaleX = 0.4;
+			smoke.scaleY = 0.4;
+			smoke.x = (actor.x - 30);
+			smoke.y = (actor.y - 45);
+				
+				addChild(smoke);
+		}
+		
+		private function resetSmoke():void
+		{
+			smoke.x = (actor.x - 30);
+			smoke.y = (actor.y - 45);
+			smoke.gotoAndPlay(1);
+		}
+
 
 		override public function update():void
 		{
@@ -78,6 +107,7 @@ package player
 			checkColition();
 			updateAimer();
 		}
+		
 
 		private function updateAimer():void
 		{
@@ -89,9 +119,9 @@ package player
 		{
 			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT) this.x += moveSpeed;
 			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT) this.x -= moveSpeed;
-			if (main.keyBoard.one == "down") actor.changeCaracterTo(GameSetings.ACTOR2D);
-			if (main.keyBoard.two == "down") actor.changeCaracterTo(GameSetings.ACTOR3D);
-			if (main.keyBoard.tree == "down") actor.changeCaracterTo(GameSetings.ACTORPRO);
+			if (main.keyBoard.one == "down") {actor.changeCaracterTo(GameSetings.ACTOR2D); resetSmoke()};
+			if (main.keyBoard.two == "down") {actor.changeCaracterTo(GameSetings.ACTOR3D); resetSmoke()};
+			if (main.keyBoard.tree == "down") {actor.changeCaracterTo(GameSetings.ACTORPRO); resetSmoke()};
 			if (main.keyBoard.leftMouse == "down") newProjectile();
 		}
 
