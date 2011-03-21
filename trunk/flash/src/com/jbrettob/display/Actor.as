@@ -30,12 +30,12 @@ package com.jbrettob.display
 		public function Actor():void
 		{
 			TweenPlugin.activate([TintPlugin, ColorTransformPlugin]);
-			
 			this.addEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
 		}
 
 		private function handleAddedToStage(event:Event):void
 		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
 			this.init();
 		}
 
