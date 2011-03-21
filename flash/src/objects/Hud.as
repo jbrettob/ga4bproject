@@ -7,6 +7,7 @@ package objects
 	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.text.TextField;
 
 	/**
 	 * @author Jayce Rettob
@@ -182,7 +183,7 @@ package objects
 
 		private function updateScore():void
 		{
-			if (this._sprite) this._sprite.mcScore.txtScore.text = String(this._score);
+			if (this._sprite) TextField(this._sprite.mcScore['txtScore']).text = String(this._score);
 		}
 
 		static public function get HUD_WIDTH():Number
