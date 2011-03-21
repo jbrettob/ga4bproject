@@ -35,8 +35,8 @@ package
 		public static var SHAPESHIFTERHP							:Number = 5;
 		public static var SHAPESHIFTERMOVESPEED						:Number = 1;
 		public static var SHAPESHIFTERSCORE							:Number = 10;
-		public static var SHAPESHIFTERPROJECTILESPEED				:Number = 4;		public static var SHAPESHIFTERMINSHOOTWAIT					:Number = 5500;		public static var SHAPESHIFTERMAXSHOOTWAIT					:Number = 1000;		// orbs
-		public static var ORBMOVESPEED								:Number = 4;		public static var ORBMAX									:Number = 10;
+		public static var SHAPESHIFTERPROJECTILESPEED				:Number = 3;		public static var SHAPESHIFTERMINSHOOTWAIT					:Number = 7500;		public static var SHAPESHIFTERMAXSHOOTWAIT					:Number = 2000;		// orbs
+		public static var ORBMOVESPEED								:Number = 1;		public static var ORBMAX									:Number = 10;		public static var ORBSPAWNTIMER								:Number = 6000;		public static var ORBXP										:Number = 5;
 		
 		
 		public function GameSetings():void

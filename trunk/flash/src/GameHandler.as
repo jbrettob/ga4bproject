@@ -31,17 +31,20 @@ package
 			this._canAddEnemyTimer = new Timer(1000,1);
 			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddEnemyTimer.start();
-			
-			this._canAddOrbTimer = new Timer(5000,0);
+
+			this._canAddOrbTimer = new Timer(GameSetings.ORBSPAWNTIMER, 0);
 			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
 			this._canAddOrbTimer.start();
 		}
 
 		private function handleAddOrbTimer(event : TimerEvent) : void 
 		{
+			if (objectHolder.orbs.length < 10)
+			{
 			var orb:Orb = new Orb();
 			objectHolder.addChild(orb);
 			objectHolder.addOrb(orb);
+			}
 		}
 
 		private function handleAddEnemyTimer(event:TimerEvent):void
@@ -76,7 +79,7 @@ package
 			var shapeShifter:ShapeShifter = new ShapeShifter(objectHolder);
 			objectHolder.addEnemy(shapeShifter);
 			shapeShifter.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
-			this.addChild(shapeShifter);
+			this.objectHolder.addChild(shapeShifter);
 		}
 		
 		public function pauseGame():void
@@ -97,6 +100,15 @@ package
 		public function removeThisChild(child:*) : void 
 		{
 			removeChild(child);
+		}
+		
+		public function destroy():void
+		{
+			this._canAddEnemyTimer.removeEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
+			this._canAddOrbTimer.removeEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
+			this.__updateTimer.removeEventListener(TimerEvent.TIMER,update);
+			
+			
 		}
 	}
 }

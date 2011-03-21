@@ -41,7 +41,7 @@ package player
 		{		
 			objectHolder = main.objectHolder;
 
-			shootTimer = new Timer(GameSetings.ACTOR3DPROJECTILESPEED);
+			shootTimer = new Timer(GameSetings.ACTOR3DPROJECTILERELOADSPEED);
 			shootTimer.addEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
 			shootTimer.start();
 			
@@ -186,6 +186,7 @@ package player
 				{
 					// add idea
 					o.destroy();
+					main.hud.upgradeTimer.addUpgrade(GameSetings.ORBXP);
 				}
 			}
 			
@@ -193,8 +194,16 @@ package player
 
 		override public function destroy():void
 		{
-			main.removeGame();
-
+			shootTimer.removeEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
+			smokeTimer.removeEventListener(TimerEvent.TIMER, setSmoketoTrue);
+			actor.destroy();
+			while(numChildren > 0)
+			{
+				removeChildAt(0);
+			}
+			
+			(parent as Game).removeChild(this);
+			
 			super.destroy();
 		}
 

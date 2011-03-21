@@ -25,7 +25,7 @@ package
 		public var gameSetings				:GameSetings;
 		public var objectHolder				:ObjectHolder;
 		public var keyBoard					:InputHandler;
-		public var BgCastle					:BGCastle;
+		public var bgCastle					:BGCastle;
 		public var hud						:Hud;
 		public var bg						:BG;
 		public var dl						:DeathLine;
@@ -55,7 +55,7 @@ package
 			Log.log('newGame: ' + Math.random(), this);
 			
 			bg 					= new BG();
-			BgCastle 			= new BGCastle();
+			bgCastle 			= new BGCastle();
 			gameSetings 		= new GameSetings();
 			objectHolder 		= new ObjectHolder();
 			gameHandler 		= new GameHandler(objectHolder);
@@ -70,7 +70,7 @@ package
 			
 			
 			addChild(bg);
-			addChild(BgCastle);
+			addChild(bgCastle);
 			addChild(keyBoard);
 			addChild(player);
 			addChild(gameHandler);
@@ -82,6 +82,18 @@ package
 			hud.addEventListener('POPUP_SHOW_MENU', this.handlePopupShowMenu);
 			popUp.addEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
 		}
+
+		public function endGame() : void
+		{
+//			player.destroy();
+			removeChild(bg);
+			bg = null;
+			bgCastle.destroy();
+			removeChild(bgCastle);
+			gameHandler.destroy();
+			objectHolder.clearAll();
+		}
+
 
 		private function handleGameToMainMenu(event:Event):void
 		{
