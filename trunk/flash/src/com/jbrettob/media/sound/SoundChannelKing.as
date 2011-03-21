@@ -1,6 +1,7 @@
 package com.jbrettob.media.sound
 {
 	import flash.media.SoundTransform;
+
 	import com.jbrettob.enum.Sounds;
 
 	import flash.display.Sprite;
@@ -17,7 +18,6 @@ package com.jbrettob.media.sound
 		private var _musicArray:Array = new Array();
 		private var _soundArray:Array = new Array();
 		private var _audioArray:Array = new Array();
-		
 		private var isInit:Boolean = false;
 
 		public function SoundChannelKing()
@@ -61,11 +61,11 @@ package com.jbrettob.media.sound
 
 			this._soundArray.push(newSoundChannel);
 		}
-		
+
 		public function playMusic(url:Class, value:Number = 0):void
 		{
 			var Music:Class = this.getAudio(url);
-			
+
 			var newSound:Sound = new Music();
 			if (value >= 1)
 			{
@@ -81,8 +81,8 @@ package com.jbrettob.media.sound
 		private function getAudio(value:Class):Class
 		{
 			var returnClass:Class;
-			
-			for each(var i:Class in this._audioArray)
+
+			for each (var i:Class in this._audioArray)
 			{
 				if (i == value)
 				{
@@ -96,14 +96,38 @@ package com.jbrettob.media.sound
 		{
 			Sound(event.target).play();
 		}
-		
+
+		public function unMuteAllMusic():void
+		{
+			var soundTransform:SoundTransform;
+
+			for each (var i:SoundChannel in this._musicArray)
+			{
+				soundTransform = new SoundTransform(1, 0);
+
+				i.soundTransform = soundTransform;
+			}
+		}
+
 		public function muteALlMusic():void
 		{
 			var soundTransform:SoundTransform;
-			
+
 			for each (var i:SoundChannel in this._musicArray)
 			{
-				if (i.soundTransform.volume == 0)
+				soundTransform = new SoundTransform(0, 0);
+
+				i.soundTransform = soundTransform;
+			}
+		}
+
+		public function muteUnMuteAllMusic():void
+		{
+			var soundTransform:SoundTransform;
+
+			for each (var i:SoundChannel in this._musicArray)
+			{
+				if (i.soundTransform.volume <= 0)
 				{
 					soundTransform = new SoundTransform(1, 0);
 				}
@@ -111,15 +135,39 @@ package com.jbrettob.media.sound
 				{
 					soundTransform = new SoundTransform(0, 0);
 				}
-				
-				i.soundTransform = soundTransform; 
+
+				i.soundTransform = soundTransform;
 			}
 		}
 		
+		public function unMuteAllSound():void
+		{
+			var soundTransform:SoundTransform;
+
+			for each (var i:SoundChannel in this._soundArray)
+			{
+				soundTransform = new SoundTransform(1, 0);
+
+				i.soundTransform = soundTransform;
+			}
+		}
+
 		public function muteALlSound():void
 		{
 			var soundTransform:SoundTransform;
-			
+
+			for each (var i:SoundChannel in this._soundArray)
+			{
+				soundTransform = new SoundTransform(0, 0);
+
+				i.soundTransform = soundTransform;
+			}
+		}
+
+		public function muteUnMuteALlSound():void
+		{
+			var soundTransform:SoundTransform;
+
 			for each (var i:SoundChannel in this._soundArray)
 			{
 				if (i.soundTransform.volume == 0)
@@ -130,18 +178,18 @@ package com.jbrettob.media.sound
 				{
 					soundTransform = new SoundTransform(0, 0);
 				}
-				
-				i.soundTransform = soundTransform; 
+
+				i.soundTransform = soundTransform;
 			}
 		}
-		
+
 		public function stopAll():void
 		{
 			for each (var a:SoundChannel in this._soundArray)
 			{
 				a.stop();
 			}
-			
+
 			for each (var b:SoundChannel in this._musicArray)
 			{
 				b.stop();

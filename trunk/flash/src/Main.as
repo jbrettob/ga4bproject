@@ -2,7 +2,9 @@ package
 {
 	import Menu.MainMenu;
 
+	import com.jbrettob.enum.Sounds;
 	import com.jbrettob.log.Log;
+	import com.jbrettob.media.sound.SoundChannelKing;
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -29,12 +31,10 @@ package
 
 		private function showMainMenu():void
 		{
-			if (this._menu)
-			{
-				this.removeChild(this._menu);
-				this._menu.destroy();
-				this._menu = null;
-			}
+			this.removeMenu();
+			
+			SoundChannelKing.getInstance().init();
+			SoundChannelKing.getInstance().playMusic(Sounds.BACKGROUND_MUSIC_01);
 			
 			this._menu = new MainMenu();
 			this._menu.addEventListener('MAINMENU_STARTGAME', this.handleMainMenuStartGame);
@@ -84,7 +84,7 @@ package
 		{
 			this.removeGame();
 			
-			//this.showMainMenu();
+			this.showMainMenu();
 		}
 		
 		public function log(value:String):void
