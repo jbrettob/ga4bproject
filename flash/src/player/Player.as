@@ -26,8 +26,7 @@ package player
 
 		public function Player(_main:Game):void
 		{
-			Log.log('Player: ' + Math.random(), this);
-			
+			trace("Player");			
 			main = _main;
 			super();
 		}
@@ -38,9 +37,7 @@ package player
 		}
 
 		override public function init():void
-		{
-			Log.log('init: ' + Math.random(), this);
-			
+		{		
 			objectHolder = main.objectHolder;
 
 			shootTimer = new Timer(GameSetings.ACTOR3DPROJECTILESPEED);
@@ -49,7 +46,7 @@ package player
 			
 			PlayerSetup();
 			ainmerSetup();
-			actor.changeCaracterTo(GameSetings.ACTOR3D);
+			//actor.changeCaracterTo(GameSetings.ACTOR3D);
 			
 			super.init();
 		}
@@ -64,7 +61,6 @@ package player
 
 		private function PlayerSetup():void
 		{
-			Log.log('PlayerSetup: ' + Math.random(), this);
 			
 			health = GameSetings.PLAYERHP;
 			actor = new playerCaracterHolder();
@@ -159,7 +155,7 @@ package player
 				if (actor.hitTestObject(o._orb) == true)
 				{
 					// add idea
-					o.remove();
+					o.destroy();
 				}
 			}
 			

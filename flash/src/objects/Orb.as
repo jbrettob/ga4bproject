@@ -1,12 +1,13 @@
 package objects 
 {
-	import flash.display.MovieClip;
+	import com.jbrettob.display.Actor;
+
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	/**
 	 * @author Rene Zwaan
 	 */
-	public class Orb extends MovieClip
+	public class Orb extends Actor
 	{
 		private var orb:lamp;
 		private var updateTimer:Timer;
@@ -16,26 +17,23 @@ package objects
 			this.x = Math.random()*GameSetings.GAMEWITH;
 			orb = new lamp();
 			addChild(orb);
-			updateTimer = new Timer(GameSetings.GAMESPEED);
-			updateTimer.addEventListener(TimerEvent.TIMER,update);
-			updateTimer.start();
+			
 		}
 		// make the orb move down until it gets tuched ??
-		private function update(event : TimerEvent) : void 
+		 override public function update() : void 
 		{
 			if(this.y <= (GameSetings.PLAYERYPOS - 45))
 			{
-			this.y ++;
+				this.y += 5;
 			}
 		}
 		
-		public function remove():void 
+		 override public function destroy():void 
 		{
-			updateTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, update);
 			(parent as ObjectHolder).removeOrb(this);
 			removeChild(orb);
 			(parent as ObjectHolder).removeChild(this);
-			
+			super.destroy();			
 		}
 
 		public function get _orb() : lamp {
