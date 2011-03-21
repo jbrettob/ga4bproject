@@ -177,5 +177,15 @@ package {
 			_two = twee;
 		}
 		
+	public function destroy():void
+	{
+		stage.removeEventListener(KeyboardEvent.KEY_DOWN,keyDown);
+		stage.removeEventListener(KeyboardEvent.KEY_UP,keyUp);
+		stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+		stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		(parent as Game).removeChild(this);
 	}
+		
+	}
+	
 }

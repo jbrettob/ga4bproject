@@ -15,5 +15,12 @@ package objects
 			
 			addChild(castle);
 		}
+		
+		public function destroy():void
+		{
+			removeChild(castle);
+			castle = null;
+			(parent as Game).removeChild(this);
+		}
 	}
 }

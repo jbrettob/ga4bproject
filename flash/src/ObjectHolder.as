@@ -112,7 +112,7 @@ package
 		
 		public function removeOrb(_Orb:*):void 
 		{
-			_orbs.splice(_Orb, 1);
+			_orbs.splice(_Orb, 0);
 		}
 	
 		public function clearOrbs():void

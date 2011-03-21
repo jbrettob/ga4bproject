@@ -69,6 +69,15 @@ package player
 			}
 		}
 
+		public function destroy() : void
+		{
+			while(numChildren > 0)
+			{
+				removeChildAt(0);
+			}
+		}
+
+
 		public function get currentCaracter() : String
 		{
 			return _currentCaracter;

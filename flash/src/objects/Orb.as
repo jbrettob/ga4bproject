@@ -24,7 +24,7 @@ package objects
 		{
 			if(this.y <= (GameSetings.PLAYERYPOS - 45))
 			{
-				this.y += 5;
+				this.y += GameSetings.ORBMOVESPEED;
 			}
 		}
 		
