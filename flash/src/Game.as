@@ -82,9 +82,15 @@ package
 			addChild(popUp);
 			
 			hud.addEventListener('POPUP_SHOW_MENU', this.handlePopupShowMenu);
+			popUp.addEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
 
 			SoundChannelKing.getInstance().init();
 			SoundChannelKing.getInstance().playMusic(Sounds.BACKGROUND_MUSIC_01);
+		}
+
+		private function handleGameToMainMenu(event:Event):void
+		{
+			this.dispatchEvent(new Event('GAME_TOMAINMENU'));
 		}
 
 		private function handlePopupShowMenu(event:Event):void

@@ -9,7 +9,7 @@ package Menu
 	public class MainMenu extends HUD_MainMenu
 	{
 		private var _menu:MenuScreen;
-		
+
 		public function MainMenu()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
@@ -18,7 +18,7 @@ package Menu
 		private function handleAddedToStage(event:Event):void
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
-			
+
 			this.init();
 		}
 
@@ -26,7 +26,7 @@ package Menu
 		{
 			this.mcStart.buttonMode = true;
 			this.mcStart.mouseChildren = false;
-			
+
 			this.addEventListener(MouseEvent.CLICK, this.handleMouseClick);
 		}
 
@@ -35,29 +35,29 @@ package Menu
 			switch(event.target)
 			{
 				case this.mcStart:
-				if (this.mcStart.enabled) this.showMenu();
-				break;
+					if (this.mcStart.enabled) this.showMenu();
+					break;
 			}
 		}
 
 		private function showMenu():void
 		{
 			this.removeMenu();
-			
+
 			this.mcStart.enabled = false;
-			
+
 			this._menu = new MenuScreen();
 			this._menu.addEventListener('MENUSCREEN_STARTGAME', startGame);
 			this.addChild(this._menu);
 		}
-		
+
 		private function startGame(event:Event):void
 		{
 			this.destroy();
-			
+
 			this.dispatchEvent(new Event('MAINMENU_STARTGAME'));
 		}
-		
+
 		private function removeMenu():void
 		{
 			if (_menu)
@@ -67,11 +67,11 @@ package Menu
 				this._menu = null;
 			}
 		}
-		
+
 		public function destroy():void
 		{
 			this.mcStart.enabled = false;
-			
+
 			this.removeMenu();
 		}
 	}
