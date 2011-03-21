@@ -14,7 +14,7 @@ package
 	public class GameHandler extends MovieClip
 	 {
 		private var __updateTimer:Timer;
-		public var attribute1:Main;
+		public var attribute1:Game;
 		private var objectHolder:ObjectHolder;
 		
 		private var _canAddEnemy:Boolean = false;
