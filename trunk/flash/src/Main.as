@@ -1,5 +1,7 @@
 package
 {
+	import Menu.MainMenu;
+
 	import com.jbrettob.log.Log;
 
 	import flash.display.MovieClip;
@@ -10,28 +12,58 @@ package
 	 */
 	public class Main extends MovieClip
 	{
+		private var _menu:MainMenu;
 		private var _game:Game;
 		
 		public function Main()
 		{
-			this.log('MainMenu: ' + Math.random());
-			
 			this.init();
 		}
 
 		private function init():void
 		{
-			this.log('init: ' + Math.random());
+			this.stage.stageFocusRect = false;
+			
+			this.showMainMenu();
+		}
+
+		private function showMainMenu():void
+		{
+			if (this._menu)
+			{
+				this.removeChild(this._menu);
+				this._menu.destroy();
+				this._menu = null;
+			}
+			
+			this._menu = new MainMenu();
+			this._menu.addEventListener('MAINMENU_STARTGAME', this.handleMainMenuStartGame);
+			this.addChild(this._menu);
+		}
+
+		private function handleMainMenuStartGame(event:Event):void
+		{
+			this.removeMenu();
 			
 			this.showGame();
 		}
 
+		private function removeMenu():void
+		{
+			if (this._menu)
+			{
+				this.removeChild(this._menu);
+				this._menu.destroy();
+				this._menu = null;
+			}
+		}
+
 		private function showGame():void
 		{
-			this.log('showGame: ' + Math.random());
-			
 			this._game = new Game();
 			this.addChild(this._game);
+			
+			this.stage.focus = this._game;
 		}
 		
 		public function log(value:String):void
