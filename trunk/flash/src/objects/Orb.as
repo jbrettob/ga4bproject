@@ -26,9 +26,9 @@ package objects
 		
 		 override public function destroy():void 
 		{
-			(parent as ObjectHolder).removeOrb(this);
+			if (this.parent) (parent as ObjectHolder).removeOrb(this);
 			removeChild(orb);
-			(parent as ObjectHolder).removeChild(this);
+			if (this.parent) (parent as ObjectHolder).removeChild(this);
 			super.destroy();			
 		}
 

@@ -65,7 +65,6 @@ package enemies
 
 			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
 			{
-				// TODO: testing purpose
 				this.y = 0;
 				this.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
 			}
@@ -75,7 +74,6 @@ package enemies
 
 		private function checkCollision():void
 		{
-			// TODO: half working
 			for each (var i:Projectile in this.objectHolder.playerProjectiles)
 			{
 				if (this.hitTestObject(i))

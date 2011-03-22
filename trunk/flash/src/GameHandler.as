@@ -107,8 +107,6 @@ package
 			this._canAddEnemyTimer.removeEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddOrbTimer.removeEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
 			this.__updateTimer.removeEventListener(TimerEvent.TIMER,update);
-			
-			
 		}
 	}
 }

@@ -92,37 +92,28 @@ package objects
 
 		private function handleDropDownClick(event:MouseEvent):void
 		{
-			switch (event.target)
+			if (this.enabled)
 			{
-				case this._sprite.mcDropDownMenu.mcMenu:
-					this.showMenu();
-					break;
-				case this._sprite.mcDropDownMenu.mcMusic:
-					SoundChannelKing.getInstance().muteUnMuteAllMusic();
-					break;
-				case this._sprite.mcDropDownMenu.mcSound:
-					SoundChannelKing.getInstance().muteUnMuteALlSound();
-					break;
-				case this._sprite.mcDropDownMenu.mcQuality:
-					this.switchQuality();
-					break;
+				switch (event.target)
+				{
+					case this._sprite.mcDropDownMenu.mcMenu:
+						this.showMenu();
+						break;
+					case this._sprite.mcDropDownMenu.mcMusic:
+						SoundChannelKing.getInstance().muteUnMuteAllMusic();
+						break;
+					case this._sprite.mcDropDownMenu.mcSound:
+						SoundChannelKing.getInstance().muteUnMuteALlSound();
+						break;
+					case this._sprite.mcDropDownMenu.mcQuality:
+						this.switchQuality();
+						break;
+				}
 			}
 		}
 
 		private function showMenu():void
 		{
-			
-			trace((parent as Game).gameState);
-			if((parent as Game).gameState == GameSetings.PAUSED)
-			{
-				(parent as Game).gameState = GameSetings.UNPOUSED;
-			}
-			else
-			{
-				(parent as Game).gameState = GameSetings.PAUSE;
-			}
-			this.log('showMenu');
-			
 			this.dispatchEvent(new Event('POPUP_SHOW_MENU'));
 		}
 
@@ -229,8 +220,18 @@ package objects
 		{
 			if (this._sprite)
 			{
+				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.CLICK, this.handleDropDownClick);
+				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.ROLL_OVER, this.handleDropDownRollOver);
+				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.ROLL_OUT, this.handleDropDownRollOut);
+
 				this.removeChild(this._sprite);
 				this._sprite = null;
+			}
+
+			if (this._upgradeTimer)
+			{
+				this.removeChild(this._upgradeTimer);
+				this._upgradeTimer = null;
 			}
 		}
 

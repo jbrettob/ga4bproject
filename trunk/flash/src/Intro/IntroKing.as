@@ -1,7 +1,6 @@
 package Intro
 {
-	import com.jbrettob.log.Log;
-	import com.greensock.TweenLite;
+	import com.greensock.TweenNano;
 	import com.jbrettob.display.AbstractIntro;
 
 	import flash.display.Sprite;
@@ -32,14 +31,13 @@ package Intro
 			this.movie.cacheAsBitmap = true;
 			this.addChild(this.movie);
 			
-			TweenLite.to(this, 4, {onComplete: this.endMovie});
+			TweenNano.to(this, 4, {onComplete: this.endMovie});
 			
 			super.init();
 		}
 		
 		private function endMovie():void
 		{
-			Log.log('endMovie', this);
 			this.dispatchEvent(new Event('IntroMovie_END'));
 		}
 
