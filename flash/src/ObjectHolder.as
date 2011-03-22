@@ -6,6 +6,7 @@ package
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
+	import com.jbrettob.log.Log;
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -39,8 +40,12 @@ package
 
 		private function update(event : Event) : void
 		{
-			trace((parent as Game).gameState);
+			var gameState:String = (parent as Game).gameState;
 			checkPoused();
+			if (gameState != (parent as Game).gameState)
+			{
+				Log.log(gameState, this);
+			}
 		}
 		
 		private function checkPoused():void
@@ -113,7 +118,7 @@ package
 				i.destroy();
 			}
 			
-			_enemys.splice(0,_enemys.length);
+			if (_enemys) _enemys.splice(0,_enemys.length);
 		}
 		
 		//player projectiles
@@ -139,18 +144,18 @@ package
 				i.destroy();
 			}
 			
-			_playerProjectiles.splice(0,_playerProjectiles.length);
+			if (_playerProjectiles) _playerProjectiles.splice(0,_playerProjectiles.length);
 		}
 		
 		//enemy projectiles
 		public function addEnemyProjectiles(projectile:Projectile):void
 		{
-			_enemyProjectiles.push(projectile);
+			if (_enemyProjectiles) _enemyProjectiles.push(projectile);
 		}
 		
 		public function removeEnemyProjectiles(projectile:Projectile):void
 		{
-			_enemyProjectiles.splice(projectile,1);
+			if (_enemyProjectiles) _enemyProjectiles.splice(projectile,1);
 		}
 		public function clearEnemyProjectiles():void
 		{
@@ -163,18 +168,18 @@ package
 				
 				i.destroy();
 			}
-			_enemyProjectiles.splice(0,_enemyProjectiles.length);
+			if (_enemyProjectiles) _enemyProjectiles.splice(0,_enemyProjectiles.length);
 		}
 		
 		// Orbs 
 		public function addOrb(_Orb:*):void 
 		{
-			_orbs.push(_Orb);
+			if (_orbs) _orbs.push(_Orb);
 		}
 		
 		public function removeOrb(_Orb:*):void 
 		{
-			_orbs.splice(_Orb, 0);
+			if (_orbs) _orbs.splice(_Orb, 0);
 		}
 	
 		public function clearOrbs():void
@@ -189,7 +194,7 @@ package
 				i.destroy();
 			}
 			
-			_orbs.splice(0,_orbs.length);
+			if (_orbs) _orbs.splice(0,_orbs.length);
 		}
 		
 		/**
@@ -219,6 +224,9 @@ package
 			_playerProjectiles						= null;
 			
 			//Remove events
+			updateTimer.removeEventListener(TimerEvent.TIMER, update);
+			updateTimer.stop();
+			updateTimer = null;
 		}
 
 		public function get enemys() : Array {

@@ -19,17 +19,18 @@ package
 	 */
 	public class Main extends MovieClip
 	{
+		private var _bg:Sprite;
 		private var _intro:AbstractIntro;
 		private var _menu:MainMenu;
 		private var _game:Game;
 
 		public function Main()
 		{
-			var bg:Sprite = new Sprite();
-			bg.graphics.beginFill(0x000000);
-			bg.graphics.drawRect(0, 0, GameSetings.GAMEWITH, GameSetings.GAMEHEIGHT);
-			bg.graphics.endFill();
-			this.addChild(bg);
+			this._bg = new Sprite();
+			this._bg.graphics.beginFill(0x000000);
+			this._bg.graphics.drawRect(0, 0, GameSetings.GAMEWITH, GameSetings.GAMEHEIGHT);
+			this._bg.graphics.endFill();
+			this.addChild(this._bg);
 			
 			this.init();
 		}
@@ -50,18 +51,13 @@ package
 
 		private function handleIntroMovieComplete(event:Event):void
 		{
-			Log.log('handleIntroMovieComplete', this);
-			
 			if (this._intro)
 			{
-				Log.log('handleIntroMovieComplete exist', this);
-				
 				this._intro.removeEventListener('IntroMovie_END', this.handleIntroMovieComplete);
 				TweenLite.to(this._intro, .6, {alpha:.1, onComplete:this.handleTweenIntroHideComplete, overwrite: true});
 			}
 			else
 			{
-				Log.log('handleIntroMovieComplete not exist', this);
 				this.showMainMenu();
 			}
 		}
@@ -112,6 +108,7 @@ package
 			{
 				this.removeChild(this._game);
 				this._game.removeGame();
+				this._game.endGame();
 				this._game.removeEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
 				this._game = null;
 			}

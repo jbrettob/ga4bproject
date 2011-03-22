@@ -1,7 +1,7 @@
 package popup
 {
-	import com.jbrettob.log.Log;
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
@@ -11,31 +11,19 @@ package popup
 	 */
 	public class PopUp extends MovieClip
 	{
-		private static var _instance:PopUp;
 		private var _sprite:PopUp_Menu;
 		private var _shown:Boolean = false;
+		private var _bg:Sprite;
 
 		public function PopUp()
 		{
-			if (_instance)
-			{
-				new Error('Singleton, call via PopUp.getInstance()');
-				return;
-			}
-
 			this.addEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
 		}
 
-		public static function getInstance():PopUp
-		{
-			return _instance;
-		}
 
 		private function handleAddedToStage(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
-
-			_instance = this;
 
 			this.init();
 		}
@@ -82,20 +70,50 @@ package popup
 				case this._sprite.mcMainMenu:
 					this.showMainMenu();
 					break;
-				default:
-					trace('clicked: ' + event.target);
 			}
 		}
 
 		private function showMainMenu():void
 		{
-			Log.log('showMainMenu', this);
 			this.dispatchEvent(new Event('GAME_TOMAINMENU'));
 		}
 
 		public function shown():void
 		{
 			this._shown = this.visible = this.enabled = (this._shown) ? false : true;
+			
+			if ((parent as Game).gameState == GameSetings.PAUSED)
+			{
+				(parent as Game).gameState = GameSetings.UNPOUSED;
+			}
+			else
+			{
+				(parent as Game).gameState = GameSetings.PAUSE;
+				
+				if (this._bg)
+				{
+					this.removeChild(this._bg);
+					this._bg = null;
+				}
+				
+				this._bg = new Sprite();
+				this._bg.graphics.beginFill(0x000000, .25);
+				this._bg.graphics.drawRect(0, 0, GameSetings.GAMEWITH, GameSetings.GAMEHEIGHT);
+				this._bg.graphics.endFill();
+				this._bg.x = -(GameSetings.GAMEWITH / 2);
+				this._bg.y = -(GameSetings.GAMEHEIGHT / 2);
+				this.addChildAt(this._bg, 0);
+			}
+		}
+		
+		public function destroy():void
+		{
+			if (this._sprite)
+			{
+				this._sprite.removeEventListener(MouseEvent.CLICK, this.handleClick);
+				this.removeChild(this._sprite);
+				this._sprite = null;
+			}
 		}
 	}
 }

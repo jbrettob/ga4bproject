@@ -9,8 +9,6 @@ package
 
 	import popup.PopUp;
 
-	import com.jbrettob.log.Log;
-
 	import flash.display.MovieClip;
 	import flash.events.Event;
 
@@ -34,16 +32,12 @@ package
 
 		public function Game():void
 		{
-			Log.log('Main: ' + Math.random(), this);
-			
 			this.addEventListener(Event.ADDED_TO_STAGE, addetToStage);
 		}
 
 		private function addetToStage(event : Event) : void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, addetToStage);
-			
-			Log.log('addetToStage: ' + Math.random(), this);
 			
 			newGame();
 //			Mouse.hide();
@@ -52,8 +46,6 @@ package
 
 		private function newGame():void
 		{
-			Log.log('newGame: ' + Math.random(), this);
-			
 			bg 					= new BG();
 			bgCastle 			= new BGCastle();
 			gameSetings 		= new GameSetings();
@@ -85,13 +77,14 @@ package
 
 		public function endGame() : void
 		{
-//			player.destroy();
-			removeChild(bg);
-			bg = null;
-			bgCastle.destroy();
-			removeChild(bgCastle);
-			gameHandler.destroy();
-			objectHolder.clearAll();
+//			player.destroy();z
+			if (this.bg) removeChild(bg);
+			if (this.bg) bg = null;
+			if (this.bgCastle) bgCastle.destroy();
+			if (this.contains(bgCastle)) removeChild(bgCastle);
+			if (this.gameHandler) gameHandler.destroy();
+			if (this.objectHolder) objectHolder.clearAll();
+			if (this.popUp) popUp.destroy();
 		}
 
 
@@ -102,14 +95,19 @@ package
 
 		private function handlePopupShowMenu(event:Event):void
 		{
-			trace('handlePopupShowMenu');
 			this.popUp.shown();
 		}
 
 		public function removeGame():void
 		{
 			this.objectHolder.clearAll();
+			this.objectHolder.removeGame();
 			this.gameHandler.removeAll();
+			
+			this.hud.removeEventListener('POPUP_SHOW_MENU', this.handlePopupShowMenu);
+			if (this.contains(this.hud)) this.removeChild(this.hud);
+			this.popUp.removeEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
+			if (this.contains(this.popUp)) this.removeChild(this.popUp);
 		}
 
 		public function get _gameState() : String

@@ -1,5 +1,6 @@
 package Menu
 {
+	import com.jbrettob.log.Log;
 	import com.jbrettob.media.sound.SoundChannelKing;
 
 	import flash.display.MovieClip;
@@ -45,34 +46,31 @@ package Menu
 
 			this.mcStartGame = this.mcContainer['mcStartGame'];
 			this.mcOpties = this.mcContainer['mcOpties'];
-			this.mcHighScore = this.mcContainer['mcHighScore'];
 			this.mcCredits = this.mcContainer['mcCredits'];
 
 			TextField(this.mcStartGame['txtLabel']).text = 'Start Game';
 			TextField(this.mcOpties['txtLabel']).text = 'Opties';
-			TextField(this.mcHighScore['txtLabel']).text = 'Highscore';
 			TextField(this.mcCredits['txtLabel']).text = 'Credits';
 
 			this.mcStartGame.buttonMode = true;
 			this.mcOpties.buttonMode = true;
-			this.mcHighScore.buttonMode = true;
 			this.mcCredits.buttonMode = true;
 
 			this.mcStartGame.mouseChildren = false;
 			this.mcOpties.mouseChildren = false;
-			this.mcHighScore.mouseChildren = false;
 			this.mcCredits.mouseChildren = false;
 
 			this.addFrameScript(50 - 1, this.handleStopAtMainMenu);
 			this.addFrameScript(75 - 1, this.handleStopAtOption);
+			this.addFrameScript(139 - 1, this.handleStopAtCredits);
 		}
-		
+
 		private function handleStopAtMainMenu():void
 		{
 			this.stop();
-			
+
 			this.mcContainer.visible = true;
-			
+
 			this.mcBack.enabled = this.mcBack.buttonMode = this.mcBack.visible = false;
 			this.mcMusicOn.enabled = this.mcMusicOn.buttonMode = this.mcMusicOn.visible = false;
 			this.mcMusicOff.enabled = this.mcMusicOff.buttonMode = this.mcMusicOff.visible = false;
@@ -81,18 +79,18 @@ package Menu
 			this.mcQualityLow.enabled = this.mcQualityLow.buttonMode = this.mcQualityLow.visible = false;
 			this.mcQualityMed.enabled = this.mcQualityMed.buttonMode = this.mcQualityMed.visible = false;
 			this.mcQualityHigh.enabled = this.mcQualityHigh.buttonMode = this.mcQualityHigh.visible = false;
-			
+
 			this.addEventListener(MouseEvent.CLICK, handleMouseClick);
 		}
-		
+
 		private function handleStopAtOption():void
 		{
 			this.stop();
-			
+
 			this.addEventListener(MouseEvent.CLICK, handleMouseClick);
-			
+
 			this.mcContainer.enabled = true;
-			
+
 			this.mcBack.enabled = this.mcBack.buttonMode = this.mcBack.visible = true;
 			this.mcMusicOn.enabled = this.mcMusicOn.buttonMode = this.mcMusicOn.visible = true;
 			this.mcMusicOff.enabled = this.mcMusicOff.buttonMode = this.mcMusicOff.visible = true;
@@ -101,10 +99,32 @@ package Menu
 			this.mcQualityLow.enabled = this.mcQualityLow.buttonMode = this.mcQualityLow.visible = true;
 			this.mcQualityMed.enabled = this.mcQualityMed.buttonMode = this.mcQualityMed.visible = true;
 			this.mcQualityHigh.enabled = this.mcQualityHigh.buttonMode = this.mcQualityHigh.visible = true;
-			
+
 			this.mcStartGame.buttonMode = this.mcStartGame.visible = false;
 			this.mcOpties.buttonMode = this.mcOpties.visible = false;
-			this.mcHighScore.buttonMode = this.mcHighScore.visible = false;
+			this.mcCredits.buttonMode = this.mcCredits.visible = false;
+		}
+
+		private function handleStopAtCredits():void
+		{
+			this.stop();
+
+			this.addEventListener(MouseEvent.CLICK, handleMouseClick);
+
+			this.mcContainer.enabled = true;
+
+			this.mcBack.enabled = this.mcBack.buttonMode = this.mcBack.visible = true;
+
+			this.mcMusicOn.enabled = this.mcMusicOn.buttonMode = this.mcMusicOn.visible = false;
+			this.mcMusicOff.enabled = this.mcMusicOff.buttonMode = this.mcMusicOff.visible = false;
+			this.mcSoundOn.enabled = this.mcSoundOn.buttonMode = this.mcSoundOn.visible = false;
+			this.mcSoundOff.enabled = this.mcSoundOff.buttonMode = this.mcSoundOff.visible = false;
+			this.mcQualityLow.enabled = this.mcQualityLow.buttonMode = this.mcQualityLow.visible = false;
+			this.mcQualityMed.enabled = this.mcQualityMed.buttonMode = this.mcQualityMed.visible = false;
+			this.mcQualityHigh.enabled = this.mcQualityHigh.buttonMode = this.mcQualityHigh.visible = false;
+
+			this.mcStartGame.buttonMode = this.mcStartGame.visible = false;
+			this.mcOpties.buttonMode = this.mcOpties.visible = false;
 			this.mcCredits.buttonMode = this.mcCredits.visible = false;
 		}
 
@@ -121,11 +141,8 @@ package Menu
 				case this.mcBack:
 					if (this.mcBack.enabled) this.showMenu();
 					break;
-				case this.mcHighScore:
-					trace('highscore');
-					break;
 				case this.mcCredits:
-					trace('credits');
+					if (this.mcContainer.enabled) this.showCredits();
 					break;
 				case this.mcMusicOn:
 					SoundChannelKing.getInstance().unMuteAllMusic();
@@ -157,12 +174,11 @@ package Menu
 		private function showMenu():void
 		{
 			this.removeEventListener(MouseEvent.CLICK, handleMouseClick);
-			
-			this.gotoAndPlay('MenuOption');
+
+			this.play();
 
 			this.mcStartGame.buttonMode = this.mcStartGame.visible = true;
 			this.mcOpties.buttonMode = this.mcOpties.visible = true;
-			this.mcHighScore.buttonMode = this.mcHighScore.visible = true;
 			this.mcCredits.buttonMode = this.mcCredits.visible = true;
 
 			this.mcBack.enabled = this.mcBack.buttonMode = false;
@@ -178,12 +194,11 @@ package Menu
 		private function showOptions():void
 		{
 			this.removeEventListener(MouseEvent.CLICK, handleMouseClick);
-			
+
 			this.gotoAndPlay('MainMenu');
-			
+
 			this.mcStartGame.buttonMode = false;
 			this.mcOpties.buttonMode = false;
-			this.mcHighScore.buttonMode = false;
 			this.mcCredits.buttonMode = false;
 			this.mcContainer.enabled = false;
 
@@ -197,12 +212,21 @@ package Menu
 			this.mcQualityHigh.enabled = this.mcQualityHigh.buttonMode = this.mcQualityHigh.visible = true;
 		}
 
+		private function showCredits():void
+		{
+			this.removeEventListener(MouseEvent.CLICK, handleMouseClick);
+
+			Log.log('showCredits', this);
+
+			this.gotoAndPlay('MainCredits');
+		}
+
 		private function startGame():void
 		{
 			this.dispatchEvent(new Event('MENUSCREEN_STARTGAME'));
 			this.destroy();
 		}
-		
+
 		public function destroy():void
 		{
 			this.removeEventListener(MouseEvent.CLICK, handleMouseClick);

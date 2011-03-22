@@ -26,7 +26,6 @@ package player
 
 		public function Player(_main:Game):void
 		{
-			trace("Player");			
 			main = _main;
 			super();
 		}
@@ -193,7 +192,8 @@ package player
 			}
 			
 		}
-
+		
+		
 		override public function destroy():void
 		{
 			shootTimer.removeEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
