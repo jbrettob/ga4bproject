@@ -1,8 +1,10 @@
-package {
-	import flash.events.MouseEvent;
-	import flash.events.Event;
+package
+{
+	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
+	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
 	/**
 	 * @author Rene Zwaan
 	 */
@@ -31,7 +33,10 @@ package {
 
 		private function mouseDown(event : MouseEvent) : void 
 		{
-			_leftMouse = "down";
+			if (DisplayObject(event.target).name != 'mcMenu')
+			{
+				_leftMouse = "down";
+			}
 		}
 		
 		private function mouseUp(event : MouseEvent) : void 
