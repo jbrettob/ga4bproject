@@ -152,5 +152,15 @@ package com.jbrettob.display
 		{
 			Log.debug(output, this);
 		}
+
+		public function get timer() : Timer
+		{
+			return _timer;
+		}
+
+		public function set timer(timer : Timer) : void
+		{
+			_timer = timer;
+		}
 	}
 }

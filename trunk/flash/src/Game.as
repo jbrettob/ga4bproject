@@ -30,6 +30,7 @@ package
 		public var bg						:BG;
 		public var dl						:DeathLine;
 		public var popUp					:PopUp;
+		public var gameState				:String;			
 
 		public function Game():void
 		{
@@ -47,7 +48,6 @@ package
 			newGame();
 //			Mouse.hide();
 		}
-		
 		
 
 		private function newGame():void
@@ -110,6 +110,16 @@ package
 		{
 			this.objectHolder.clearAll();
 			this.gameHandler.removeAll();
+		}
+
+		public function get _gameState() : String
+		{
+			return gameState;
+		}
+
+		public function set _gameState(gameState : String) : void
+		{
+			this.gameState = gameState;
 		}
 	}
 }

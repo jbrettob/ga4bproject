@@ -1,5 +1,13 @@
 package 
 {
+	import objects.Orb;
+	import Menu.MainMenu;
+	import flash.events.TimerEvent;
+	import enemies.ShapeShifter;
+	import flash.events.Event;
+	import objects.UpgradeTimer;
+	import flash.utils.Timer;
+	import com.greensock.TimelineMax;
 	import player.Player;
 
 	import com.jbrettob.display.Actor;
@@ -19,13 +27,70 @@ package
 		private var _enemys						:Array;		private var _enemyProjectiles			:Array;
 		private var _orbs						:Array;		private var _playerProjectiles			:Array;
 		
+		private var updateTimer					:Timer;
+		
 		public function ObjectHolder():void
 		{
 			_enemys 								= new Array();			_enemyProjectiles 						= new Array();
 			_orbs 									= new Array();
 			_playerProjectiles						= new Array();
-			
-			
+
+			updateTimer = new Timer(GameSetings.GAMESPEED);
+			updateTimer.addEventListener(TimerEvent.TIMER, update);
+			updateTimer.start();
+		}
+
+		private function update(event : Event) : void
+		{
+			trace((parent as Game).gameState);
+			checkPoused();
+		}
+		
+		private function checkPoused():void
+		{
+			if ((parent as Game).gameState == GameSetings.PAUSE)
+			{
+				for each (var iStop : Actor in _enemys)
+				{
+					if(iStop.timer) iStop.timer.stop();	
+				}
+
+				for each (var es : Projectile in _enemyProjectiles)
+				{
+					if(es.timer) es.timer.stop();	
+				}
+				for each (var os : Orb in _orbs)
+				{
+					if(os.timer) os.timer.stop();	
+				}
+				for each (var pps : Projectile in _playerProjectiles)
+				{
+					if(pps.timer) pps.timer.stop();	
+				}
+				(parent as Game).gameState = GameSetings.PAUSED;
+			}
+
+			if ((parent as Game).gameState == GameSetings.UNPOUSED)
+			{
+				for each (var i : Actor in _enemys)
+				{
+					if (i.timer) i.timer.start();	
+				}
+
+				for each (var e : Projectile in _enemyProjectiles)
+				{
+					if (e.timer) e.timer.start();	
+				}
+				for each (var o : Orb in _orbs)
+				{
+					if (o.timer) o.timer.start();	
+				}
+				for each (var pp : Projectile in _playerProjectiles)
+				{
+					if (pp.timer) pp.timer.start();	
+				}
+				(parent as Game).gameState = GameSetings.PLAYING;
+			}
 		}
 		
 		//Enemy

@@ -10,11 +10,11 @@ package
 		// Debu setting
 		public static var SHOW_LOG									:Boolean = true;
 		// Game setings
-		public static var PAUSED									:Boolean = false;
 		public static var GAMESPEED									:Number = 41;
 		public static var GAMEWITH									:Number = 820;
 		public static var GAMEHEIGHT								:Number = 750;
 		public static var GAMEQUALITY								:String = StageQuality.HIGH;
+		//GameStates		public static var PAUSED									:String = "Paused";		public static var ENDED										:Boolean = false;		public static var UNPOUSED									:String = "Unpoused";		public static var PLAYING									:String = "Playing";		public static var PAUSE										:String = "Pouse";
 		// Player
 		public static var PLAYER_LIVES								:Number = 3;
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
@@ -27,7 +27,8 @@ package
 				public static var ACTORPRO									:String = "actorpro";
 		public static var ACTORPROPROJECTILESPEED					:Number = 20;		public static var ACTORPROPROJECTILEDAMAGE					:Number = 1;		public static var ACTORPROPROJECTILERELOADSPEED				:Number = 600;		// Enemys
 		// Deathline
-		public static var DEATHLINESTARTHEIGHT						:Number = 60;		public static var DEATHLINEMOVESPEED						:Number = 0.05;		//castle
+		public static var DEATHLINESTARTHEIGHT						:Number = 60;		public static var DEATHLINEMOVESPEED						:Number = 0.05;		public static var DEATHLINEMOVESPEEDINCREASERATE			:Number = 0.0;
+		//castle
 		public static var CASTLEHEIGHT								:Number = 810;
 		
 		// ShapeShifter
