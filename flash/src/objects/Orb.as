@@ -1,16 +1,12 @@
 package objects 
 {
 	import com.jbrettob.display.Actor;
-
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 	/**
 	 * @author Rene Zwaan
 	 */
 	public class Orb extends Actor
 	{
 		private var orb:lamp;
-		private var updateTimer:Timer;
 		
 		public function Orb():void 
 		{
