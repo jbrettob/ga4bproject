@@ -11,7 +11,7 @@ package enemies
 	public class DeathLine extends Actor
 	{
 		private var dl:ActorDeadLine;
-		private var _inputHandler:InputHandler;
+		private var _inputHandler:InputHandler;		private var moveDownSpeed:Number;
 
 		public function DeathLine(__inputHandler:InputHandler):void
 		{
@@ -26,16 +26,20 @@ package enemies
 			dl = new ActorDeadLine();
 			this.addChild(dl);
 			this.y = GameSetings.DEATHLINESTARTHEIGHT;
-			
+			moveDownSpeed = GameSetings.DEATHLINEMOVESPEED;
 			super.init();
 		}
 
 		override public function update():void
 		{
-			this.y += GameSetings.DEATHLINEMOVESPEED;
-			input();
-			
-			super.update();
+			if ((parent as Game).gameState != GameSetings.PAUSED)
+			{
+				this.y += moveDownSpeed;
+				moveDownSpeed += GameSetings.DEATHLINEMOVESPEEDINCREASERATE;
+				input();
+				
+				super.update();
+			}
 		}
 
 		private function input():void
@@ -48,6 +52,7 @@ package enemies
 					{
 						Hud.getInstance().upgradeTimer.useUpgrade();
 						TweenLite.to(this, 1, {y:20, overwrite:true});
+						moveDownSpeed = GameSetings.DEATHLINEMOVESPEED;
 					}
 				}
 			}

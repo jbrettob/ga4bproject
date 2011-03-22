@@ -111,6 +111,16 @@ package objects
 
 		private function showMenu():void
 		{
+			
+			trace((parent as Game).gameState);
+			if((parent as Game).gameState == GameSetings.PAUSED)
+			{
+				(parent as Game).gameState = GameSetings.UNPOUSED;
+			}
+			else
+			{
+				(parent as Game).gameState = GameSetings.PAUSE;
+			}
 			this.log('showMenu');
 			
 			this.dispatchEvent(new Event('POPUP_SHOW_MENU'));

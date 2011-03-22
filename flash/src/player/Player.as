@@ -8,7 +8,6 @@ package player
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
-	import com.jbrettob.log.Log;
 
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -103,9 +102,12 @@ package player
 
 		override public function update():void
 		{
-			inputHandler();
-			checkColition();
-			updateAimer();
+			if (main.gameState != GameSetings.PAUSED)
+			{
+				inputHandler();
+				checkColition();
+				updateAimer();
+			}
 		}
 		
 
@@ -119,9 +121,9 @@ package player
 		{
 			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT) this.x += moveSpeed;
 			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT) this.x -= moveSpeed;
-			if (main.keyBoard.one == "down") {actor.changeCaracterTo(GameSetings.ACTOR2D); resetSmoke()};
-			if (main.keyBoard.two == "down") {actor.changeCaracterTo(GameSetings.ACTOR3D); resetSmoke()};
-			if (main.keyBoard.tree == "down") {actor.changeCaracterTo(GameSetings.ACTORPRO); resetSmoke()};
+			if (main.keyBoard.one == "down") {actor.changeCaracterTo(GameSetings.ACTOR2D); resetSmoke();}
+			if (main.keyBoard.two == "down") {actor.changeCaracterTo(GameSetings.ACTOR3D); resetSmoke();}
+			if (main.keyBoard.tree == "down") {actor.changeCaracterTo(GameSetings.ACTORPRO); resetSmoke();}
 			if (main.keyBoard.leftMouse == "down") newProjectile();
 		}
 
