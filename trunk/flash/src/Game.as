@@ -49,7 +49,7 @@ package
 			bg 					= new BG();
 			bgCastle 			= new BGCastle();
 			gameSetings 		= new GameSetings();
-			objectHolder 		= new ObjectHolder();
+			objectHolder 		= new ObjectHolder(this);
 			gameHandler 		= new GameHandler(objectHolder);
 			keyBoard 			= new InputHandler();
 			player 				= new Player(this);

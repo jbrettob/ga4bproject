@@ -48,32 +48,38 @@ package enemies
 
 		override public function update():void
 		{
-			this.y += this.moveSpeed;
-
-			this.checkCollision();
-
-			if (this._canShoot)
+			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 			{
-				if (this.y < 400)
+				this.y += this.moveSpeed;
+	
+				this.checkCollision();
+	
+				if (this._canShoot)
 				{
-					this.shootProjectile();
-
-					this._canShoot = false;
-					this._canShootTimer.start();
+					if (this.y < 400)
+					{
+						this.shootProjectile();
+	
+						this._canShoot = false;
+						this._canShootTimer.start();
+					}
 				}
+				
+	
+				if (this.y >= (GameSetings.GAMEHEIGHT - 50))
+				{
+					// TODO: testing purpose
+					objectHolder.__parent.hud.lives -=1;
+					this.destroy();
+				}
+	
+				super.update();
 			}
-
-			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
-			{
-				this.y = 0;
-				this.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
-			}
-
-			super.update();
 		}
 
 		private function checkCollision():void
 		{
+			// TODO: half working
 			for each (var i:Projectile in this.objectHolder.playerProjectiles)
 			{
 				if (this.hitTestObject(i))

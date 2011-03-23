@@ -34,6 +34,8 @@ package projectiles
 
 		override public function update():void
 		{
+			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+			{
 			this.x += this.xSpeed;
 			this.y += this.ySpeed;
 
@@ -48,6 +50,7 @@ package projectiles
 			}
 
 			super.update();
+			}
 		}
 
 		override public function destroy():void
