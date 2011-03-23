@@ -1,20 +1,15 @@
 package 
 {
-	import flash.trace.Trace;
-	import objects.Orb;
-	import Menu.MainMenu;
-	import flash.events.TimerEvent;
-	import enemies.ShapeShifter;
-	import flash.events.Event;
-	import objects.UpgradeTimer;
-	import flash.utils.Timer;
-	import com.greensock.TimelineMax;
 	import player.Player;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
+	import com.jbrettob.log.Log;
 
 	import flash.display.MovieClip;
+	import flash.events.Event;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	/**
 	 * @author Rene Zwaan
 	 * @info this clas is made for coliton detection
