@@ -13,7 +13,7 @@ package enemies
 	 */
 	public class ShapeShifter extends Actor
 	{
-		private var _sprite:ActorShapeShifter;
+		private var _sprite:ActorBug;
 		private var _canShoot:Boolean = true;
 		private var _canShootTimer:Timer;
 
@@ -26,7 +26,7 @@ package enemies
 
 		override public function init():void
 		{
-			this._sprite = new ActorShapeShifter();
+			this._sprite = new ActorBug();
 			this.addChild(this._sprite);
 
 			this.moveSpeed = GameSetings.SHAPESHIFTERMOVESPEED;
