@@ -57,7 +57,8 @@ package
 		
 		public function removeEnemy(_enemy:*):void
 		{
-			_enemys.splice(_enemy,0);
+			trace(_enemys.length);			_enemys.splice(_enemy,1);
+			trace(_enemys.length);
 		}
 		
 		public function clearEnemys():void

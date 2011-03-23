@@ -27,8 +27,8 @@ package
 		public var hud						:Hud;
 		public var bg						:BG;
 		public var dl						:DeathLine;
-		public var popUp					:PopUp;
-		public var gameState				:String;			
+		public var popUp 					: PopUp;
+		public var gameState 				: String = GameSetings.PLAYING;			
 
 		public function Game():void
 		{
