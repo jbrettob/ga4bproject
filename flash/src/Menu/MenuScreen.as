@@ -1,5 +1,6 @@
 package Menu
 {
+	import com.jbrettob.enum.Sounds;
 	import com.jbrettob.log.Log;
 	import com.jbrettob.media.sound.SoundChannelKing;
 
@@ -133,21 +134,39 @@ package Menu
 			switch(event.target)
 			{
 				case this.mcStartGame:
-					if (this.mcContainer.enabled) this.startGame();
+					if (this.mcContainer.enabled)
+					{
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
+						this.startGame();
+					}
 					break;
 				case this.mcOpties:
-					if (this.mcContainer.enabled) this.showOptions();
+					if (this.mcContainer.enabled)
+					{
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
+						this.showOptions();
+					}
 					break;
 				case this.mcBack:
-					if (this.mcBack.enabled) this.showMenu();
+					if (this.mcBack.enabled)
+					{
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
+						this.showMenu();
+					}
 					break;
 				case this.mcCredits:
-					if (this.mcContainer.enabled) this.showCredits();
+					if (this.mcContainer.enabled)
+					{
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
+						this.showCredits();
+					}
 					break;
 				case this.mcMusicOn:
+					SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 					SoundChannelKing.getInstance().unMuteAllMusic();
 					break;
 				case this.mcMusicOff:
+					SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 					SoundChannelKing.getInstance().muteALlMusic();
 					break;
 				case this.mcSoundOn:
@@ -157,14 +176,17 @@ package Menu
 					SoundChannelKing.getInstance().muteALlSound();
 					break;
 				case this.mcQualityLow:
+					SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 					GameSetings.GAMEQUALITY = StageQuality.LOW;
 					this.stage.quality = GameSetings.GAMEQUALITY;
 					break;
 				case this.mcQualityMed:
+					SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 					GameSetings.GAMEQUALITY = StageQuality.MEDIUM;
 					this.stage.quality = GameSetings.GAMEQUALITY;
 					break;
 				case this.mcQualityHigh:
+					SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 					GameSetings.GAMEQUALITY = StageQuality.HIGH;
 					this.stage.quality = GameSetings.GAMEQUALITY;
 					break;
