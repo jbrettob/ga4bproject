@@ -34,7 +34,7 @@ package enemies
 		{
 			if ((parent as Game).gameState != GameSetings.PAUSED)
 			{
-				this.y += moveDownSpeed;
+				dl.y += moveDownSpeed;
 				moveDownSpeed += GameSetings.DEATHLINEMOVESPEEDINCREASERATE;
 				input();
 				

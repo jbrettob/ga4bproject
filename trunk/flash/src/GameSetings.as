@@ -27,7 +27,7 @@ package
 				public static var ACTORPRO									:String = "actorpro";
 		public static var ACTORPROPROJECTILESPEED					:Number = 20;		public static var ACTORPROPROJECTILEDAMAGE					:Number = 1;		public static var ACTORPROPROJECTILERELOADSPEED				:Number = 600;		// Enemys
 		// Deathline
-		public static var DEATHLINESTARTHEIGHT						:Number = 60;		public static var DEATHLINEMOVESPEED						:Number = 0.05;		public static var DEATHLINEMOVESPEEDINCREASERATE			:Number = 0.0;
+		public static var DEATHLINESTARTHEIGHT						:Number = 60;		public static var DEATHLINEMOVESPEED						:Number = 0.06;		public static var DEATHLINEMOVESPEEDINCREASERATE			:Number = 0.0;
 		//castle
 		public static var CASTLEHEIGHT								:Number = 810;
 		
