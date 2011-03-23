@@ -14,10 +14,12 @@ package com.jbrettob.media.sound
 	public class SoundChannelKing extends Sprite
 	{
 		private static var _INSTANCE:SoundChannelKing;
+		
 		private var _musicArray:Array = new Array();
 		private var _soundArray:Array = new Array();
 		private var _audioArray:Array = new Array();
 		private var isInit:Boolean = false;
+		private var _soundMute:Boolean = false;
 
 		public function SoundChannelKing()
 		{
@@ -40,6 +42,8 @@ package com.jbrettob.media.sound
 			{
 				return;
 			}
+			
+			this._soundMute = false;
 
 			// manual add
 			this._audioArray.push(Sounds.BACKGROUND_MUSIC_01 as Class);
@@ -53,6 +57,8 @@ package com.jbrettob.media.sound
 
 		public function playSound(url:Class, value:Number = 0):void
 		{
+			if (this._soundMute) return;
+			
 			var S_Sound:Class = this.getAudio(url);
 			
 			var newSound:Sound = new S_Sound();
@@ -84,6 +90,7 @@ package com.jbrettob.media.sound
 
 			var newSoundChannel:SoundChannel = new SoundChannel();
 			newSoundChannel = newSound.play();
+			newSoundChannel.soundTransform = new SoundTransform(.9);
 
 			this._musicArray.push(newSoundChannel);
 		}
@@ -211,6 +218,24 @@ package com.jbrettob.media.sound
 			for each (var b:SoundChannel in this._musicArray)
 			{
 				b.stop();
+			}
+		}
+
+		public function get soundMute():Boolean
+		{
+			return this._soundMute;
+		}
+
+		public function set soundMute(value:Boolean):void
+		{
+			this._soundMute = value;
+			
+			if (this._soundMute)
+			{
+				this.unMuteAllSound();
+			} else 
+			{
+				this.muteALlSound();
 			}
 		}
 	}

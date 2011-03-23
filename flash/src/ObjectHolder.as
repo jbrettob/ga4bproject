@@ -22,7 +22,7 @@ package
 		private var _player						:Player;
 		private var _enemys						:Array;		private var _enemyProjectiles			:Array;
 		private var _orbs						:Array;		private var _playerProjectiles			:Array;		private var _gameState					:String;
-		private var _parent						:Game
+		private var _parent						:Game;
 		
 		
 		private var updateTimer					:Timer;
