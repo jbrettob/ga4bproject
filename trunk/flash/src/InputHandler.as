@@ -1,6 +1,5 @@
 package
 {
-	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -33,9 +32,12 @@ package
 
 		private function mouseDown(event : MouseEvent) : void 
 		{
-			if (DisplayObject(event.target).name != 'mcMenu')
+			if (parent)
 			{
-				_leftMouse = "down";
+				if ((parent as Game).gameState == GameSetings.PLAYING)
+				{
+					_leftMouse = "down";
+				}
 			}
 		}
 		

@@ -1,5 +1,6 @@
 package objects
 {
+	import com.jbrettob.enum.Sounds;
 	import com.jbrettob.log.Log;
 	import com.jbrettob.media.sound.SoundChannelKing;
 
@@ -97,15 +98,18 @@ package objects
 				switch (event.target)
 				{
 					case this._sprite.mcDropDownMenu.mcMenu:
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 						this.showMenu();
 						break;
 					case this._sprite.mcDropDownMenu.mcMusic:
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 						SoundChannelKing.getInstance().muteUnMuteAllMusic();
 						break;
 					case this._sprite.mcDropDownMenu.mcSound:
-						SoundChannelKing.getInstance().muteUnMuteALlSound();
+						SoundChannelKing.getInstance().soundMute = SoundChannelKing.getInstance().soundMute ? true: false;
 						break;
 					case this._sprite.mcDropDownMenu.mcQuality:
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 						this.switchQuality();
 						break;
 				}

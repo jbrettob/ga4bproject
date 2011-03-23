@@ -1,5 +1,8 @@
 package popup
 {
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.media.sound.SoundChannelKing;
+
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -65,9 +68,11 @@ package popup
 			{
 				case this._sprite.mcReturnToGame:
 				case this._sprite.mcClose:
+					SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 					this.shown();
 					break;
 				case this._sprite.mcMainMenu:
+					SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
 					this.showMainMenu();
 					break;
 			}

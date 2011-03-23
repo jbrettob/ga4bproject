@@ -36,6 +36,8 @@ package Menu
 
 		private function init():void
 		{
+			this.scaleX = this.scaleY = .7;
+			
 			this.mcBack.enabled = this.mcBack.buttonMode = false;
 			this.mcMusicOn.enabled = this.mcMusicOn.buttonMode = false;
 			this.mcMusicOff.enabled = this.mcMusicOff.buttonMode = false;
@@ -170,10 +172,10 @@ package Menu
 					SoundChannelKing.getInstance().muteALlMusic();
 					break;
 				case this.mcSoundOn:
-					SoundChannelKing.getInstance().unMuteAllSound();
+					SoundChannelKing.getInstance().soundMute = false;
 					break;
 				case this.mcSoundOff:
-					SoundChannelKing.getInstance().muteALlSound();
+					SoundChannelKing.getInstance().soundMute = true;
 					break;
 				case this.mcQualityLow:
 					SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);

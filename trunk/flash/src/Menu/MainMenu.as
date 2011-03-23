@@ -55,6 +55,8 @@ package Menu
 
 			this._menu = new MenuScreen();
 			this._menu.addEventListener('MENUSCREEN_STARTGAME', startGame);
+			this._menu.x = GameSetings.GAMEWITH / 2;
+			this._menu.y = GameSetings.GAMEHEIGHT / 2;
 			this.addChild(this._menu);
 		}
 

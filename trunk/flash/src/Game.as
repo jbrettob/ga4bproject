@@ -61,7 +61,7 @@ package
 			bg.y += 25;
 			
 			
-			addChild(bg);
+			//addChild(bg);
 			addChild(bgCastle);
 			addChild(keyBoard);
 			addChild(player);
@@ -77,8 +77,8 @@ package
 
 		public function endGame() : void
 		{
-//			player.destroy();z
-			if (this.bg) removeChild(bg);
+//			player.destroy();
+			if (this.bg) if (this.contains(this.bg)) removeChild(bg);
 			if (this.bg) bg = null;
 			if (this.bgCastle) bgCastle.destroy();
 			if (this.contains(bgCastle)) removeChild(bgCastle);
