@@ -1,5 +1,8 @@
 package Menu
 {
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.media.sound.SoundChannelKing;
+
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 
@@ -35,7 +38,11 @@ package Menu
 			switch(event.target)
 			{
 				case this.mcStart:
-					if (this.mcStart.enabled) this.showMenu();
+					if (this.mcStart.enabled)
+					{
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
+						this.showMenu();
+					}
 					break;
 			}
 		}

@@ -1,13 +1,12 @@
 package com.jbrettob.media.sound
 {
-	import flash.media.SoundTransform;
-
 	import com.jbrettob.enum.Sounds;
 
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
+	import flash.media.SoundTransform;
 
 	/**
 	 * @author Jayce Rettob
@@ -42,7 +41,12 @@ package com.jbrettob.media.sound
 				return;
 			}
 
+			// manual add
 			this._audioArray.push(Sounds.BACKGROUND_MUSIC_01 as Class);
+			this._audioArray.push(Sounds.SOUND_BUTTONPRESSED as Class);
+			this._audioArray.push(Sounds.SOUND_CANONSHOOT as Class);
+			this._audioArray.push(Sounds.SOUND_CHARACERSHOOT as Class);
+			this._audioArray.push(Sounds.SOUND_CREATIVITYORB as Class);
 
 			this.isInit = true;
 		}
@@ -50,6 +54,7 @@ package com.jbrettob.media.sound
 		public function playSound(url:Class, value:Number = 0):void
 		{
 			var S_Sound:Class = this.getAudio(url);
+			
 			var newSound:Sound = new S_Sound();
 			if (value >= 1)
 			{
@@ -64,6 +69,11 @@ package com.jbrettob.media.sound
 
 		public function playMusic(url:Class, value:Number = 0):void
 		{
+			if(this._musicArray.length >= 1)
+			{
+				SoundChannelKing.getInstance().stopAllMusic();
+			}
+			
 			var Music:Class = this.getAudio(url);
 
 			var newSound:Sound = new Music();
@@ -137,6 +147,14 @@ package com.jbrettob.media.sound
 				}
 
 				i.soundTransform = soundTransform;
+			}
+		}
+		
+		public function stopAllMusic():void
+		{
+			for each (var i:SoundChannel in this._musicArray)
+			{
+				i.stop();
 			}
 		}
 		

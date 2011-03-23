@@ -78,6 +78,7 @@ package
 			this.removeMenu();
 
 			SoundChannelKing.getInstance().init();
+			SoundChannelKing.getInstance().stopAllMusic();
 			SoundChannelKing.getInstance().playMusic(Sounds.BACKGROUND_MUSIC_01);
 
 			this._menu = new MainMenu();
