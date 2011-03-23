@@ -49,11 +49,14 @@ package
 
 		private function handleAddEnemyTimer(event:TimerEvent):void
 		{
+			trace("it is true");
 			this._canAddEnemy = true;
 		}
 		
 		public function update(event:TimerEvent):void
 		{
+			if ((parent as Game).gameState != GameSetings.PAUSED)
+			{
 			var i:Number = numChildren;
 			while(i > 0)
 			{
@@ -64,12 +67,13 @@ package
 				}
 				i --;
 			}
-			
-			if (this.objectHolder.enemys.length < 3 && this._canAddEnemy)
+
+				if (this.objectHolder.enemys.length < GameSetings.SHAPESHIFTERMAXONSCREEN && this._canAddEnemy)
 			{
 				createShapeShifter();
 				this._canAddEnemy = false;
 				this._canAddEnemyTimer.start();
+			}
 			}
 			
 		}

@@ -114,6 +114,17 @@ package objects
 
 		private function showMenu():void
 		{
+			
+			if((parent as Game).gameState == GameSetings.PAUSED)
+			{
+				(parent as Game).gameState = GameSetings.PLAYING;
+			}
+			else
+			{
+				(parent as Game).gameState = GameSetings.PAUSED;
+			}
+			this.log('showMenu');
+			
 			this.dispatchEvent(new Event('POPUP_SHOW_MENU'));
 		}
 
@@ -180,6 +191,7 @@ package objects
 						break;
 				}
 			}
+			if(lives <= 0) (parent as Game).endGame();
 		}
 
 		private function updateScore():void
@@ -223,11 +235,11 @@ package objects
 				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.CLICK, this.handleDropDownClick);
 				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.ROLL_OVER, this.handleDropDownRollOver);
 				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.ROLL_OUT, this.handleDropDownRollOut);
-
+				
 				this.removeChild(this._sprite);
 				this._sprite = null;
 			}
-
+			
 			if (this._upgradeTimer)
 			{
 				this.removeChild(this._upgradeTimer);

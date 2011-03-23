@@ -33,6 +33,8 @@ package projectiles
 
 		override public function update():void
 		{
+			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+			{
 			this.x += this.xSpeed;
 			this.y += this.ySpeed;
 
@@ -41,7 +43,21 @@ package projectiles
 				this.destroy();
 			}
 
+			colitionCheck();
 			super.update();
+			
+			}
+		}
+		
+		private function colitionCheck():void
+		{
+			for each (var p : Projectile in (parent as ObjectHolder).enemyProjectiles) 
+			{
+				if(this.hitTestObject(p))
+				{
+					if(p) p.destroy();
+				}
+			}			
 		}
 
 		override public function destroy():void
