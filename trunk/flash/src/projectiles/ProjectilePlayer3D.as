@@ -15,8 +15,8 @@ package projectiles
 			
 			this.rotation = degrees;
 			this.speed = GameSetings.ACTOR3DPROJECTILESPEED;
-			
-			this.damage = 100;
+
+			this.damage = GameSetings.ACTOR3DPROJECTILEDAMAGE;
 			
 			var bulletAngle:Number = (degrees * Math.PI / 180);
 			this.xSpeed = Math.cos(bulletAngle) * this.speed;

@@ -195,7 +195,7 @@ package objects
 						break;
 				}
 			}
-			if(lives <= 0) (parent as Game).endGame();
+			if(lives <= 0 && parent) (parent as Game).endGame();
 		}
 
 		private function updateScore():void

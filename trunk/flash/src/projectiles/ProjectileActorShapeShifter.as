@@ -25,6 +25,7 @@ package projectiles
 		override public function init():void
 		{
 			this.sprite = new ProjectileBug();
+			sprite.scaleX = 0.8;			sprite.scaleY = 0.8;
 			this.addChild(this.sprite);
 
 			super.init();

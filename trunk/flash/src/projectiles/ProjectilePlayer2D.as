@@ -1,16 +1,16 @@
 package projectiles
 {
-	import flash.geom.Point;
 	import com.jbrettob.display.Projectile;
 
-	import flash.display.Sprite;
+	import flash.display.MovieClip;
+	import flash.geom.Point;
 
 	/**
 	 * @author Rene Zwaan
 	 */
 	public class ProjectilePlayer2D extends Projectile
 	{
-		private var _sprite:Sprite;
+		private var _sprite:MovieClip;
 		private var mousePos:Point;
 
 		public function ProjectilePlayer2D(_objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number):void
@@ -20,6 +20,7 @@ package projectiles
 			this.rotation = degrees;
 			this.speed = GameSetings.ACTOR2DPROJECTILESPEED;
 
+
 			var bulletAngle:Number = (degrees * Math.PI / 180);
 			this.xSpeed = Math.cos(bulletAngle) * this.speed;
 			this.ySpeed = Math.sin(bulletAngle) * this.speed;
@@ -28,6 +29,8 @@ package projectiles
 		override public function init():void
 		{
 			this._sprite = new Projectile2D();
+			_sprite.scaleX = 0.3;
+			_sprite.scaleY = 0.3;
 			mousePos = new Point(stage.mouseX,stage.mouseY);
 			this.addChild(_sprite);
 
@@ -40,10 +43,9 @@ package projectiles
 			{
 			this.x += this.xSpeed;
 			this.y += this.ySpeed;
-
 			if (Point.distance(new Point(this.x, this.y), mousePos) <= 10)
 			{
-				destroy();
+					_sprite.gotoAndPlay("explode");
 			}
 
 			if (this.y <= 0)

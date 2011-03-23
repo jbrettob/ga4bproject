@@ -23,13 +23,13 @@ package
 		public static var ACTOR2D									:String = "actor2d";
 		public static var ACTOR2DPROJECTILESPEED					:Number = 10;		public static var ACTOR2DPROJECTILEDAMAGE					:Number = 1;		public static var ACTOR2DPROJECTILERELOADSPEED				:Number = 400;
 				public static var ACTOR3D									:String = "actor3d";
-		public static var ACTOR3DPROJECTILESPEED					:Number = 5;		public static var ACTOR3DPROJECTILEDAMAGE					:Number = 3;		public static var ACTOR3DPROJECTILERELOADSPEED				:Number = 1000;
+		public static var ACTOR3DPROJECTILESPEED					:Number = 5;		public static var ACTOR3DPROJECTILEDAMAGE					:Number = 2;		public static var ACTOR3DPROJECTILERELOADSPEED				:Number = 1000;
 				public static var ACTORPRO									:String = "actorpro";
 		public static var ACTORPROPROJECTILESPEED					:Number = 20;		public static var ACTORPROPROJECTILEDAMAGE					:Number = 1;		public static var ACTORPROPROJECTILERELOADSPEED				:Number = 600;		// Enemys
 		// Deathline
 		public static var DEATHLINESTARTHEIGHT						:Number = 60;		public static var DEATHLINEMOVESPEED						:Number = 0.06;		public static var DEATHLINEMOVESPEEDINCREASERATE			:Number = 0.0;
 		//castle
-		public static var CASTLEHEIGHT								:Number = 810;
+		public static var CASTLEHEIGHT								:Number = 730;
 		
 		// ShapeShifter
 		public static var SHAPESHIFTERNAME							:String = "shapeshifter";
