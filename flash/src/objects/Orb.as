@@ -18,9 +18,12 @@ package objects
 		// make the orb move down until it gets tuched ??
 		 override public function update() : void 
 		{
-			if(this.y <= (GameSetings.PLAYERYPOS - 45))
+			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 			{
-				this.y += GameSetings.ORBMOVESPEED;
+				if(this.y <= (GameSetings.PLAYERYPOS - 45))
+				{
+					this.y += GameSetings.ORBMOVESPEED;
+				}
 			}
 		}
 		
