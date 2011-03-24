@@ -1,5 +1,6 @@
 package
 {
+	import com.jbrettob.data.xml.XmlLoadSettings;
 	import Intro.IntroKing;
 
 	import Menu.MainMenu;
@@ -38,7 +39,14 @@ package
 		private function init():void
 		{
 			this.stage.stageFocusRect = false;
+			
+			var loader:XmlLoadSettings = new XmlLoadSettings();
+			loader.addEventListener(Event.COMPLETE, this.handleXMLComplete);
+			loader.loadXML();
+		}
 
+		private function handleXMLComplete(event:Event):void
+		{
 			this.showIntroTeam();
 		}
 

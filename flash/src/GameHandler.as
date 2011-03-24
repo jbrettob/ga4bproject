@@ -17,6 +17,7 @@ package
 		private var __updateTimer:Timer;
 		public var attribute1:Game;
 		private var objectHolder:ObjectHolder;
+		private var _gameState					:String;
 		
 		private var _canAddEnemy:Boolean = false;
 		private var _canAddEnemyTimer:Timer;
@@ -56,7 +57,11 @@ package
 		
 		public function update(event:TimerEvent):void
 		{
-			Log.log((parent as Game).gameState, this);
+			_gameState = (parent as Game).gameState;
+			if (_gameState != (parent as Game).gameState)
+			{
+				Log.log(_gameState, this);
+			}
 			
 			if ((parent as Game).gameState != GameSetings.PAUSED)
 			{
