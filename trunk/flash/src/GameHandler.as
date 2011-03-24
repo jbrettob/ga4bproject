@@ -1,5 +1,6 @@
 package
 {
+	import com.jbrettob.log.Log;
 	import objects.Orb;
 	import enemies.ShapeShifter;
 
@@ -55,6 +56,8 @@ package
 		
 		public function update(event:TimerEvent):void
 		{
+			Log.log((parent as Game).gameState, this);
+			
 			if ((parent as Game).gameState != GameSetings.PAUSED)
 			{
 			var i:Number = numChildren;
