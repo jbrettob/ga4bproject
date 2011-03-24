@@ -90,7 +90,7 @@ package popup
 			
 			if ((parent as Game).gameState == GameSetings.PAUSED)
 			{
-				(parent as Game).gameState = GameSetings.PLAYING;
+				//(parent as Game).gameState = GameSetings.PLAYING;
 			}
 			else
 			{

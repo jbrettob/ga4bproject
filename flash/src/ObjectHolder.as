@@ -41,7 +41,8 @@ package
 
 		private function update(event : Event) : void
 		{
-			var gameState:String = (parent as Game).gameState;
+			_gameState = (parent as Game).gameState;
+			Log.log(gameState, this);
 			if (gameState != (parent as Game).gameState)
 			{
 				Log.log(gameState, this);

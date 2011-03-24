@@ -58,10 +58,9 @@ package
 			dl 					= new DeathLine(keyBoard);
 			popUp				= new PopUp();
 			
-			bg.y += 25;
 			
 			
-			//addChild(bg);
+			addChild(bg);
 			addChild(bgCastle);
 			addChild(keyBoard);
 			addChild(player);

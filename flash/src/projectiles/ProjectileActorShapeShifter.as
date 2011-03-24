@@ -1,5 +1,6 @@
 package projectiles
 {
+	import com.jbrettob.log.Log;
 	import com.jbrettob.display.Projectile;
 
 	/**
@@ -33,6 +34,7 @@ package projectiles
 
 		override public function update():void
 		{
+			Log.log((parent as ObjectHolder).gameState, this);
 			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 			{
 			this.x += this.xSpeed;
