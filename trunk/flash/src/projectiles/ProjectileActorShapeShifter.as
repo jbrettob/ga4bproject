@@ -8,6 +8,8 @@ package projectiles
 	 */
 	public class ProjectileActorShapeShifter extends Projectile
 	{
+		private var _gameState:String;
+		
 		public function ProjectileActorShapeShifter(objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number)
 		{
 			super(objectHolder, posX, posY);
@@ -34,7 +36,12 @@ package projectiles
 
 		override public function update():void
 		{
-			Log.log((parent as ObjectHolder).gameState, this);
+			_gameState = (parent as ObjectHolder).gameState;
+			if (_gameState != (parent as ObjectHolder).gameState)
+			{
+				Log.log(_gameState, this);
+			}
+			
 			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 			{
 			this.x += this.xSpeed;

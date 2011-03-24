@@ -38,25 +38,5 @@ package
 		public static var SHAPESHIFTERPROJECTILESPEED				:Number = 3;		public static var SHAPESHIFTERMINSHOOTWAIT					:Number = 7500;		public static var SHAPESHIFTERMAXSHOOTWAIT					:Number = 2000;		public static var SHAPESHIFTERMAXONSCREEN					:Number = 7;
 				// orbs
 		public static var ORBMOVESPEED								:Number = 1;		public static var ORBMAX									:Number = 10;		public static var ORBSPAWNTIMER								:Number = 6000;		public static var ORBXP										:Number = 5;
-		
-		
-		public function GameSetings():void
-		{
-			loadXML();
-		}
-		/**
-		 * @info in here the info gets loaded from a xml
-		 * 
-		 * @todo everything
-		 * 
-		 */
-		private function loadXML():void
-		{
-			
-		}
-		
-		public function remove():void
-		{
-		}
 	}
 }
