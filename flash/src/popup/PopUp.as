@@ -48,18 +48,15 @@ package popup
 
 			this._sprite.mcReturnToGame.mouseChildren = false;
 			this._sprite.mcMainMenu.mouseChildren = false;
-			this._sprite.mcOptions.mouseChildren = false;
 
 			TextField(this._sprite.mcMainMenu['txtLabel']).text = 'Return to Main Menu';
-			TextField(this._sprite.mcOptions['txtLabel']).text = 'Options';
 			TextField(this._sprite.mcReturnToGame['txtLabel']).text = 'Return to game';
 
-			this._sprite.mcOptions.buttonMode = true;
 			this._sprite.mcReturnToGame.buttonMode = true;
 			this._sprite.mcMainMenu.buttonMode = true;
 			this._sprite.mcClose.buttonMode = true;
 
-			this._sprite.mcReturnToGame.buttonMode = this._sprite.mcMainMenu.buttonMode = this._sprite.mcOptions.buttonMode = true;
+			this._sprite.mcReturnToGame.buttonMode = this._sprite.mcMainMenu.buttonMode = true;
 		}
 
 		private function handleClick(event:MouseEvent):void
