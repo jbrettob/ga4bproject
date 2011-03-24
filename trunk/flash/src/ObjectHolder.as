@@ -57,8 +57,7 @@ package
 		
 		public function removeEnemy(_enemy:*):void
 		{
-			trace(_enemys.length);			_enemys.splice(_enemy,1);
-			trace(_enemys.length);
+			_enemys.splice(_enemy,1);
 		}
 		
 		public function clearEnemys():void
@@ -134,7 +133,7 @@ package
 		
 		public function removeOrb(_Orb:*):void 
 		{
-		   if (_orbs) _orbs.splice(_Orb, 0);
+		   if (_orbs) _orbs.splice(_Orb, 1);
 		}
 	
 		public function clearOrbs():void

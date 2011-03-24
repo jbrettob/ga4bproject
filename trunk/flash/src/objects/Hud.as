@@ -118,7 +118,6 @@ package objects
 
 		private function showMenu():void
 		{
-			
 			if((parent as Game).gameState == GameSetings.PAUSED)
 			{
 				(parent as Game).gameState = GameSetings.PLAYING;
