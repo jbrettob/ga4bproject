@@ -14,8 +14,7 @@ package
 		public static var GAMEWITH									:Number = 820;
 		public static var GAMEHEIGHT								:Number = 750;
 		public static var GAMEQUALITY								:String = StageQuality.HIGH;
-		//GameStates		public static var PAUSED									:String = "Paused";		public static var ENDED										:Boolean = false;		public static var UNPOUSED									:String = "Unpoused";		public static var PLAYING									:String = "Playing";		public static var PAUSE										:String = "Pouse";
-		// Player
+		//GameStates		public static var PAUSED									:String = "Paused";		public static var ENDED										:Boolean = false;		public static var PLAYING									:String = "Playing";		// Player
 		public static var PLAYER_LIVES								:Number = 3;
 		public static var PLAYERHP									:Number	= 10;		public static var PLAYERMOVESPEED                  			:Number	= 6;		public static var PLAYER2D									:String	= "2DCaracter";		public static var PLAYER3D									:String	= "3DCaracter";		public static var SCRIPTERCARACTER							:String	= "scripterCaracter";
 		public static var PLAYERXPOS								:Number = 500;		public static var PLAYERYPOS								:Number = 620;		public static var PLAYERMAXLEFT								:Number = 50;		public static var PLAYERMAXRIGHT							:Number = 750;		//actor3D
