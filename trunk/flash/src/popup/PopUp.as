@@ -1,6 +1,5 @@
 package popup
 {
-	import com.jbrettob.log.Log;
 	import com.jbrettob.enum.Sounds;
 	import com.jbrettob.media.sound.SoundChannelKing;
 
@@ -90,7 +89,7 @@ package popup
 			
 			if ((parent as Game).gameState == GameSetings.PAUSED)
 			{
-				//(parent as Game).gameState = GameSetings.PLAYING;
+				(parent as Game).gameState = GameSetings.PLAYING;
 			}
 			else
 			{
