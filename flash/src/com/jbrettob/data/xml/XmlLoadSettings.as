@@ -67,9 +67,9 @@ package com.jbrettob.data.xml
 			var bugMaxReload:Number = Number(xmlList.child('game').child('bug').attribute('maxReload'));
 			
 			// orb settings
-			var orbMovingSpeed:Number = Number(xmlList.child('game').child('bug').attribute('movingSpeed'));
-			var orbRespawnTime:Number = Number(xmlList.child('game').child('bug').attribute('respawn'));
-			var orbExp:Number = Number(xmlList.child('game').child('bug').attribute('exp'));
+			var orbMovingSpeed:Number = Number(xmlList.child('game').child('orb').attribute('movingSpeed'));
+			var orbRespawnTime:Number = Number(xmlList.child('game').child('orb').attribute('respawn'));
+			var orbExp:Number = Number(xmlList.child('game').child('orb').attribute('exp'));
 			
 			// deadline settings
 			var deadlineMovingSpeed:Number = Number(xmlList.child('game').child('deadline').attribute('movingSpeed'));
@@ -102,8 +102,7 @@ package com.jbrettob.data.xml
 			if (!bugPoints) bugPoints = GameSetings.SHAPESHIFTERSCORE;
 			if (!bugMovingSpeed) bugMovingSpeed = GameSetings.SHAPESHIFTERMOVESPEED;
 			if (!bugProjectileSpeed) bugProjectileSpeed = GameSetings.SHAPESHIFTERPROJECTILESPEED;
-			// TODO: Rene -> GameSettings.SHAPESHIFTERPROJECTILEDAMAGE aan maken
-			if (!bugProjectileDamage) bugProjectileDamage = 1;
+			if (!bugProjectileDamage) bugProjectileDamage = GameSetings.SHAPESHIFTERPROJECTILEDAMAGE;
 			if (!bugMinReload) bugMinReload = GameSetings.SHAPESHIFTERMINSHOOTWAIT;
 			if (!bugMaxReload) bugMaxReload = GameSetings.SHAPESHIFTERMAXSHOOTWAIT;
 			

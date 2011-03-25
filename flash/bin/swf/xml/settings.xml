@@ -5,24 +5,24 @@
 			<!-- global player settings -->
 			<player lives="3" hp="10" movingspeed="12" posx="410" posy="620" boundsLeft="50" boundsRight="750" />
 			<!-- specific 3D settings -->
-			<actor3d projectileSpeed="5" projectileDamage="2" reload="800" />
+			<actor3d projectileSpeed="5" projectileDamage="5" reload="800" />
 			<!-- specific 2D settings -->
-			<actor2d projectileSpeed="10" projectileDamage="1" reload="400" />
+			<actor2d projectileSpeed="10" projectileDamage="2,5" reload="400" />
 			<!-- specific PRO settings -->
 			<actorPro projectileSpeed="20" projectileDamage="1" reload="600" />
 			
 			<!-- specific DEADLINE settings -->
-			<deadline movingSpeed="0.07" accelerate="0" posY="60" />
+			<deadline movingSpeed="0.2" accelerate="0" posY="60" />
 			
 			<!-- specific BUG settings -->
-			<bug hp="5" movingspeed="2" points="10" projectileSpeed="3" projectileDamage="1" minReload="7500" maxReload="2000" />
+			<bug hp="5" movingspeed="2" points="10" projectileSpeed="3" projectileDamage="1" minReload="7500" maxReload="2000" ></bug>
 			<!-- specific SHAPESHIFTER settings -->
 			<shapeshifter hp="5" movingspeed="1" points="10" projectileSpeed="3" projectileDamage="1" minReload="7500" maxReload="2000" />
 			<!-- specific GUM settings -->
 			<gum hp="5" movingspeed="1" points="10" projectileSpeed="3" projectileDamage="1" minReload="7500" maxReload="2000" />
 			
 			<!-- specific ORB settings -->
-			<orb movingSpeed="1" respawn="6000" exp="5" />
+			<orb movingSpeed="1" respawn="6000" exp="2" />
 		</game>
 	</settings>
 </king>

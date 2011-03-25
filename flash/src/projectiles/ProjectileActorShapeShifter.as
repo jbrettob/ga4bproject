@@ -9,14 +9,13 @@ package projectiles
 	public class ProjectileActorShapeShifter extends Projectile
 	{
 		private var _gameState:String;
-		
 		public function ProjectileActorShapeShifter(objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number)
 		{
 			super(objectHolder, posX, posY);
 			
 			this.speed = GameSetings.SHAPESHIFTERPROJECTILESPEED;
 
-			if (this.damage <= 0) this.damage = 1;
+			if (this.damage <= 0) this.damage = GameSetings.SHAPESHIFTERPROJECTILEDAMAGE;
 			
 			this.rotation = degrees;
 			
@@ -28,7 +27,8 @@ package projectiles
 		override public function init():void
 		{
 			this.sprite = new ProjectileBug();
-			sprite.scaleX = 0.8;			sprite.scaleY = 0.8;
+			sprite.scaleX = 0.8;
+			sprite.scaleY = 0.8;
 			this.addChild(this.sprite);
 
 			super.init();
@@ -51,7 +51,6 @@ package projectiles
 			{
 				this.destroy();
 			}
-
 			super.update();
 			}
 		}

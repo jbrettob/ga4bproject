@@ -4,6 +4,7 @@ package enemies
 
 	import com.greensock.TweenLite;
 	import com.jbrettob.display.Actor;
+	import com.jbrettob.log.Log;
 
 	/**
 	 * @author Rene Zwaan
@@ -46,10 +47,12 @@ package enemies
 		{
 			if (_inputHandler.spaceBarr == "down")
 			{
+				
+						Log.log("spacebar got pressed", this);
 				if (Hud.getInstance().upgradeTimer)
-				{
+				{						Log.log(Hud.getInstance().upgradeTimer.canUse.toString(), this);
 					if (Hud.getInstance().upgradeTimer.canUse == true)
-					{
+					{						Log.log("shold move up now", this);
 						Hud.getInstance().upgradeTimer.useUpgrade();
 						TweenLite.to(this, 1, {y:20, overwrite:true});
 						moveDownSpeed = GameSetings.DEATHLINEMOVESPEED;

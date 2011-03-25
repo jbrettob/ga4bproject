@@ -33,7 +33,8 @@ package
 			this._canAddEnemyTimer = new Timer(1000,1);
 			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddEnemyTimer.start();
-
+			
+			trace(GameSetings.ORBSPAWNTIMER);
 			this._canAddOrbTimer = new Timer(GameSetings.ORBSPAWNTIMER, 0);
 			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
 			this._canAddOrbTimer.start();
@@ -51,7 +52,6 @@ package
 
 		private function handleAddEnemyTimer(event:TimerEvent):void
 		{
-			trace("it is true");
 			this._canAddEnemy = true;
 		}
 		
