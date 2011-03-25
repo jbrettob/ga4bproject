@@ -67,5 +67,6 @@ package projectiles
 
 			super.destroy();
 		}
+		
 	}
 }

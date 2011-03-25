@@ -3,13 +3,13 @@
 		<!-- global game settings -->
 		<game gamespeed="41" gamewidth="820" gameheight="750" gamequality="high">
 			<!-- global player settings -->
-			<player lives="20" hp="10" movingspeed="12" posx="410" posy="620" boundsLeft="50" boundsRight="750" />
+			<player lives="3" hp="10" movingspeed="12" posx="410" posy="635" boundsLeft="50" boundsRight="750" />
 			<!-- specific 3D settings -->
 			<actor3d projectileSpeed="6" projectileDamage="5" reload="800" />
 			<!-- specific 2D settings -->
 			<actor2d projectileSpeed="10" projectileDamage="2,5" reload="400" />
 			<!-- specific PRO settings -->
-			<actorPro projectileSpeed="20" projectileDamage="1" reload="600" />
+			<actorPro projectileSpeed="20" projectileDamage="2.5" reload="600" />
 			
 			<!-- specific DEADLINE settings -->
 			<deadline movingSpeed="0.2" accelerate="0" posY="60" />

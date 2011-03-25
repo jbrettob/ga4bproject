@@ -28,7 +28,7 @@ package
 		// Deathline
 		public static var DEATHLINESTARTHEIGHT						:Number = 60;		public static var DEATHLINEMOVESPEED						:Number = 0.06;		public static var DEATHLINEMOVESPEEDINCREASERATE			:Number = 0.0;
 		//castle
-		public static var CASTLEHEIGHT								:Number = 730;
+		public static var CASTLEHEIGHT								:Number = 745;
 		
 		// Bug
 		public static var SHAPESHIFTERNAME							:String = "shapeshifter";
