@@ -51,19 +51,19 @@ package projectiles
 		
 		private function colitionCheck():void
 		{
-			if (parent)
+		if (parent)
+		{
+			if((parent as ObjectHolder))
 			{
-				if((parent as ObjectHolder).enemyProjectiles.length > 0)
+			for each (var p : Projectile in (parent as ObjectHolder).enemyProjectiles) 
+			{
+				if(this.hitTestObject(p))
 				{
-					for each (var p : Projectile in (parent as ObjectHolder).enemyProjectiles) 
-					{
-						if(this.hitTestObject(p))
-						{
-							if(p) p.destroy();
-						}
-					}
-				}			
+					if(p) p.destroy();
+				}
 			}
+			}	
+			}		
 		}
 
 		override public function destroy():void

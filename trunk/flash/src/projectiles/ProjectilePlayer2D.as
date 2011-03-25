@@ -33,6 +33,7 @@ package projectiles
 			_sprite.scaleY = 0.3;
 			mousePos = new Point(stage.mouseX,stage.mouseY);
 			this.addChild(_sprite);
+			this.damage = GameSetings.ACTOR2DPROJECTILEDAMAGE;
 
 			super.init();
 		}
