@@ -59,13 +59,12 @@ package
 			popUp				= new PopUp();
 			
 			
-			
 			addChild(bg);
-			addChild(bgCastle);
 			addChild(keyBoard);
-			addChild(player);
 			addChild(gameHandler);
 			addChild(objectHolder);
+			addChild(bgCastle);
+			addChild(player);
 			addChild(dl);
 			addChild(hud);
 			addChild(popUp);

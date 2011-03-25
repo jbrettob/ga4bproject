@@ -170,10 +170,12 @@ package player
 		private function checkColition():void
 		{
 			if (this.health <= 0) this.destroy();
+			
 			for each (var i : Projectile in main.objectHolder.enemyProjectiles)
 			{
 				if (actor.hitTestObject(i) == true)
 				{
+					main.hud.lives -= 1;
 					this.health -= i.damage;
 					this.hitColorTween();
 					i.destroy();
