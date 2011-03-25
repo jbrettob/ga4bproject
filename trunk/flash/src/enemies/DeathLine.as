@@ -16,6 +16,7 @@ package enemies
 		private var dl : ActorDeadLine;
 		private var _inputHandler : InputHandler;
 		private var moveDownSpeed : Number;
+		private var movingBackUp	: Boolean;
 
 		public function DeathLine(__inputHandler : InputHandler) : void
 		{
@@ -35,7 +36,7 @@ package enemies
 
 		override public function update() : void
 		{
-			if ((parent as Game).gameState != GameSetings.PAUSED)
+			if ((parent as Game).gameState != GameSetings.PAUSED && movingBackUp == false);
 			{
 				if (!TweenMax.isTweening(this))
 				{
@@ -46,6 +47,8 @@ package enemies
 					super.update();
 				}
 			}
+
+			//if(movingBackUp) tweenUp();
 		}
 
 		private function input() : void
@@ -54,13 +57,16 @@ package enemies
 			{
 				if (Hud.getInstance().upgradeTimer)
 				{
+					trace(Hud.getInstance().upgradeTimer.canUse.toString());
 					if (Hud.getInstance().upgradeTimer.canUse == true)
 					{
-						TweenLite.to(this, 1, {y:20, overwrite:false});
+						TweenLite.to(this.dl, 1, {y:20, overwrite:false});
 						Hud.getInstance().upgradeTimer.useUpgrade();
 					}
 				}
 			}
 		}
+
+		
 	}
 }
