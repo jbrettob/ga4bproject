@@ -131,7 +131,6 @@ package com.jbrettob.display
 		public function destroy():void
 		{
 			// override method
-
 			if (this._timer)
 			{
 				this._timer.removeEventListener(TimerEvent.TIMER, this.handleTimer);

@@ -18,15 +18,15 @@ package
 	 */
 	public class Game extends MovieClip
 	{
-		public var gameHandler				:GameHandler;
-		public var player					:Player;
-		public var gameSetings				:GameSetings;
-		public var objectHolder				:ObjectHolder;
-		public var keyBoard					:InputHandler;
-		public var bgCastle					:BGCastle;
-		public var hud						:Hud;
-		public var bg						:BG;
-		public var dl						:DeathLine;
+		public var gameHandler				: GameHandler;
+		public var player					: Player;
+		public var gameSetings				: GameSetings;
+		public var objectHolder				: ObjectHolder;
+		public var keyBoard					: InputHandler;
+		public var bgCastle					: BGCastle;
+		public var hud						: Hud;
+		public var bg						: BG;
+		public var dl						: DeathLine;
 		public var popUp 					: PopUp;
 		public var gameState 				: String = GameSetings.PLAYING;			
 
@@ -75,14 +75,7 @@ package
 
 		public function endGame() : void
 		{
-//			player.destroy();
-			if (this.bg) if (this.contains(this.bg)) removeChild(bg);
-			if (this.bg) bg = null;
-			if (this.bgCastle) bgCastle.destroy();
-			if (this.contains(bgCastle)) removeChild(bgCastle);
-			if (this.gameHandler) gameHandler.destroy();
-			if (this.objectHolder) objectHolder.clearAll();
-			if (this.popUp) popUp.destroy();
+			removeGame();
 		}
 
 
@@ -106,6 +99,15 @@ package
 			if (this.contains(this.hud)) this.removeChild(this.hud);
 			this.popUp.removeEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
 			if (this.contains(this.popUp)) this.removeChild(this.popUp);
+			
+			if (this.bg) if (this.contains(this.bg)) removeChild(bg);
+			if (this.bg) bg = null;
+			if (this.bgCastle) bgCastle.destroy();
+			if (this.contains(bgCastle)) removeChild(bgCastle);
+			if (this.gameHandler) gameHandler.destroy();
+			if (this.objectHolder) objectHolder.clearAll();
+			if (this.popUp) popUp.destroy();
+			if (this.dl) dl.destroy();			if (this.dl) removeChild(dl);			if (this.dl) dl =  null;
 		}
 
 		public function get _gameState() : String

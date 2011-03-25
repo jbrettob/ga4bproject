@@ -143,7 +143,7 @@ package player
 				{
 					case GameSetings.ACTOR2D:
 						{
-						newProjectile = new ProjectilePlayer2D(main.objectHolder, this.x, (this.y - 85), degrees);
+						newProjectile = new ProjectilePlayer2D(main.objectHolder, this.x, (this.y - this.actor.height), degrees);
 						break;
 						}
 					case GameSetings.ACTOR3D:
