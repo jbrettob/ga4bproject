@@ -5,7 +5,7 @@
 			<!-- global player settings -->
 			<player lives="20" hp="10" movingspeed="12" posx="410" posy="620" boundsLeft="50" boundsRight="750" />
 			<!-- specific 3D settings -->
-			<actor3d projectileSpeed="5" projectileDamage="5" reload="800" />
+			<actor3d projectileSpeed="6" projectileDamage="5" reload="800" />
 			<!-- specific 2D settings -->
 			<actor2d projectileSpeed="10" projectileDamage="2,5" reload="400" />
 			<!-- specific PRO settings -->
@@ -15,7 +15,7 @@
 			<deadline movingSpeed="0.2" accelerate="0" posY="60" />
 			
 			<!-- specific BUG settings -->
-			<bug hp="5" movingspeed="2" points="10" projectileSpeed="3" projectileDamage="1" minReload="7500" maxReload="2000" ></bug>
+			<bug hp="5" movingspeed="2" points="10" projectileSpeed="6" projectileDamage="1" minReload="7500" maxReload="2000" ></bug>
 			<!-- specific SHAPESHIFTER settings -->
 			<shapeshifter hp="5" movingspeed="1" points="10" projectileSpeed="3" projectileDamage="1" minReload="7500" maxReload="2000" />
 			<!-- specific GUM settings -->
