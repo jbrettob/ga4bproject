@@ -34,7 +34,6 @@ package
 			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddEnemyTimer.start();
 			
-			trace(GameSetings.ORBSPAWNTIMER);
 			this._canAddOrbTimer = new Timer(GameSetings.ORBSPAWNTIMER, 0);
 			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
 			this._canAddOrbTimer.start();

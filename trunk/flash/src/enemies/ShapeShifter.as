@@ -69,7 +69,6 @@ package enemies
 				if (this.y >= (GameSetings.GAMEHEIGHT - 50))
 				{
 					// TODO: testing purpose
-					objectHolder.__parent.hud.lives -=1;
 					this.destroy();
 				}
 	

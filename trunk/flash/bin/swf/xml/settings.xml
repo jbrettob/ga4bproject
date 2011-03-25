@@ -3,7 +3,7 @@
 		<!-- global game settings -->
 		<game gamespeed="41" gamewidth="820" gameheight="750" gamequality="high">
 			<!-- global player settings -->
-			<player lives="3" hp="10" movingspeed="12" posx="410" posy="620" boundsLeft="50" boundsRight="750" />
+			<player lives="20" hp="10" movingspeed="12" posx="410" posy="620" boundsLeft="50" boundsRight="750" />
 			<!-- specific 3D settings -->
 			<actor3d projectileSpeed="5" projectileDamage="5" reload="800" />
 			<!-- specific 2D settings -->
