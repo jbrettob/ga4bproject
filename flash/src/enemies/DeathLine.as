@@ -1,5 +1,6 @@
 package enemies
 {
+	import com.jbrettob.log.Log;
 	import objects.Hud;
 
 	import com.greensock.TweenLite;
@@ -14,7 +15,7 @@ package enemies
 		private var dl : ActorDeadLine;
 		private var _inputHandler : InputHandler;
 		private var moveDownSpeed : Number;
-		private var movingBackUp	: Boolean;
+		private var movingBackUp : Boolean;
 
 		public function DeathLine(__inputHandler : InputHandler) : void
 		{
@@ -34,22 +35,25 @@ package enemies
 
 		override public function update() : void
 		{
-			if ((parent as Game).gameState != GameSetings.PAUSED && movingBackUp == false);
+			if (parent)
 			{
-				if (!TweenMax.isTweening(this))
+				if ((parent as Game).gameState != GameSetings.PAUSED && movingBackUp == false) ;
 				{
-					dl.y += moveDownSpeed;
-					moveDownSpeed += GameSetings.DEATHLINEMOVESPEEDINCREASERATE;
-					input();
-
-					super.update();
+					if (!TweenMax.isTweening(this))
+					{
+						dl.y += moveDownSpeed;
+						moveDownSpeed += GameSetings.DEATHLINEMOVESPEEDINCREASERATE;
+						input();
+	
+						super.update();
+					}
 				}
 			}
 
-			//if(movingBackUp) tweenUp();
+			// if(movingBackUp) tweenUp();
 		}
 
-		private function input() : void
+		private	function input() : void
 		{
 			if (_inputHandler.spaceBarr == "down")
 			{
@@ -64,6 +68,14 @@ package enemies
 			}
 		}
 
-		
+		override public function destroy() : void
+		{
+			if (dl)
+			{
+				removeChild(dl);
+				dl = null;
+			}
+			super.destroy();
+		}
 	}
 }
