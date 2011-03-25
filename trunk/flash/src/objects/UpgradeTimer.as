@@ -28,7 +28,6 @@ package objects
 
 		public function addUpgrade(value:Number = 0):void
 		{
-			Log.log(value.toString(), this);			Log.log(_exp.toString(), this);
 			if ((this._exp + value) >= this._maxExp)
 			{
 				this.log('Cannon is ready');
