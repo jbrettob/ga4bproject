@@ -1,5 +1,6 @@
 package projectiles
 {
+	import com.jbrettob.log.Log;
 	import com.jbrettob.display.Projectile;
 
 	import flash.display.MovieClip;
@@ -12,6 +13,7 @@ package projectiles
 	{
 		private var _sprite:MovieClip;
 		private var mousePos:Point;
+		private var alredySplashed:Boolean = false;
 
 		public function ProjectilePlayer2D(_objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number):void
 		{
@@ -43,22 +45,41 @@ package projectiles
 			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 			{
 			this.x += this.xSpeed;
-			this.y += this.ySpeed;
-			if (Point.distance(new Point(this.x, this.y), mousePos) <= 10)
+				this.y += this.ySpeed;
+				if (Point.distance(new Point(this.x, this.y), mousePos) <= 10 && !alredySplashed)
 			{
-					_sprite.gotoAndPlay("explode");
+					this.splash();
 			}
 
 			if (this.y <= 0)
 			{
 				this.destroy();
 			}
+				
+				if (this._sprite.currentFrameLabel == "destroy") 
+				{
+					realDestroy();
+				}
 
 			super.update();
 			}
 		}
 
 		override public function destroy():void
+		{
+			if( !alredySplashed) splash();
+		}
+		
+		private function splash():void
+		{
+			alredySplashed = true;
+			Log.log("test", this);
+			this._sprite.gotoAndPlay("explode");
+			this.xSpeed = 0;
+			this.ySpeed = 0;
+		}
+		
+		private function realDestroy():void
 		{
 			if (this._sprite)
 			{
@@ -75,7 +96,3 @@ package projectiles
 		}
 	}
 }
-
-
-
-
