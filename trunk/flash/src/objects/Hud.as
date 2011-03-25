@@ -118,16 +118,6 @@ package objects
 
 		private function showMenu():void
 		{
-//			if((parent as Game).gameState == GameSetings.PAUSED)
-//			{
-//				(parent as Game).gameState = GameSetings.PLAYING;
-//			}
-//			else
-//			{
-//				(parent as Game).gameState = GameSetings.PAUSED;
-//			}
-			this.log('showMenu');
-			
 			this.dispatchEvent(new Event('POPUP_SHOW_MENU'));
 		}
 
@@ -199,7 +189,10 @@ package objects
 
 		private function updateScore():void
 		{
-			if (this._sprite) TextField(this._sprite.mcScore['txtScore']).text = String(this._score);
+			if (this._sprite)
+			{
+				TextField(this._sprite.mcScore['txtScore']).text = this._score.toString();
+			}
 		}
 
 		static public function get HUD_WIDTH():Number

@@ -1,12 +1,10 @@
 package enemies
 {
-	import com.greensock.TweenMax;
-
 	import objects.Hud;
 
 	import com.greensock.TweenLite;
+	import com.greensock.TweenMax;
 	import com.jbrettob.display.Actor;
-	import com.jbrettob.log.Log;
 
 	/**
 	 * @author Rene Zwaan
@@ -57,7 +55,6 @@ package enemies
 			{
 				if (Hud.getInstance().upgradeTimer)
 				{
-					trace(Hud.getInstance().upgradeTimer.canUse.toString());
 					if (Hud.getInstance().upgradeTimer.canUse == true)
 					{
 						TweenLite.to(this.dl, 1, {y:20, overwrite:false});
