@@ -1,7 +1,7 @@
 package projectiles
 {
-	import com.jbrettob.log.Log;
 	import com.jbrettob.display.Projectile;
+	import com.jbrettob.log.Log;
 
 	/**
 	 * @author Jayce Rettob

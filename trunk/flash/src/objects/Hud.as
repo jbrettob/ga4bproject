@@ -106,7 +106,7 @@ package objects
 						SoundChannelKing.getInstance().muteUnMuteAllMusic();
 						break;
 					case this._sprite.mcDropDownMenu.mcSound:
-						SoundChannelKing.getInstance().soundMute = SoundChannelKing.getInstance().soundMute ? true: false;
+						SoundChannelKing.getInstance().soundMute = SoundChannelKing.getInstance().soundMute ? true : false;
 						break;
 					case this._sprite.mcDropDownMenu.mcQuality:
 						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
@@ -167,7 +167,6 @@ package objects
 		{
 			if (this._sprite)
 			{
-				// this._sprite.txtLives.text = String(this._lives);
 				switch (this._lives)
 				{
 					case 0:
@@ -184,7 +183,10 @@ package objects
 						break;
 				}
 			}
-			if(lives <= 0 && parent) (parent as Game).endGame();
+			if (lives <= 0 && parent)
+			{
+				(parent as Game).endGame(false);
+			}
 		}
 
 		private function updateScore():void
@@ -192,6 +194,14 @@ package objects
 			if (this._sprite)
 			{
 				TextField(this._sprite.mcScore['txtScore']).text = this._score.toString();
+
+				if (this._score >= 200)
+				{
+					if (parent)
+					{
+						(parent as Game).endGame(true);
+					}
+				}
 			}
 		}
 
@@ -231,11 +241,11 @@ package objects
 				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.CLICK, this.handleDropDownClick);
 				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.ROLL_OVER, this.handleDropDownRollOver);
 				this._sprite.mcDropDownMenu.removeEventListener(MouseEvent.ROLL_OUT, this.handleDropDownRollOut);
-				
+
 				this.removeChild(this._sprite);
 				this._sprite = null;
 			}
-			
+
 			if (this._upgradeTimer)
 			{
 				this.removeChild(this._upgradeTimer);

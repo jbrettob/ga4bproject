@@ -1,7 +1,7 @@
 package player 
 {
-	import flash.events.Event;
 	import flash.display.MovieClip;
+	import flash.events.Event;
 	/**
 	 * @author Rene Zwaan
 	 */

@@ -6,12 +6,12 @@ package objects
 	 */
 	public class Orb extends Actor
 	{
-		private var orb:lamp;
+		private var _orb:PowerUp_Orb;
 		
 		public function Orb():void 
 		{
 			this.x = Math.random()*GameSetings.GAMEWITH;
-			orb = new lamp();
+			this.orb = new PowerUp_Orb();
 			addChild(orb);
 			
 		}
@@ -35,12 +35,12 @@ package objects
 			super.destroy();			
 		}
 
-		public function get _orb() : lamp {
-			return orb;
+		public function get orb() : PowerUp_Orb {
+			return _orb;
 		}
 
-		public function set _orb(orb : lamp) : void {
-			this.orb = orb;
+		public function set orb(value : PowerUp_Orb) : void {
+			this._orb = value;
 		}
 	}
 }
