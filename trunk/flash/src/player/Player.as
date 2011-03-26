@@ -1,5 +1,7 @@
 package player
 {
+	import com.jbrettob.media.sound.SoundChannelKing;
+	import com.jbrettob.enum.Sounds;
 	import objects.Orb;
 
 	import projectiles.ProjectilePlayer2D;
@@ -104,14 +106,12 @@ package player
 				// TUTORIAL 2
 				if (this._tutorialMovedLeft && this._tutorialMovedRight && main.level < 1)
 				{
-					this.log('finished tutorial 0: move character with a and d');
 					main.level = 1;
 				}
 
 				// TUTORIAL 3
 				if (this._tutorialSwitch1 && this._tutorialSwitch2 && this._tutorialSwitch3 && main.level == 2)
 				{
-					this.log('finished tutrial 3: switch characters');
 					main.level = 3;
 				}
 
@@ -121,7 +121,6 @@ package player
 					if (main.keyBoard.esc == "down")
 					{
 						main.level = 5;
-						main.hud.score = 0;
 					}
 				}
 			}
@@ -197,6 +196,8 @@ package player
 				allowFire = false;
 				shootTimer.reset();
 				shootTimer.start();
+				
+				SoundChannelKing.getInstance().playSound(Sounds.SOUND_CHARACERSHOOT);
 			}
 		}
 
@@ -221,6 +222,7 @@ package player
 					{
 						// add idea
 						o.destroy();
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_CREATIVITYORB);
 						if (main.level == 3)
 						{
 							this.main.hud.upgradeTimer.addUpgrade(200);

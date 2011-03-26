@@ -43,7 +43,7 @@ package
 		
 		// Tutorial Popup
 		public static var TUTORIALPOSX								:Number = 620;
-		public static var TUTORIALPOSY								:Number = 450;
+		public static var TUTORIALPOSY								:Number = 350;
 		public static var TUTORIALENEMYCOUNT						:Number = 10;
 	}
 }
