@@ -74,6 +74,8 @@ package objects
 				this._sprite.mcDropDownMenu.mcMusic.gotoAndStop('music');
 				this._sprite.mcDropDownMenu.mcSound.gotoAndStop('sound');
 				this._sprite.mcDropDownMenu.mcQuality.gotoAndStop('quality');
+				
+				this._sprite.mcDropDownMenu.mcMask.mouseChildren = false;
 
 				this._sprite.mcDropDownMenu.mcMenu.buttonMode = true;
 				this._sprite.mcDropDownMenu.mcMusic.buttonMode = true;
@@ -99,7 +101,7 @@ package objects
 				{
 					case this._sprite.mcDropDownMenu.mcMenu:
 						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
-						this.showMenu();
+//						this.showMenu();
 						break;
 					case this._sprite.mcDropDownMenu.mcMusic:
 						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
@@ -143,6 +145,7 @@ package objects
 		{
 			if (this._sprite)
 			{
+				this._sprite.mcDropDownMenu.mouseChildren = false;
 				this._sprite.mcDropDownMenu.gotoAndStop('closed');
 
 				this._sprite.mcDropDownMenu.mcMusic.enabled = this._sprite.mcDropDownMenu.mcMusic.visible = false;
@@ -155,6 +158,7 @@ package objects
 		{
 			if (this._sprite)
 			{
+				this._sprite.mcDropDownMenu.mouseChildren = true;
 				this._sprite.mcDropDownMenu.gotoAndStop('open');
 
 				this._sprite.mcDropDownMenu.mcMusic.enabled = this._sprite.mcDropDownMenu.mcMusic.visible = true;
@@ -226,6 +230,11 @@ package objects
 			this.updateScore();
 		}
 
+		public function get upgradeTimer():UpgradeTimer
+		{
+			return this._upgradeTimer;
+		}
+
 		public function destroy():void
 		{
 			if (this._sprite)
@@ -243,11 +252,6 @@ package objects
 				this.removeChild(this._upgradeTimer);
 				this._upgradeTimer = null;
 			}
-		}
-
-		public function get upgradeTimer():UpgradeTimer
-		{
-			return this._upgradeTimer;
 		}
 
 		// logging for traces

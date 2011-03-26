@@ -69,7 +69,7 @@ package
 			
 			this._canMoveOrb = this._canMoveEnemy = this._canMoveDeadline = false;
 			this._currentLevel = 0;
-			this._gameState = GameSetings.PLAYING;
+			this.gameState = GameSetings.PLAYING;
 
 			this.addChild(bg);
 			this.addChild(keyBoard);

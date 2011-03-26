@@ -27,11 +27,12 @@ package objects
 			}
 		}
 		
-		 override public function destroy():void 
+		override public function destroy():void 
 		{
 			if (this.parent) (parent as ObjectHolder).removeOrb(this);
-			removeChild(orb);
+			if (this.contains(this._orb)) this.removeChild(this._orb);
 			if (this.parent) (parent as ObjectHolder).removeChild(this);
+			
 			super.destroy();			
 		}
 
