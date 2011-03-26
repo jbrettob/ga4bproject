@@ -112,6 +112,7 @@ package
 
 		private function showEndScreen(won:Boolean):void
 		{
+			Mouse.show();
 			if (this._backGround)
 			{
 				if (this.contains(this._backGround)) this.removeChild(this._backGround);
@@ -210,6 +211,7 @@ package
 			{
 				case 1:
 					Log.log('should show next tutorial', this);
+					this.gameHandler.createEnemyTimer();
 					break;
 				case 2:
 					this.gameHandler.createEnemyTimer();
