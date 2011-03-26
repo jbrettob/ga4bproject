@@ -57,7 +57,7 @@ package enemies
 	
 				if (this._canShoot)
 				{
-					if (this.y < 400)
+					if (this.y < 400 && this.y > 0)
 					{
 						this.shootProjectile();
 	

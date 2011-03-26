@@ -22,7 +22,7 @@
 			<gum hp="5" movingspeed="1" points="10" projectileSpeed="3" projectileDamage="1" minReload="7500" maxReload="2000" />
 			
 			<!-- specific ORB settings -->
-			<orb movingSpeed="1" respawn="6000" exp="2" />
+			<orb movingSpeed="1" respawn="6000" exp="15" />
 		</game>
 	</settings>
 </king>

@@ -25,6 +25,9 @@ package player
 		private var smoke:Cloud;
 		private var _tutorialMovedLeft:Boolean = false;
 		private var _tutorialMovedRight:Boolean = false;
+		private var _tutorialSwitch1:Boolean = false;
+		private var _tutorialSwitch2:Boolean = false;
+		private var _tutorialSwitch3:Boolean = false;
 
 		public function Player(_main:Game):void
 		{
@@ -97,10 +100,29 @@ package player
 				inputHandler();
 				checkColition();
 				updateAimer();
-				
+
+				// TUTORIAL 2
 				if (this._tutorialMovedLeft && this._tutorialMovedRight && main.level < 1)
 				{
-					main.level ++;
+					this.log('finished tutorial 0: move character with a and d');
+					main.level = 1;
+				}
+
+				// TUTORIAL 3
+				if (this._tutorialSwitch1 && this._tutorialSwitch2 && this._tutorialSwitch3 && main.level == 2)
+				{
+					this.log('finished tutrial 3: switch characters');
+					main.level = 3;
+				}
+
+				// SKIP TUTORIAL
+				if (main.level < 5)
+				{
+					if (main.keyBoard.esc == "down")
+					{
+						main.level = 5;
+						main.hud.score = 0;
+					}
 				}
 			}
 		}
@@ -113,30 +135,33 @@ package player
 
 		private function inputHandler():void
 		{
-			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT) 
+			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT)
 			{
 				this.x += moveSpeed;
-				if (!this._tutorialMovedRight) this._tutorialMovedRight = true;
+				if (main.level == 0) this._tutorialMovedRight = true;
 			}
-			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT) 
+			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT)
 			{
 				this.x -= moveSpeed;
-				if (!this._tutorialMovedLeft) this._tutorialMovedLeft = true;
+				if (main.level == 0) this._tutorialMovedLeft = true;
 			}
 			if (main.keyBoard.one == "down")
 			{
-				actor.changeCaracterTo(GameSetings.ACTOR2D);
 				resetSmoke();
+				actor.changeCaracterTo(GameSetings.ACTOR2D);
+				if (main.level == 2) this._tutorialSwitch1 = true;
 			}
 			if (main.keyBoard.two == "down")
 			{
+				resetSmoke();
 				actor.changeCaracterTo(GameSetings.ACTOR3D);
-				resetSmoke();
+				if (main.level == 2) this._tutorialSwitch2 = true;
 			}
-			if (main.keyBoard.tree == "down")
+			if (main.keyBoard.three == "down")
 			{
-				actor.changeCaracterTo(GameSetings.ACTORPRO);
 				resetSmoke();
+				actor.changeCaracterTo(GameSetings.ACTORPRO);
+				if (main.level == 2) this._tutorialSwitch3 = true;
 			}
 			if (main.keyBoard.leftMouse == "down") newProjectile();
 		}
@@ -183,8 +208,8 @@ package player
 				{
 					if (actor.hitTestObject(i) == true)
 					{
-						main.hud.lives -= 1;
-						this.health -= i.damage;
+						// can't be die while in tutorial mode, HAX ON!!
+						if (main.level >= 5) main.hud.lives -= 1;
 						this.hitColorTween();
 						i.destroy();
 					}
@@ -196,7 +221,15 @@ package player
 					{
 						// add idea
 						o.destroy();
-						this.main.hud.upgradeTimer.addUpgrade(GameSetings.ORBXP);
+						if (main.level == 3)
+						{
+							this.main.hud.upgradeTimer.addUpgrade(200);
+							this.main.level = 4;
+						}
+						else
+						{
+							this.main.hud.upgradeTimer.addUpgrade(GameSetings.ORBXP);
+						}
 					}
 				}
 			}

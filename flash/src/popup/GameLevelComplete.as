@@ -32,7 +32,7 @@ package popup
 		private function handleAddFrameScript():void
 		{
 			this.stop();
-			TweenLite.to(this, 5, {onComplete: this.handleTweenComplete});
+			TweenLite.to(this, 3, {onComplete: this.handleTweenComplete});
 		}
 		
 		private function handleTweenComplete():void
