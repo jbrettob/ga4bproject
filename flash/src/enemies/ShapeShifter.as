@@ -50,6 +50,7 @@ package enemies
 		{
 			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 			{
+				
 				this.y += this.moveSpeed;
 	
 				this.checkCollision();
@@ -68,7 +69,6 @@ package enemies
 	
 				if (this.y >= (GameSetings.GAMEHEIGHT - 50))
 				{
-					// TODO: testing purpose
 					this.destroy();
 				}
 	
@@ -78,7 +78,6 @@ package enemies
 
 		private function checkCollision():void
 		{
-			// TODO: half working
 			for each (var i:Projectile in this.objectHolder.playerProjectiles)
 			{
 				if (this.hitTestObject(i))

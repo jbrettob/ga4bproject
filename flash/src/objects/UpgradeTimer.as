@@ -30,8 +30,6 @@ package objects
 		{
 			if ((this._exp + value) >= this._maxExp)
 			{
-				this.log('Cannon is ready');
-
 				TweenLite.to(this, .6, {exp:this._maxExp, onUpdate:this.tweenFrames, overwrite:true});
 
 				this._canUse = true;

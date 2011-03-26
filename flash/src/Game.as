@@ -30,10 +30,15 @@ package
 		public var bg:BG;
 		public var dl:DeathLine;
 		public var popUp:PopUp;
-		public var gameState:String = GameSetings.PLAYING;
 		
+		private var _gameState:String = GameSetings.PLAYING;
 		private var _backGround:Sprite;
 		private var _endScreen:GameEndScreen;
+		private var _currentLevel:Number;
+		
+		private var _canMoveOrb:Boolean = false;
+		private var _canMoveEnemy:Boolean = false;
+		private var _canMoveDeadline:Boolean = false;
 
 		public function Game():void
 		{
@@ -61,6 +66,10 @@ package
 			this.objectHolder.player = player;
 			this.dl = new DeathLine(keyBoard);
 			this.popUp = new PopUp();
+			
+			this._canMoveOrb = this._canMoveEnemy = this._canMoveDeadline = false;
+			this._currentLevel = 0;
+			this._gameState = GameSetings.PLAYING;
 
 			this.addChild(bg);
 			this.addChild(keyBoard);
@@ -162,14 +171,38 @@ package
 			}
 		}
 
-		public function get _gameState():String
+		public function get gameState():String
 		{
-			return gameState;
+			return this._gameState;
 		}
 
-		public function set _gameState(gameState:String):void
+		public function set gameState(value:String):void
 		{
-			this.gameState = gameState;
+			this._gameState = value;
+			
+			if(this.objectHolder) this.objectHolder.gameState = this._gameState;
+			if(this.gameHandler) this.gameHandler.gameState = this._gameState;
+			if(this.dl) this.dl.gameState = this._gameState;
+		}
+
+		public function get level():Number
+		{
+			return _currentLevel;
+		}
+
+		public function set level(value:Number):void
+		{
+			this._currentLevel = value;
+			
+			if (this._currentLevel >= 4)
+			{
+				this.endGame(true);
+			}
+		}
+
+		public function pauseGamePlay():void
+		{
+			this.gameHandler.pauseAllTimers();
 		}
 	}
 }

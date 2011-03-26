@@ -12,12 +12,11 @@ package projectiles
 		public function ProjectilePlayer3D(_objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number):void
 		{
 			super(_objectHolder, posX, posY);
-			
+
 			this.rotation = degrees;
 			this.speed = GameSetings.ACTOR3DPROJECTILESPEED;
-
 			this.damage = GameSetings.ACTOR3DPROJECTILEDAMAGE;
-			
+
 			var bulletAngle:Number = (degrees * Math.PI / 180);
 			this.xSpeed = Math.cos(bulletAngle) * this.speed;
 			this.ySpeed = Math.sin(bulletAngle) * this.speed;
@@ -35,35 +34,34 @@ package projectiles
 		{
 			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 			{
-			this.x += this.xSpeed;
-			this.y += this.ySpeed;
+				this.x += this.xSpeed;
+				this.y += this.ySpeed;
 
-			if (this.y <= 0)
-			{
-				this.destroy();
-			}
+				if (this.y <= 0)
+				{
+					this.destroy();
+				}
 
-			colitionCheck();
-			super.update();
-			
+				collisionCheck();
+				super.update();
 			}
 		}
-		
-		private function colitionCheck():void
+
+		private function collisionCheck():void
 		{
-		if (parent)
-		{
-			if((parent as ObjectHolder))
+			if (parent)
 			{
-			for each (var p : Projectile in (parent as ObjectHolder).enemyProjectiles) 
-			{
-				if(this.hitTestObject(p))
+				if ((parent as ObjectHolder))
 				{
-					if(p) p.destroy();
+					for each (var p : Projectile in (parent as ObjectHolder).enemyProjectiles)
+					{
+						if (this.hitTestObject(p))
+						{
+							if (p) p.destroy();
+						}
+					}
 				}
 			}
-			}	
-			}		
 		}
 
 		override public function destroy():void
@@ -77,7 +75,7 @@ package projectiles
 				this._sprite = null;
 			}
 
-			this.objectHolder.removePlayerProjectiles(this);
+//			this.objectHolder.removePlayerProjectiles(this);
 
 			super.destroy();
 		}
