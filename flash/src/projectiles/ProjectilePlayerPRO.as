@@ -1,7 +1,8 @@
 package projectiles
 {
-	import flash.geom.Point;
 	import com.jbrettob.display.Projectile;
+
+	import flash.geom.Point;
 
 	/**
 	 * @author Rene Zwaan

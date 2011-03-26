@@ -1,6 +1,5 @@
 package enemies
 {
-	import com.jbrettob.log.Log;
 	import objects.Hud;
 
 	import com.greensock.TweenLite;
@@ -37,7 +36,7 @@ package enemies
 		{
 			if (parent)
 			{
-				if ((parent as Game).gameState != GameSetings.PAUSED && movingBackUp == false) ;
+				if ((parent as Game).gameState != GameSetings.PAUSED && movingBackUp == false)
 				{
 					if (!TweenMax.isTweening(this))
 					{
@@ -70,11 +69,6 @@ package enemies
 
 		override public function destroy() : void
 		{
-			if (dl)
-			{
-				removeChild(dl);
-				dl = null;
-			}
 			super.destroy();
 		}
 	}

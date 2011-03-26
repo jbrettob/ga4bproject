@@ -1,4 +1,4 @@
-package 
+package
 {
 	import player.Player;
 
@@ -10,6 +10,7 @@ package
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+
 	/**
 	 * @author Rene Zwaan
 	 * @info this clas is made for coliton detection
@@ -19,27 +20,29 @@ package
 	 */
 	public class ObjectHolder extends MovieClip
 	{
-		private var _player						:Player;
-		private var _enemys						:Array;		private var _enemyProjectiles			:Array;
-		private var _orbs						:Array;		private var _playerProjectiles			:Array;		private var _gameState					:String;
-		private var _parent						:Game;
-		
-		
-		private var updateTimer					:Timer;
-		
+		private var _player:Player;
+		private var _enemys:Array;
+		private var _enemyProjectiles:Array;
+		private var _orbs:Array;
+		private var _playerProjectiles:Array;
+		private var _gameState:String;
+		private var _parent:Game;
+		private var updateTimer:Timer;
+
 		public function ObjectHolder(parrent:Game):void
 		{
-			_parent									= parrent;
-			_enemys 								= new Array();			_enemyProjectiles 						= new Array();
-			_orbs 									= new Array();
-			_playerProjectiles						= new Array();
+			_parent = parrent;
+			_enemys = new Array();
+			_enemyProjectiles = new Array();
+			_orbs = new Array();
+			_playerProjectiles = new Array();
 
 			updateTimer = new Timer(GameSetings.GAMESPEED);
 			updateTimer.addEventListener(TimerEvent.TIMER, update);
 			updateTimer.start();
 		}
 
-		private function update(event : Event) : void
+		private function update(event:Event):void
 		{
 			_gameState = (parent as Game).gameState;
 			if (gameState != (parent as Game).gameState)
@@ -47,19 +50,18 @@ package
 				Log.log(gameState, this);
 			}
 		}
-		
-		
-		//Enemy
+
+		// Enemy
 		public function addEnemy(_enemy:*):void
 		{
 			_enemys.push(_enemy);
 		}
-		
+
 		public function removeEnemy(_enemy:*):void
 		{
-			_enemys.splice(_enemy,1);
+			if (_enemys) _enemys.splice(_enemy, 1);
 		}
-		
+
 		public function clearEnemys():void
 		{
 			for each (var i : Actor in  this._enemys)
@@ -68,24 +70,25 @@ package
 				{
 					this.removeChild(i);
 				}
-				
+
 				i.destroy();
 			}
-			
-			if (_enemys) _enemys.splice(0,_enemys.length);
+
+			if (_enemys) _enemys.splice(0, _enemys.length);
 		}
-		
-		//player projectiles
-		public function addplayerProjectiles(projectile:Projectile):void {
-			_playerProjectiles.push(projectile);
+
+		// player projectiles
+		public function addplayerProjectiles(projectile:Projectile):void
+		{
+			if (_playerProjectiles) _playerProjectiles.push(projectile);
 		}
-		
+
 		public function removePlayerProjectiles(projectile:Projectile):void
 		{
 			if (this.contains(projectile)) this.removeChild(projectile);
-			_playerProjectiles.splice(projectile,0);
+			if (_playerProjectiles) _playerProjectiles.splice(projectile, 0);
 		}
-		
+
 		public function clearPlayerProjectiles():void
 		{
 			for each (var i : Projectile in  this._playerProjectiles)
@@ -94,23 +97,24 @@ package
 				{
 					if (this.contains(i)) this.removeChild(i);
 				}
-				
+
 				i.destroy();
 			}
-			
-			if (_playerProjectiles) _playerProjectiles.splice(0,_playerProjectiles.length);
+
+			if (_playerProjectiles) _playerProjectiles.splice(0, _playerProjectiles.length);
 		}
-		
-		//enemy projectiles
+
+		// enemy projectiles
 		public function addEnemyProjectiles(projectile:Projectile):void
 		{
-		 if (_enemyProjectiles)	_enemyProjectiles.push(projectile);
+			if (_enemyProjectiles) _enemyProjectiles.push(projectile);
 		}
-		
+
 		public function removeEnemyProjectiles(projectile:Projectile):void
 		{
-			if (_enemyProjectiles) _enemyProjectiles.splice(projectile,0);
+			if (_enemyProjectiles) _enemyProjectiles.splice(projectile, 0);
 		}
+
 		public function clearEnemyProjectiles():void
 		{
 			for each (var i : Projectile in  this._enemyProjectiles)
@@ -119,23 +123,23 @@ package
 				{
 					this.removeChild(i);
 				}
-				
+
 				i.destroy();
 			}
-			if (_enemyProjectiles) _enemyProjectiles.splice(0,_enemyProjectiles.length);
+			if (_enemyProjectiles) _enemyProjectiles.splice(0, _enemyProjectiles.length);
 		}
-		
-		// Orbs 
-		public function addOrb(_Orb:*):void 
+
+		// Orbs
+		public function addOrb(_Orb:*):void
 		{
 			if (_orbs) _orbs.push(_Orb);
 		}
-		
-		public function removeOrb(_Orb:*):void 
+
+		public function removeOrb(_Orb:*):void
 		{
-		   if (_orbs) _orbs.splice(_Orb, 1);
+			if (_orbs) _orbs.splice(_Orb, 1);
 		}
-	
+
 		public function clearOrbs():void
 		{
 			for each (var i : Actor in  this._orbs)
@@ -144,13 +148,13 @@ package
 				{
 					this.removeChild(i);
 				}
-				
+
 				i.destroy();
 			}
-			
-			if (_orbs) _orbs.splice(0,_orbs.length);
+
+			if (_orbs) _orbs.splice(0, _orbs.length);
 		}
-		
+
 		/**
 		 * @info clears
 		 * - enemy
@@ -165,81 +169,93 @@ package
 			clearOrbs();
 			clearPlayerProjectiles();
 		}
-		
+
 		/**
 		 * @todo remove all events and children from this class
 		 */
 		public function removeGame():void
 		{
 			clearAll();
-			_enemys 								= null;
-			_enemyProjectiles 						= null;
-			_orbs 									= null;
-			_playerProjectiles						= null;
-			
-			//Remove events
-			updateTimer.removeEventListener(TimerEvent.TIMER, update);
-			updateTimer.stop();
-			updateTimer = null;
+			_enemys = null;
+			_enemyProjectiles = null;
+			_orbs = null;
+			_playerProjectiles = null;
+
+			// Remove events
+			if (this.updateTimer)
+			{
+				updateTimer.removeEventListener(TimerEvent.TIMER, update);
+				updateTimer.stop();
+				updateTimer = null;
+			}
 		}
 
-		public function get enemys() : Array {
+		public function get enemys():Array
+		{
 			return _enemys;
 		}
 
-		public function set enemys(enemys : Array) : void {
+		public function set enemys(enemys:Array):void
+		{
 			_enemys = enemys;
 		}
 
-		public function get enemyProjectiles() : Array {
+		public function get enemyProjectiles():Array
+		{
 			return _enemyProjectiles;
 		}
 
-		public function set enemyProjectiles(enemyProjectiles : Array) : void {
+		public function set enemyProjectiles(enemyProjectiles:Array):void
+		{
 			_enemyProjectiles = enemyProjectiles;
 		}
 
-		public function get orbs() : Array {
+		public function get orbs():Array
+		{
 			return _orbs;
 		}
 
-		public function set orbs(orbs : Array) : void {
+		public function set orbs(orbs:Array):void
+		{
 			_orbs = orbs;
 		}
 
-		public function get playerProjectiles() : Array {
+		public function get playerProjectiles():Array
+		{
 			return _playerProjectiles;
 		}
 
-		public function set playerProjectiles(playerProjectiles : Array) : void {
+		public function set playerProjectiles(playerProjectiles:Array):void
+		{
 			_playerProjectiles = playerProjectiles;
 		}
 
-		public function get player() : Player {
+		public function get player():Player
+		{
 			return _player;
 		}
 
-		public function set player(output : Player) : void
+		public function set player(output:Player):void
 		{
 			_player = output;
 		}
 
-		public function get gameState() : String
+		public function get gameState():String
 		{
 			return _gameState;
 		}
 
-		public function set gameState(gameState : String) : void
+		public function set gameState(gameState:String):void
 		{
 			_gameState = gameState;
 		}
 
-		public function get __parent() : Game
+		public function get __parent():Game
 		{
 			return _parent;
 		}
 
-		public function set __parent(parent : Game) : void
+		public function set __parent(parent:Game):void
 		{
 			_parent = parent;
 		}

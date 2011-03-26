@@ -1,11 +1,11 @@
 package
 {
-	import com.jbrettob.data.xml.XmlLoadSettings;
 	import Intro.IntroKing;
 
 	import Menu.MainMenu;
 
 	import com.greensock.TweenLite;
+	import com.jbrettob.data.xml.XmlLoadSettings;
 	import com.jbrettob.display.AbstractIntro;
 	import com.jbrettob.enum.Sounds;
 	import com.jbrettob.log.Log;
@@ -116,11 +116,18 @@ package
 			if (this._game)
 			{
 				this.removeChild(this._game);
+				this._game.endGame(false);
 				this._game.removeGame();
-				this._game.endGame();
 				this._game.removeEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
+				this._game.removeEventListener('GameEvent.BACK_TO_MAINMENU', this.handleGameToMainMenu);
+				this._game.removeEventListener('GameEvent.PLAY_AGAIN', this.handlePlayAgain);
 				this._game = null;
 			}
+		}
+
+		private function handlePlayAgain(event:Event):void
+		{
+			this.showGame();
 		}
 
 		private function showGame():void
@@ -129,6 +136,8 @@ package
 
 			this._game = new Game();
 			this._game.addEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
+			this._game.addEventListener('GameEvent.BACK_TO_MAINMENU', this.handleGameToMainMenu);
+			this._game.addEventListener('GameEvent.PLAY_AGAIN', this.handlePlayAgain);
 			this.addChild(this._game);
 
 			this.stage.focus = this._game;

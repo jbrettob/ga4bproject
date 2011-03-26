@@ -1,6 +1,5 @@
 package player
 {
-	import com.jbrettob.log.Log;
 	import objects.Orb;
 
 	import projectiles.ProjectilePlayer2D;
@@ -21,7 +20,8 @@ package player
 		private var actor:playerCaracterHolder;
 		private var main:Game;
 		private var aimer:Aimer;
-		private var shootTimer:Timer;		private var smokeTimer:Timer;
+		private var shootTimer:Timer;
+		private var smokeTimer:Timer;
 		private var allowFire:Boolean = true;
 		private var smoke:Cloud;
 
@@ -37,25 +37,25 @@ package player
 		}
 
 		override public function init():void
-		{		
+		{
 			objectHolder = main.objectHolder;
 
 			shootTimer = new Timer(GameSetings.ACTOR3DPROJECTILERELOADSPEED);
 			shootTimer.addEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
 			shootTimer.start();
-			
+
 			smokeTimer = new Timer(GameSetings.ACTOR3DPROJECTILESPEED);
 			smokeTimer.addEventListener(TimerEvent.TIMER, setSmoketoTrue);
 			smokeTimer.start();
-			
+
 			PlayerSetup();
 			ainmerSetup();
-			//actor.changeCaracterTo(GameSetings.ACTOR3D);
-			
+			// actor.changeCaracterTo(GameSetings.ACTOR3D);
+
 			super.init();
 		}
 
-		private function setSmoketoTrue(event : TimerEvent) : void
+		private function setSmoketoTrue(event:TimerEvent):void
 		{
 		}
 
@@ -69,7 +69,6 @@ package player
 
 		private function PlayerSetup():void
 		{
-			
 			health = GameSetings.PLAYERHP;
 			actor = new playerCaracterHolder();
 			this.x = GameSetings.PLAYERXPOS;
@@ -81,24 +80,23 @@ package player
 			main.hud.lives = GameSetings.PLAYER_LIVES;
 		}
 
-		private function smokeSetup() : void
+		private function smokeSetup():void
 		{
-				smoke = new Cloud();
-				smoke.scaleX = 0.4;
+			smoke = new Cloud();
+			smoke.scaleX = 0.4;
 			smoke.scaleY = 0.4;
 			smoke.x = (actor.x - 30);
 			smoke.y = (actor.y - 45);
-				
-				addChild(smoke);
+
+			addChild(smoke);
 		}
-		
+
 		private function resetSmoke():void
 		{
 			smoke.x = (actor.x - 30);
 			smoke.y = (actor.y - 45);
 			smoke.gotoAndPlay(1);
 		}
-
 
 		override public function update():void
 		{
@@ -109,7 +107,6 @@ package player
 				updateAimer();
 			}
 		}
-		
 
 		private function updateAimer():void
 		{
@@ -121,9 +118,21 @@ package player
 		{
 			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT) this.x += moveSpeed;
 			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT) this.x -= moveSpeed;
-			if (main.keyBoard.one == "down") {actor.changeCaracterTo(GameSetings.ACTOR2D); resetSmoke();}
-			if (main.keyBoard.two == "down") {actor.changeCaracterTo(GameSetings.ACTOR3D); resetSmoke();}
-			if (main.keyBoard.tree == "down") {actor.changeCaracterTo(GameSetings.ACTORPRO); resetSmoke();}
+			if (main.keyBoard.one == "down")
+			{
+				actor.changeCaracterTo(GameSetings.ACTOR2D);
+				resetSmoke();
+			}
+			if (main.keyBoard.two == "down")
+			{
+				actor.changeCaracterTo(GameSetings.ACTOR3D);
+				resetSmoke();
+			}
+			if (main.keyBoard.tree == "down")
+			{
+				actor.changeCaracterTo(GameSetings.ACTORPRO);
+				resetSmoke();
+			}
 			if (main.keyBoard.leftMouse == "down") newProjectile();
 		}
 
@@ -134,7 +143,7 @@ package player
 
 			var radians:Number = Math.atan2(distY, distX);
 			var degrees:Number = radians * 180 / Math.PI;
-			
+
 			var newProjectile:Projectile;
 
 			if (allowFire == true)
@@ -142,21 +151,14 @@ package player
 				switch(actor.currentCaracter)
 				{
 					case GameSetings.ACTOR2D:
-						{
 						newProjectile = new ProjectilePlayer2D(main.objectHolder, this.x, (this.y - this.actor.height), degrees);
 						break;
-						}
 					case GameSetings.ACTOR3D:
-						{
 						newProjectile = new ProjectilePlayer3D(main.objectHolder, this.x, (this.y - 85), degrees);
 						break;
-						}
 					case GameSetings.ACTORPRO:
-						{
 						newProjectile = new ProjectilePlayerPRO(main.objectHolder, this.x, (this.y - 85), degrees);
-
 						break;
-						}
 				}
 
 				objectHolder.addplayerProjectiles(newProjectile);
@@ -170,54 +172,55 @@ package player
 
 		private function checkColition():void
 		{
-			if (this.health <= 0) this.destroy();
-			
-			for each (var i : Projectile in main.objectHolder.enemyProjectiles)
+			if (this.main)
 			{
-				if (actor.hitTestObject(i) == true)
+				for each (var i : Projectile in main.objectHolder.enemyProjectiles)
 				{
-					main.hud.lives -= 1;
-					this.health -= i.damage;
-					this.hitColorTween();
-					i.destroy();
+					if (actor.hitTestObject(i) == true)
+					{
+						main.hud.lives -= 1;
+						this.health -= i.damage;
+						this.hitColorTween();
+						i.destroy();
+					}
+				}
+
+				for each (var o : Orb in main.objectHolder.orbs)
+				{
+					if (actor.hitTestObject(o.orb) == true)
+					{
+						// add idea
+						o.destroy();
+						main.hud.upgradeTimer.addUpgrade(GameSetings.ORBXP);
+					}
 				}
 			}
-			
-			
-			for each (var o : Orb in main.objectHolder.orbs)
-			{
-				if (actor.hitTestObject(o._orb) == true)
-				{
-					// add idea
-					o.destroy();
-					main.hud.upgradeTimer.addUpgrade(GameSetings.ORBXP);
-				}
-			}
-			
 		}
-		
-		
+
 		override public function destroy():void
 		{
 			shootTimer.removeEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
 			smokeTimer.removeEventListener(TimerEvent.TIMER, setSmoketoTrue);
+			smokeTimer.stop();
+
 			actor.destroy();
-			while(numChildren > 0)
+
+			while (numChildren > 0)
 			{
 				removeChildAt(0);
 			}
-			
-			(parent as Game).removeChild(this);
-			
+
+			if (parent) (parent as Game).removeChild(this);
+
 			super.destroy();
 		}
 
-		public function get _shootTimer() : Timer
+		public function get _shootTimer():Timer
 		{
 			return shootTimer;
 		}
 
-		public function set _shootTimer(shootTimer : Timer) : void
+		public function set _shootTimer(shootTimer:Timer):void
 		{
 			this.shootTimer = shootTimer;
 		}

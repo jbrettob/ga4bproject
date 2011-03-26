@@ -1,7 +1,10 @@
 package com.jbrettob.data.xml
 {
+	import com.jbrettob.log.Log;
+
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	/**
@@ -20,6 +23,13 @@ package com.jbrettob.data.xml
 			var ldr:URLLoader = new URLLoader();
 			ldr.load(req);
 			ldr.addEventListener(Event.COMPLETE, this.handleXMLComplete);
+			ldr.addEventListener(IOErrorEvent.IO_ERROR, handleIOError);
+		}
+
+		private function handleIOError(event:IOErrorEvent):void
+		{
+			Log.log('Using default settings', this);
+			this.dispatchEvent(new Event(Event.COMPLETE));
 		}
 		
 		private function handleXMLComplete(event:Event):void

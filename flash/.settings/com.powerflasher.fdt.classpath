@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/player/{playerVersion}/playerglobal.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/flex.swc</AS3Classpath>
-<AS3Classpath generateProblems="true" sdkBased="false" type="source" useAsSharedCode="false">src</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/greensock.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/characters/2der.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/characters/3der.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/characters/pro.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/cutscenes/intro_king.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/media/music.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/media/sounds.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/powerups/orb.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/aimer.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/castle.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/hud.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/mainmenu.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/popup_menu.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/upgradetimer.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/background.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/gfx/cloud.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/enemies/bug.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/enemies/deadline.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/enemies/gum.swc</AS3Classpath>
-<AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/enemies/shapeshifter.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/player/{playerVersion}/playerglobal.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="true" type="lib" useAsSharedCode="false">frameworks/libs/flex.swc</AS3Classpath>
+    <AS3Classpath generateProblems="true" sdkBased="false" type="source" useAsSharedCode="false">src</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/greensock.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/characters/2der.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/characters/3der.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/characters/pro.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/cutscenes/intro_king.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/media/music.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/media/sounds.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/powerups/orb.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/aimer.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/castle.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/hud.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/mainmenu.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/popup_menu.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/upgradetimer.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/background.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/gfx/cloud.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/enemies/bug.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/enemies/deadline.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/enemies/gum.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/enemies/shapeshifter.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" sdkBased="false" type="lib" useAsSharedCode="false">lib/swc/ui/endscreen.swc</AS3Classpath>
 </AS3Classpath>
