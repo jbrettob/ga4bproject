@@ -20,7 +20,8 @@ package
 		private var _spaceBarr:String = "up";
 		private var _one:String = "up";
 		private var _two:String = "up";
-		private var _tree:String = "up";
+		private var _three:String = "up";
+		private var _esc:String = "up";
 
 		public function InputHandler():void
 		{
@@ -55,36 +56,27 @@ package
 		{
 			switch(event.keyCode)
 			{
+				case 27:
+					_esc = "up";
+					break;
 				case 65:
-					{
 					_A = "up";
 					break;
-					}
 				case 68:
-					{
 					_D = "up";
 					break;
-					}
 				case 32:
-					{
 					_spaceBarr = "up";
 					break;
-					}
 				case 49:
-					{
 					_one = "up";
 					break;
-					}
 				case 50:
-					{
 					_two = "up";
 					break;
-					}
 				case 51:
-					{
-					_tree = "up";
+					_three = "up";
 					break;
-					}
 			}
 		}
 
@@ -92,36 +84,27 @@ package
 		{
 			switch(event.keyCode)
 			{
+				case 27:
+					_esc = "down";
+					break;
 				case 65:
-					{
 					_A = "down";
 					break;
-					}
 				case 68:
-					{
 					_D = "down";
 					break;
-					}
 				case 32:
-					{
 					_spaceBarr = "down";
 					break;
-					}
 				case 49:
-					{
 					_one = "down";
 					break;
-					}
 				case 50:
-					{
 					_two = "down";
 					break;
-					}
 				case 51:
-					{
-					_tree = "down";
+					_three = "down";
 					break;
-					}
 			}
 		}
 
@@ -165,14 +148,14 @@ package
 			_spaceBarr = spaceBarr;
 		}
 
-		public function get tree():String
+		public function get three():String
 		{
-			return _tree;
+			return _three;
 		}
 
-		public function set tree(tree:String):void
+		public function set three(value:String):void
 		{
-			_tree = tree;
+			_three = value;
 		}
 
 		public function get one():String
@@ -190,9 +173,19 @@ package
 			return _two;
 		}
 
-		public function set twee(twee:String):void
+		public function set two(value:String):void
 		{
-			_two = twee;
+			_two = value;
+		}
+
+		public function get esc():String
+		{
+			return _esc;
+		}
+
+		public function set esc(value:String):void
+		{
+			_esc = value;
 		}
 
 		public function destroy():void

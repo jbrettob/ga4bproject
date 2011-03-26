@@ -1,5 +1,7 @@
 package
 {
+	import com.jbrettob.log.Log;
+
 	import enemies.ShapeShifter;
 
 	import objects.Orb;
@@ -22,6 +24,7 @@ package
 		private var _canAddEnemyTimer:Timer;
 		private var _canAddOrbTimer:Timer;
 		private var _gameState:String;
+		private var _tutorialEnemyCount:Number = 0;
 
 		public function GameHandler(value:ObjectHolder):void
 		{
@@ -34,11 +37,14 @@ package
 
 		private function handleAddOrbTimer(event:TimerEvent):void
 		{
-			if (this._objectHolder.orbs.length < 10)
+			if (this._objectHolder.orbs)
 			{
-				var orb:Orb = new Orb();
-				this._objectHolder.addChild(orb);
-				this._objectHolder.addOrb(orb);
+				if (this._objectHolder.orbs.length < 10)
+				{
+					var orb:Orb = new Orb();
+					this._objectHolder.addChild(orb);
+					this._objectHolder.addOrb(orb);
+				}
 			}
 		}
 
@@ -76,15 +82,36 @@ package
 					i--;
 				}
 
-				if (this._objectHolder.enemys.length < GameSetings.SHAPESHIFTERMAXONSCREEN && this._canAddEnemy)
+				if (this._canAddEnemy)
 				{
 					if (parent)
 					{
-						if (Game(parent).level >= 1)
+						if (Game(this.parent).level >= 1 && Game(this.parent).level < 4)
 						{
-							createShapeShifter();
-							this._canAddEnemy = false;
-							this._canAddEnemyTimer.start();
+							if (this._objectHolder.enemys.length <= 1)
+							{
+								createShapeShifter();
+								this._canAddEnemy = false;
+								this._canAddEnemyTimer.start();
+								this._tutorialEnemyCount++;
+								if (this._tutorialEnemyCount >= GameSetings.TUTORIALENEMYCOUNT && Game(this.parent).level == 1)
+								{
+									Log.log('finished tutorial: aim shoot and destroy', this);
+									Game(this.parent).level = 2;
+								}
+							}
+						}
+						else if (Game(parent).level >= 5)
+						{
+							if (this._objectHolder.enemys)
+							{
+								if (this._objectHolder.enemys.length <= GameSetings.SHAPESHIFTERMAXONSCREEN)
+								{
+									createShapeShifter();
+									this._canAddEnemy = false;
+									this._canAddEnemyTimer.start();
+								}
+							}
 						}
 					}
 				}
@@ -104,6 +131,7 @@ package
 			var shapeShifter:ShapeShifter = new ShapeShifter(this._objectHolder);
 			this._objectHolder.addEnemy(shapeShifter);
 			shapeShifter.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
+			shapeShifter.y = -(Math.random() * 200);
 			this._objectHolder.addChild(shapeShifter);
 		}
 
@@ -115,11 +143,6 @@ package
 		public function unpauseGame():void
 		{
 			this._updateTimer.start();
-		}
-
-		public function removeAll():void
-		{
-			this._updateTimer.stop();
 		}
 
 		public function removeThisChild(child:*):void

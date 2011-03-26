@@ -33,7 +33,7 @@ package popup
 
 		private function init():void
 		{
-			TextField(this.mcContinue['txtLabel']).text = 'Back to Main Menu';
+			TextField(this.mcContinue['txtLabel']).text = 'Main Menu';
 			TextField(this.mcPlayAgain['txtLabel']).text = 'Play Again?';
 
 			this.mcContinue.mouseChildren = false;
