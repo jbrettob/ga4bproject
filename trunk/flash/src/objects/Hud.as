@@ -198,6 +198,12 @@ package objects
 			if (this._sprite)
 			{
 				TextField(this._sprite.mcScore['txtScore']).text = this._score.toString();
+				
+				if(this._score > 200)
+				{
+					if (this.parent)
+					Game(this.parent).endGame(true);
+				}
 			}
 		}
 
