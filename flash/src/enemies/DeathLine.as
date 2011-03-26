@@ -1,5 +1,7 @@
 package enemies
 {
+	import com.jbrettob.media.sound.SoundChannelKing;
+	import com.jbrettob.enum.Sounds;
 	import objects.Hud;
 
 	import com.greensock.TweenLite;
@@ -66,6 +68,7 @@ package enemies
 						
 						if (parent)
 						{
+							SoundChannelKing.getInstance().playSound(Sounds.SOUND_CANONSHOOT);
 							(parent as Game).bgCastle.shoot();
 							Game(this.parent).level++;
 							Game(this.parent).pauseGamePlay();

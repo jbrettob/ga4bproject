@@ -211,6 +211,7 @@ package
 					this.gameHandler.createEnemyTimer();
 					this.gameHandler.createOrbTimer();
 					this.dl.canMove = true;
+					this.hud.upgradeTimer.exp = 0;
 					break;
 				case 8:
 					this.endGame(true);
@@ -232,7 +233,7 @@ package
 			this.levelComplete.addEventListener('POPUP_COMPLETE', this.handleLevelComplete);
 			this.addChildAt(this.levelComplete, (this.getChildIndex(this.popUp) - 1));
 
-			TweenLite.to(this.tutorial, .4, {alpha:0, overwrite:true});
+			TweenLite.to(this.tutorial, .4, {x: 900, alpha:0, overwrite:true});
 		}
 
 		private function handleLevelComplete(event:Event):void
@@ -253,12 +254,12 @@ package
 			this.removeTutorial();
 
 			this.tutorial = new GameTutorialScreen((this._currentLevel + 1));
-			this.tutorial.x = GameSetings.TUTORIALPOSX;
+			this.tutorial.x = 900;
 			this.tutorial.y = GameSetings.TUTORIALPOSY;
 			this.tutorial.alpha = 0;
 			this.addChildAt(this.tutorial, (this.getChildIndex(this.objectHolder) - 1));
-
-			TweenLite.to(this.tutorial, .4, {alpha:1, overwrite:true});
+			
+			TweenLite.to(this.tutorial, .4, {x: GameSetings.TUTORIALPOSX, alpha:1, overwrite:true});
 		}
 
 		private function removeTutorial():void
