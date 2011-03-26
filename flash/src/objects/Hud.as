@@ -101,7 +101,7 @@ package objects
 				{
 					case this._sprite.mcDropDownMenu.mcMenu:
 						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);
-//						this.showMenu();
+						this.showMenu();
 						break;
 					case this._sprite.mcDropDownMenu.mcMusic:
 						SoundChannelKing.getInstance().playSound(Sounds.SOUND_BUTTONPRESSED);

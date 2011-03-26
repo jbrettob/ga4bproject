@@ -16,8 +16,7 @@ package
 	 */
 	public class GameHandler extends MovieClip
 	{
-		private var __updateTimer:Timer;
-		public var attribute1:Game;
+		private var _updateTimer:Timer;
 		private var _objectHolder:ObjectHolder;
 		private var _canAddEnemy:Boolean = false;
 		private var _canAddEnemyTimer:Timer;
@@ -28,17 +27,9 @@ package
 		{
 			this._objectHolder = value;
 
-			this.__updateTimer = new Timer(GameSetings.GAMESPEED);
-			this.__updateTimer.addEventListener(TimerEvent.TIMER, this.update);
-			this.__updateTimer.start();
-
-			this._canAddEnemyTimer = new Timer(1000, 1);
-			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
-			this._canAddEnemyTimer.start();
-
-			this._canAddOrbTimer = new Timer(GameSetings.ORBSPAWNTIMER, 0);
-			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
-			this._canAddOrbTimer.start();
+			this._updateTimer = new Timer(GameSetings.GAMESPEED);
+			this._updateTimer.addEventListener(TimerEvent.TIMER, this.update);
+			this._updateTimer.start();
 		}
 
 		private function handleAddOrbTimer(event:TimerEvent):void
@@ -54,6 +45,20 @@ package
 		private function handleAddEnemyTimer(event:TimerEvent):void
 		{
 			this._canAddEnemy = true;
+		}
+
+		public function createEnemyTimer():void
+		{
+			this._canAddEnemyTimer = new Timer(1000, 1);
+			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
+			this._canAddEnemyTimer.start();
+		}
+
+		public function createOrbTimer():void
+		{
+			this._canAddOrbTimer = new Timer(GameSetings.ORBSPAWNTIMER, 0);
+			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
+			this._canAddOrbTimer.start();
 		}
 
 		public function update(event:TimerEvent):void
@@ -73,9 +78,15 @@ package
 
 				if (this._objectHolder.enemys.length < GameSetings.SHAPESHIFTERMAXONSCREEN && this._canAddEnemy)
 				{
-					createShapeShifter();
-					this._canAddEnemy = false;
-					this._canAddEnemyTimer.start();
+					if (parent)
+					{
+						if (Game(parent).level >= 1)
+						{
+							createShapeShifter();
+							this._canAddEnemy = false;
+							this._canAddEnemyTimer.start();
+						}
+					}
 				}
 
 				if (parent)
@@ -98,17 +109,17 @@ package
 
 		public function pauseGame():void
 		{
-			this.__updateTimer.stop();
+			this._updateTimer.stop();
 		}
 
 		public function unpauseGame():void
 		{
-			this.__updateTimer.start();
+			this._updateTimer.start();
 		}
 
 		public function removeAll():void
 		{
-			this.__updateTimer.stop();
+			this._updateTimer.stop();
 		}
 
 		public function removeThisChild(child:*):void
@@ -118,14 +129,24 @@ package
 
 		public function destroy():void
 		{
-			this._canAddEnemyTimer.removeEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
-			this._canAddOrbTimer.removeEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
-			this.__updateTimer.removeEventListener(TimerEvent.TIMER, this.update);
+			if (this._canAddEnemyTimer)
+			{
+				this._canAddEnemyTimer.removeEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
+				this._canAddEnemyTimer.stop();
+			}
 
-			this._canAddEnemyTimer.stop();
-			this._canAddOrbTimer.stop();
-			this.__updateTimer.stop();
-			
+			if (this._canAddOrbTimer)
+			{
+				this._canAddOrbTimer.removeEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
+				this._canAddOrbTimer.stop();
+			}
+
+			if (this._updateTimer)
+			{
+				this._updateTimer.removeEventListener(TimerEvent.TIMER, this.update);
+				this._updateTimer.stop();
+			}
+
 			TweenLite.killTweensOf(this);
 		}
 
@@ -133,25 +154,25 @@ package
 		{
 			this._canAddEnemyTimer.removeEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddOrbTimer.removeEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
-			this.__updateTimer.removeEventListener(TimerEvent.TIMER, this.update);
+			this._updateTimer.removeEventListener(TimerEvent.TIMER, this.update);
 
 			this._canAddEnemyTimer.stop();
 			this._canAddOrbTimer.stop();
-			this.__updateTimer.stop();
-			
-			TweenLite.to(this, 10, {onComplete: this.unPauseAllTimers, overwrite:true});
+			this._updateTimer.stop();
+
+			TweenLite.to(this, 10, {onComplete:this.unPauseAllTimers, overwrite:true});
 		}
-		
+
 		private function unPauseAllTimers():void
 		{
 			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
-			this.__updateTimer.addEventListener(TimerEvent.TIMER, this.update);
+			this._updateTimer.addEventListener(TimerEvent.TIMER, this.update);
 
 			this._canAddEnemyTimer.start();
 			this._canAddOrbTimer.start();
-			this.__updateTimer.start();
-			
+			this._updateTimer.start();
+
 			Game(this.parent).dl.canMove = true;
 		}
 

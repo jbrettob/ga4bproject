@@ -1,7 +1,5 @@
 package
 {
-	import com.jbrettob.log.Log;
-
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
