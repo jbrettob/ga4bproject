@@ -8,11 +8,15 @@ package
 	import player.Player;
 
 	import popup.GameEndScreen;
+	import popup.GameLevelComplete;
 	import popup.PopUp;
+
+	import com.jbrettob.log.Log;
 
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.ui.Mouse;
 
 	/**
 	 * @author futago
@@ -30,15 +34,11 @@ package
 		public var bg:BG;
 		public var dl:DeathLine;
 		public var popUp:PopUp;
-		
+		public var levelComplete:GameLevelComplete;
 		private var _gameState:String = GameSetings.PLAYING;
 		private var _backGround:Sprite;
 		private var _endScreen:GameEndScreen;
 		private var _currentLevel:Number;
-		
-		private var _canMoveOrb:Boolean = false;
-		private var _canMoveEnemy:Boolean = false;
-		private var _canMoveDeadline:Boolean = false;
 
 		public function Game():void
 		{
@@ -50,7 +50,6 @@ package
 			this.removeEventListener(Event.ADDED_TO_STAGE, addetToStage);
 
 			this.newGame();
-			// Mouse.hide();
 		}
 
 		private function newGame():void
@@ -66,8 +65,7 @@ package
 			this.objectHolder.player = player;
 			this.dl = new DeathLine(keyBoard);
 			this.popUp = new PopUp();
-			
-			this._canMoveOrb = this._canMoveEnemy = this._canMoveDeadline = false;
+
 			this._currentLevel = 0;
 			this.gameState = GameSetings.PLAYING;
 
@@ -108,7 +106,7 @@ package
 			{
 				(this.player as Player).destroy();
 			}
-			
+
 			this.showEndScreen(won);
 		}
 
@@ -119,20 +117,20 @@ package
 				if (this.contains(this._backGround)) this.removeChild(this._backGround);
 				this._backGround = null;
 			}
-			
+
 			this._backGround = new Sprite();
 			this._backGround.graphics.beginFill(0x000000, .5);
 			this._backGround.graphics.drawRect(0, 0, GameSetings.GAMEWITH, GameSetings.GAMEHEIGHT);
 			this._backGround.graphics.endFill();
 			this.addChild(this._backGround);
-			
+
 			if (this._endScreen)
 			{
 				if (this.contains(this._endScreen)) this.removeChild(this._endScreen);
 				this._endScreen.destroy();
 				this._endScreen = null;
 			}
-			
+
 			this._endScreen = new GameEndScreen(won);
 			this._endScreen.x = GameSetings.GAMEWITH / 2;
 			this._endScreen.y = GameSetings.GAMEHEIGHT / 2;
@@ -179,10 +177,21 @@ package
 		public function set gameState(value:String):void
 		{
 			this._gameState = value;
-			
-			if(this.objectHolder) this.objectHolder.gameState = this._gameState;
-			if(this.gameHandler) this.gameHandler.gameState = this._gameState;
-			if(this.dl) this.dl.gameState = this._gameState;
+
+			if (this._gameState == GameSetings.PAUSED)
+			{
+				Mouse.show();
+				if (this.levelComplete) this.levelComplete.stop();
+			}
+			else
+			{
+				Mouse.hide();
+				if (this.levelComplete) this.levelComplete.play();
+			}
+
+			if (this.objectHolder) this.objectHolder.gameState = this._gameState;
+			if (this.gameHandler) this.gameHandler.gameState = this._gameState;
+			if (this.dl) this.dl.gameState = this._gameState;
 		}
 
 		public function get level():Number
@@ -192,11 +201,54 @@ package
 
 		public function set level(value:Number):void
 		{
+			Log.log('level: ' + value, this);
+			this.showLevelComplete();
+
 			this._currentLevel = value;
-			
-			if (this._currentLevel >= 4)
+
+			switch (this._currentLevel)
 			{
-				this.endGame(true);
+				case 1:
+					Log.log('should show next tutorial', this);
+					break;
+				case 2:
+					this.gameHandler.createEnemyTimer();
+					break;
+				case 3:
+					this.gameHandler.createOrbTimer();
+					break;
+				case 4:
+					this.dl.canMove = true;
+					break;
+				case 5:
+					this.endGame(true);
+					break;
+			}
+		}
+
+		private function showLevelComplete():void
+		{
+			if (this.levelComplete)
+			{
+				this.levelComplete.destroy();
+				this.levelComplete = null;
+			}
+
+			this.levelComplete = new GameLevelComplete();
+			this.levelComplete.x = GameSetings.GAMEWITH / 2;
+			this.levelComplete.y = GameSetings.GAMEHEIGHT / 2;
+			this.levelComplete.addEventListener('POPUP_COMPLETE', this.handleLevelComplete);
+			this.addChildAt(this.levelComplete, (this.getChildIndex(this.popUp) - 1));
+		}
+
+		private function handleLevelComplete(event:Event):void
+		{
+			if (this.levelComplete)
+			{
+				this.levelComplete.destroy();
+				this.removeChild(this.levelComplete);
+				this.levelComplete.removeEventListener('POPUP_COMPLETE', this.handleLevelComplete);
+				this.levelComplete = null;
 			}
 		}
 

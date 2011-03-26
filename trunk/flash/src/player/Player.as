@@ -21,9 +21,10 @@ package player
 		private var main:Game;
 		private var aimer:Aimer;
 		private var shootTimer:Timer;
-		private var smokeTimer:Timer;
 		private var allowFire:Boolean = true;
 		private var smoke:Cloud;
+		private var _tutorialMovedLeft:Boolean = false;
+		private var _tutorialMovedRight:Boolean = false;
 
 		public function Player(_main:Game):void
 		{
@@ -44,19 +45,10 @@ package player
 			shootTimer.addEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
 			shootTimer.start();
 
-			smokeTimer = new Timer(GameSetings.ACTOR3DPROJECTILESPEED);
-			smokeTimer.addEventListener(TimerEvent.TIMER, setSmoketoTrue);
-			smokeTimer.start();
-
 			PlayerSetup();
 			ainmerSetup();
-			// actor.changeCaracterTo(GameSetings.ACTOR3D);
 
 			super.init();
-		}
-
-		private function setSmoketoTrue(event:TimerEvent):void
-		{
 		}
 
 		private function ainmerSetup():void
@@ -105,6 +97,11 @@ package player
 				inputHandler();
 				checkColition();
 				updateAimer();
+				
+				if (this._tutorialMovedLeft && this._tutorialMovedRight && main.level < 1)
+				{
+					main.level ++;
+				}
 			}
 		}
 
@@ -116,8 +113,16 @@ package player
 
 		private function inputHandler():void
 		{
-			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT) this.x += moveSpeed;
-			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT) this.x -= moveSpeed;
+			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT) 
+			{
+				this.x += moveSpeed;
+				if (!this._tutorialMovedRight) this._tutorialMovedRight = true;
+			}
+			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT) 
+			{
+				this.x -= moveSpeed;
+				if (!this._tutorialMovedLeft) this._tutorialMovedLeft = true;
+			}
 			if (main.keyBoard.one == "down")
 			{
 				actor.changeCaracterTo(GameSetings.ACTOR2D);
@@ -187,11 +192,11 @@ package player
 
 				for each (var o : Orb in main.objectHolder.orbs)
 				{
-					if (actor.hitTestObject(o.orb) == true)
+					if (this.actor.hitTestObject(o.orb) == true)
 					{
 						// add idea
 						o.destroy();
-						main.hud.upgradeTimer.addUpgrade(GameSetings.ORBXP);
+						this.main.hud.upgradeTimer.addUpgrade(GameSetings.ORBXP);
 					}
 				}
 			}
@@ -199,15 +204,11 @@ package player
 
 		override public function destroy():void
 		{
-			shootTimer.removeEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
-			smokeTimer.removeEventListener(TimerEvent.TIMER, setSmoketoTrue);
-			smokeTimer.stop();
+			this.actor.destroy();
 
-			actor.destroy();
-
-			while (numChildren > 0)
+			while (this.numChildren > 0)
 			{
-				removeChildAt(0);
+				this.removeChildAt(0);
 			}
 
 			if (parent) (parent as Game).removeChild(this);
@@ -217,12 +218,12 @@ package player
 
 		public function get _shootTimer():Timer
 		{
-			return shootTimer;
+			return this.shootTimer;
 		}
 
-		public function set _shootTimer(shootTimer:Timer):void
+		public function set _shootTimer(value:Timer):void
 		{
-			this.shootTimer = shootTimer;
+			this.shootTimer = value;
 		}
 	}
 }

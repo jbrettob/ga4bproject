@@ -1,5 +1,6 @@
 package
 {
+	import flash.ui.Mouse;
 	import Intro.IntroKing;
 
 	import Menu.MainMenu;
@@ -33,6 +34,7 @@ package
 			this._bg.graphics.endFill();
 			this.addChild(this._bg);
 			
+			
 			this.init();
 		}
 
@@ -47,6 +49,7 @@ package
 
 		private function handleXMLComplete(event:Event):void
 		{
+			Mouse.hide();
 			this.showIntroTeam();
 		}
 
@@ -83,6 +86,7 @@ package
 
 		private function showMainMenu():void
 		{
+			Mouse.show();
 			this.removeMenu();
 
 			SoundChannelKing.getInstance().init();
@@ -132,6 +136,7 @@ package
 
 		private function showGame():void
 		{
+			Mouse.hide();
 			this.removeGame();
 
 			this._game = new Game();

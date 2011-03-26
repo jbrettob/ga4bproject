@@ -14,7 +14,7 @@ package enemies
 		private var _dl : ActorDeadLine;
 		private var _inputHandler : InputHandler;
 		private var _moveDownSpeed:Number;
-		private var _canMove:Boolean = true;
+		private var _canMove:Boolean = false;
 
 		public function DeathLine(__inputHandler : InputHandler) : void
 		{
@@ -59,7 +59,7 @@ package enemies
 				{
 					if (Hud.getInstance().upgradeTimer.canUse == true)
 					{
-						TweenLite.to(this, 1, {y:-50, delay: .6, overwrite:false});
+						TweenLite.to(this, 1, {y:GameSetings.DEATHLINESTARTHEIGHT, delay: .6, overwrite:false});
 						Hud.getInstance().upgradeTimer.useUpgrade();
 						
 						this._canMove = false;

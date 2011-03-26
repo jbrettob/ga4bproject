@@ -12,7 +12,7 @@
 			<actorPro projectileSpeed="20" projectileDamage="2.5" reload="600" />
 			
 			<!-- specific DEADLINE settings -->
-			<deadline movingSpeed="0.2" accelerate="0" posY="60" />
+			<deadline movingSpeed="0.2" accelerate="0" posY="-50" />
 			
 			<!-- specific BUG settings -->
 			<bug hp="5" movingspeed="2" points="10" projectileSpeed="6" projectileDamage="1" minReload="7500" maxReload="2000" ></bug>
