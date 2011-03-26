@@ -34,17 +34,20 @@ package projectiles
 
 		override public function update():void
 		{
-			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+			if (parent)
 			{
-				this.x += this.xSpeed;
-				this.y += this.ySpeed;
-
-				if (this.y >= (GameSetings.GAMEHEIGHT - 50))
+				if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 				{
-					this.destroy();
-				}
+					this.x += this.xSpeed;
+					this.y += this.ySpeed;
 
-				super.update();
+					if (this.y >= (GameSetings.GAMEHEIGHT - 50))
+					{
+						this.destroy();
+					}
+
+					super.update();
+				}
 			}
 		}
 

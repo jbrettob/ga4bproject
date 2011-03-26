@@ -32,18 +32,21 @@ package projectiles
 
 		override public function update():void
 		{
-			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+			if (parent)
 			{
-				this.x += this.xSpeed;
-				this.y += this.ySpeed;
-
-				if (this.y <= 0)
+				if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 				{
-					this.destroy();
-				}
+					this.x += this.xSpeed;
+					this.y += this.ySpeed;
 
-				collisionCheck();
-				super.update();
+					if (this.y <= 0)
+					{
+						this.destroy();
+					}
+
+					collisionCheck();
+					super.update();
+				}
 			}
 		}
 
@@ -75,7 +78,7 @@ package projectiles
 				this._sprite = null;
 			}
 
-//			this.objectHolder.removePlayerProjectiles(this);
+			// this.objectHolder.removePlayerProjectiles(this);
 
 			super.destroy();
 		}

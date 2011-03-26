@@ -37,15 +37,7 @@ package com.jbrettob.display
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
 
-			this.addEventListener(Event.REMOVED_FROM_STAGE, this.handleRemovedFromStage);
-
 			this.init();
-		}
-
-		private function handleRemovedFromStage(event:Event):void
-		{
-			this.removeEventListener(Event.REMOVED_FROM_STAGE, this.handleRemovedFromStage);
-			this.destroy();
 		}
 
 		public function init():void
@@ -158,6 +150,11 @@ package com.jbrettob.display
 
 		public function destroy():void
 		{
+			while (this.numChildren > 0)
+			{
+				this.removeChildAt(0);
+			}
+			
 			// override method
 			if (this._timer)
 			{

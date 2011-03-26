@@ -128,7 +128,7 @@ package
 			{
 				if (this.contains(i))
 				{
-					this.removeChild(i);
+//					this.removeChild(i);
 				}
 
 				i.destroy();
