@@ -1,24 +1,22 @@
 package projectiles
 {
 	import com.jbrettob.display.Projectile;
-	import com.jbrettob.log.Log;
 
 	/**
 	 * @author Jayce Rettob
 	 */
 	public class ProjectileActorShapeShifter extends Projectile
 	{
-		private var _gameState:String;
 		public function ProjectileActorShapeShifter(objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number)
 		{
 			super(objectHolder, posX, posY);
-			
+
 			this.speed = GameSetings.SHAPESHIFTERPROJECTILESPEED;
 
 			if (this.damage <= 0) this.damage = GameSetings.SHAPESHIFTERPROJECTILEDAMAGE;
-			
+
 			this.rotation = degrees;
-			
+
 			var bulletAngle:Number = ((this.rotation) * Math.PI / 180);
 			this.xSpeed = Math.cos(bulletAngle) * this.speed;
 			this.ySpeed = Math.sin(bulletAngle) * this.speed;
@@ -36,22 +34,17 @@ package projectiles
 
 		override public function update():void
 		{
-			_gameState = (parent as ObjectHolder).gameState;
-			if (_gameState != (parent as ObjectHolder).gameState)
-			{
-				Log.log(_gameState, this);
-			}
-			
 			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
 			{
-			this.x += this.xSpeed;
-			this.y += this.ySpeed;
+				this.x += this.xSpeed;
+				this.y += this.ySpeed;
 
-			if (this.y >= (GameSetings.GAMEHEIGHT - 50))
-			{
-				this.destroy();
-			}
-			super.update();
+				if (this.y >= (GameSetings.GAMEHEIGHT - 50))
+				{
+					this.destroy();
+				}
+
+				super.update();
 			}
 		}
 
@@ -67,6 +60,5 @@ package projectiles
 
 			super.destroy();
 		}
-		
 	}
 }

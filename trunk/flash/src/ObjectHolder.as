@@ -4,18 +4,14 @@ package
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
-	import com.jbrettob.log.Log;
 
 	import flash.display.MovieClip;
-	import flash.events.Event;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 
 	/**
 	 * @author Rene Zwaan
-	 * @info this clas is made for coliton detection
+	 * @info this class is made for collision detection
 	 * it holds all objects in the group they belong so
-	 * you can get a colition test on all of them
+	 * you can get a collision check on all of them
 	 * 
 	 */
 	public class ObjectHolder extends MovieClip
@@ -27,39 +23,25 @@ package
 		private var _playerProjectiles:Array;
 		private var _gameState:String;
 		private var _parent:Game;
-		private var updateTimer:Timer;
 
-		public function ObjectHolder(parrent:Game):void
+		public function ObjectHolder(value:Game):void
 		{
-			_parent = parrent;
-			_enemys = new Array();
-			_enemyProjectiles = new Array();
-			_orbs = new Array();
-			_playerProjectiles = new Array();
-
-			updateTimer = new Timer(GameSetings.GAMESPEED);
-			updateTimer.addEventListener(TimerEvent.TIMER, update);
-			updateTimer.start();
-		}
-
-		private function update(event:Event):void
-		{
-			_gameState = (parent as Game).gameState;
-			if (gameState != (parent as Game).gameState)
-			{
-				Log.log(gameState, this);
-			}
+			this._parent = value;
+			this._enemys = new Array();
+			this._enemyProjectiles = new Array();
+			this._orbs = new Array();
+			this._playerProjectiles = new Array();
 		}
 
 		// Enemy
 		public function addEnemy(_enemy:*):void
 		{
-			_enemys.push(_enemy);
+			this._enemys.push(_enemy);
 		}
 
 		public function removeEnemy(_enemy:*):void
 		{
-			if (_enemys) _enemys.splice(_enemy, 1);
+			if (this._enemys) this._enemys.splice(_enemy, 1);
 		}
 
 		public function clearEnemys():void
@@ -74,19 +56,19 @@ package
 				i.destroy();
 			}
 
-			if (_enemys) _enemys.splice(0, _enemys.length);
+			if (this._enemys) this._enemys.splice(0, this._enemys.length);
 		}
 
 		// player projectiles
 		public function addplayerProjectiles(projectile:Projectile):void
 		{
-			if (_playerProjectiles) _playerProjectiles.push(projectile);
+			if (this._playerProjectiles) this._playerProjectiles.push(projectile);
 		}
 
 		public function removePlayerProjectiles(projectile:Projectile):void
 		{
 			if (this.contains(projectile)) this.removeChild(projectile);
-			if (_playerProjectiles) _playerProjectiles.splice(projectile, 0);
+			if (this._playerProjectiles) this._playerProjectiles.splice(projectile, 0);
 		}
 
 		public function clearPlayerProjectiles():void
@@ -101,18 +83,18 @@ package
 				i.destroy();
 			}
 
-			if (_playerProjectiles) _playerProjectiles.splice(0, _playerProjectiles.length);
+			if (this._playerProjectiles) this._playerProjectiles.splice(0, this._playerProjectiles.length);
 		}
 
 		// enemy projectiles
 		public function addEnemyProjectiles(projectile:Projectile):void
 		{
-			if (_enemyProjectiles) _enemyProjectiles.push(projectile);
+			if (this._enemyProjectiles) this._enemyProjectiles.push(projectile);
 		}
 
 		public function removeEnemyProjectiles(projectile:Projectile):void
 		{
-			if (_enemyProjectiles) _enemyProjectiles.splice(projectile, 0);
+			if (this._enemyProjectiles) this._enemyProjectiles.splice(projectile, 0);
 		}
 
 		public function clearEnemyProjectiles():void
@@ -126,18 +108,18 @@ package
 
 				i.destroy();
 			}
-			if (_enemyProjectiles) _enemyProjectiles.splice(0, _enemyProjectiles.length);
+			if (this._enemyProjectiles) this._enemyProjectiles.splice(0, this._enemyProjectiles.length);
 		}
 
 		// Orbs
 		public function addOrb(_Orb:*):void
 		{
-			if (_orbs) _orbs.push(_Orb);
+			if (this._orbs) this._orbs.push(_Orb);
 		}
 
 		public function removeOrb(_Orb:*):void
 		{
-			if (_orbs) _orbs.splice(_Orb, 1);
+			if (this._orbs) this._orbs.splice(_Orb, 1);
 		}
 
 		public function clearOrbs():void
@@ -152,7 +134,7 @@ package
 				i.destroy();
 			}
 
-			if (_orbs) _orbs.splice(0, _orbs.length);
+			if (this._orbs) this._orbs.splice(0, this._orbs.length);
 		}
 
 		/**
@@ -164,10 +146,10 @@ package
 		 */
 		public function clearAll():void
 		{
-			clearEnemys();
-			clearEnemyProjectiles();
-			clearOrbs();
-			clearPlayerProjectiles();
+			this.clearEnemys();
+			this.clearEnemyProjectiles();
+			this.clearOrbs();
+			this.clearPlayerProjectiles();
 		}
 
 		/**
@@ -175,19 +157,11 @@ package
 		 */
 		public function removeGame():void
 		{
-			clearAll();
-			_enemys = null;
-			_enemyProjectiles = null;
-			_orbs = null;
-			_playerProjectiles = null;
-
-			// Remove events
-			if (this.updateTimer)
-			{
-				updateTimer.removeEventListener(TimerEvent.TIMER, update);
-				updateTimer.stop();
-				updateTimer = null;
-			}
+			this.clearAll();
+			this._enemys = null;
+			this._enemyProjectiles = null;
+			this._orbs = null;
+			this._playerProjectiles = null;
 		}
 
 		public function get enemys():Array

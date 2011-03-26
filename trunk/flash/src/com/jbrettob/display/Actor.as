@@ -19,13 +19,13 @@ package com.jbrettob.display
 	public class Actor extends MovieClip
 	{
 		public var objectHolder:ObjectHolder;
-		
 		private var _health:Number;
 		private var _maxHealth:Number;
 		private var _alife:Boolean = true;
 		private var _moveSpeed:Number;
 		private var _timer:Timer;
 		private var _score:Number = 0;
+		private var _gameState:String;
 
 		public function Actor():void
 		{
@@ -36,7 +36,16 @@ package com.jbrettob.display
 		private function handleAddedToStage(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, this.handleAddedToStage);
+
+			this.addEventListener(Event.REMOVED_FROM_STAGE, this.handleRemovedFromStage);
+
 			this.init();
+		}
+
+		private function handleRemovedFromStage(event:Event):void
+		{
+			this.removeEventListener(Event.REMOVED_FROM_STAGE, this.handleRemovedFromStage);
+			this.destroy();
 		}
 
 		public function init():void
@@ -54,7 +63,7 @@ package com.jbrettob.display
 			this._timer.addEventListener(TimerEvent.TIMER, this.handleTimer);
 			this._timer.start();
 		}
-		
+
 		private function handleTimer(event:TimerEvent):void
 		{
 			this.update();
@@ -63,7 +72,6 @@ package com.jbrettob.display
 		public function update():void
 		{
 			// override method
-
 			if (this._health <= 0)
 			{
 				Hud.getInstance().score = this.score;
@@ -71,23 +79,23 @@ package com.jbrettob.display
 				this.destroy();
 			}
 		}
-		
+
 		public function hitColorTween():void
 		{
-			TweenLite.to(this, .05, {colorTransform:{tint:0xff0000, tintAmount:0.75}, onComplete:this.resetColorTween, overwrite: true});
+			TweenLite.to(this, .05, {colorTransform:{tint:0xff0000, tintAmount:0.75}, onComplete:this.resetColorTween, overwrite:true});
 		}
-		
+
 		public function resetColorTween():void
 		{
-			TweenLite.to(this, .02, {colorTransform:{tint:0xff0000, tintAmount:0}, overwrite: true});
+			TweenLite.to(this, .02, {colorTransform:{tint:0xff0000, tintAmount:0}, overwrite:true});
 		}
-		
+
 		// setters & getters
 		public function get moveSpeed():Number
 		{
 			return _moveSpeed;
 		}
-		
+
 		public function set moveSpeed(moveSpeed:Number):void
 		{
 			this._moveSpeed = moveSpeed;
@@ -102,7 +110,7 @@ package com.jbrettob.display
 		{
 			this._health = health;
 		}
-		
+
 		public function get maxHealth():Number
 		{
 			return this._maxHealth;
@@ -117,7 +125,7 @@ package com.jbrettob.display
 		{
 			this._alife = alife;
 		}
-		
+
 		public function get score():Number
 		{
 			return this._score;
@@ -127,7 +135,27 @@ package com.jbrettob.display
 		{
 			this._score = value;
 		}
-		
+
+		public function get timer():Timer
+		{
+			return _timer;
+		}
+
+		public function set timer(timer:Timer):void
+		{
+			_timer = timer;
+		}
+
+		public function get gameState():String
+		{
+			return this._gameState;
+		}
+
+		public function set gameState(value:String):void
+		{
+			this._gameState = value;
+		}
+
 		public function destroy():void
 		{
 			// override method
@@ -137,29 +165,19 @@ package com.jbrettob.display
 				this._timer.stop();
 				this._timer = null;
 			}
-			
+
 			TweenLite.killTweensOf(this);
 		}
-		
+
 		// logging for traces
 		public function log(output:String):void
 		{
 			Log.log(output, this);
 		}
-		
+
 		public function debug(output:String):void
 		{
 			Log.debug(output, this);
-		}
-
-		public function get timer() : Timer
-		{
-			return _timer;
-		}
-
-		public function set timer(timer : Timer) : void
-		{
-			_timer = timer;
 		}
 	}
 }

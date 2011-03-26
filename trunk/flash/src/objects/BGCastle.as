@@ -12,8 +12,14 @@ package objects
 		{
 			this._castle = new Castle();
 			this._castle.y = GameSetings.CASTLEHEIGHT;
+			this._castle.mcExplode.gotoAndStop(1);
 			
 			this.addChild(_castle);
+		}
+
+		public function shoot():void
+		{
+			this._castle.mcExplode.gotoAndPlay(2);
 		}
 		
 		public function destroy():void

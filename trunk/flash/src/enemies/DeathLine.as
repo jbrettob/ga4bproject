@@ -11,10 +11,10 @@ package enemies
 	 */
 	public class DeathLine extends Actor
 	{
-		private var dl : ActorDeadLine;
+		private var _dl : ActorDeadLine;
 		private var _inputHandler : InputHandler;
-		private var moveDownSpeed : Number;
-		private var movingBackUp : Boolean;
+		private var _moveDownSpeed:Number;
+		private var _canMove:Boolean = true;
 
 		public function DeathLine(__inputHandler : InputHandler) : void
 		{
@@ -25,10 +25,10 @@ package enemies
 
 		override public function init() : void
 		{
-			dl = new ActorDeadLine();
-			this.addChild(dl);
+			this._dl = new ActorDeadLine();
+			this.addChild(this._dl);
 			this.y = GameSetings.DEATHLINESTARTHEIGHT;
-			moveDownSpeed = GameSetings.DEATHLINEMOVESPEED;
+			this._moveDownSpeed = GameSetings.DEATHLINEMOVESPEED;
 			super.init();
 		}
 
@@ -36,12 +36,12 @@ package enemies
 		{
 			if (parent)
 			{
-				if ((parent as Game).gameState != GameSetings.PAUSED && movingBackUp == false)
+				if (this.gameState != GameSetings.PAUSED)
 				{
-					if (!TweenMax.isTweening(this))
+					if (!TweenMax.isTweening(this) && this._canMove)
 					{
-						dl.y += moveDownSpeed;
-						moveDownSpeed += GameSetings.DEATHLINEMOVESPEEDINCREASERATE;
+						this.y += this._moveDownSpeed;
+						this._moveDownSpeed += GameSetings.DEATHLINEMOVESPEEDINCREASERATE;
 						input();
 	
 						super.update();
@@ -49,7 +49,6 @@ package enemies
 				}
 			}
 
-			// if(movingBackUp) tweenUp();
 		}
 
 		private	function input() : void
@@ -60,8 +59,17 @@ package enemies
 				{
 					if (Hud.getInstance().upgradeTimer.canUse == true)
 					{
-						TweenLite.to(this.dl, 1, {y:20, overwrite:false});
+						TweenLite.to(this, 1, {y:-50, delay: .6, overwrite:false});
 						Hud.getInstance().upgradeTimer.useUpgrade();
+						
+						this._canMove = false;
+						
+						if (parent)
+						{
+							(parent as Game).bgCastle.shoot();
+							Game(this.parent).level++;
+							Game(this.parent).pauseGamePlay();
+						}
 					}
 				}
 			}
@@ -70,6 +78,16 @@ package enemies
 		override public function destroy() : void
 		{
 			super.destroy();
+		}
+
+		public function get canMove():Boolean
+		{
+			return this._canMove;
+		}
+
+		public function set canMove(value:Boolean):void
+		{
+			this._canMove = value;
 		}
 	}
 }
