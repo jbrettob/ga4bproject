@@ -44,24 +44,14 @@ package enemies
 					{
 						this.y += this._moveDownSpeed;
 						this._moveDownSpeed += GameSetings.DEATHLINEMOVESPEEDINCREASERATE;
-						input();
-	
 						super.update();
 					}
 				}
 			}
-
 		}
-
-		private	function input() : void
+		public function shotBack():void
 		{
-			if (_inputHandler.spaceBarr == "down")
-			{
-				if (Hud.getInstance().upgradeTimer)
-				{
-					if (Hud.getInstance().upgradeTimer.canUse == true)
-					{
-						TweenLite.to(this, 1, {y:GameSetings.DEATHLINESTARTHEIGHT, delay: .6, overwrite:false});
+			TweenLite.to(this, 1, {y:GameSetings.DEATHLINESTARTHEIGHT, delay: .6, overwrite:false});
 						Hud.getInstance().upgradeTimer.useUpgrade();
 						
 						this._canMove = false;
@@ -73,9 +63,6 @@ package enemies
 							Game(this.parent).level++;
 							Game(this.parent).pauseGamePlay();
 						}
-					}
-				}
-			}
 		}
 
 		override public function destroy() : void

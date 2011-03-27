@@ -2,6 +2,7 @@ package player
 {
 	import com.jbrettob.media.sound.SoundChannelKing;
 	import com.jbrettob.enum.Sounds;
+
 	import objects.Orb;
 
 	import projectiles.ProjectilePlayer2D;
@@ -19,30 +20,30 @@ package player
 	 */
 	public class Player extends Actor
 	{
-		private var actor:playerCaracterHolder;
-		private var main:Game;
-		private var aimer:Aimer;
-		private var shootTimer:Timer;
-		private var allowFire:Boolean = true;
-		private var smoke:Cloud;
-		private var _tutorialMovedLeft:Boolean = false;
-		private var _tutorialMovedRight:Boolean = false;
-		private var _tutorialSwitch1:Boolean = false;
-		private var _tutorialSwitch2:Boolean = false;
-		private var _tutorialSwitch3:Boolean = false;
+		private var actor : playerCaracterHolder;
+		private var main : Game;
+		private var aimer : Aimer;
+		private var shootTimer : Timer;
+		private var allowFire : Boolean = true;
+		private var smoke : Cloud;
+		private var _tutorialMovedLeft : Boolean = false;
+		private var _tutorialMovedRight : Boolean = false;
+		private var _tutorialSwitch1 : Boolean = false;
+		private var _tutorialSwitch2 : Boolean = false;
+		private var _tutorialSwitch3 : Boolean = false;
 
-		public function Player(_main:Game):void
+		public function Player(_main : Game) : void
 		{
 			main = _main;
 			super();
 		}
 
-		private function setAlouwFiretoTrue(event:TimerEvent):void
+		private function setAlouwFiretoTrue(event : TimerEvent) : void
 		{
 			allowFire = true;
 		}
 
-		override public function init():void
+		override public function init() : void
 		{
 			objectHolder = main.objectHolder;
 
@@ -56,7 +57,7 @@ package player
 			super.init();
 		}
 
-		private function ainmerSetup():void
+		private function ainmerSetup() : void
 		{
 			aimer = new Aimer();
 			aimer.y = mouseY;
@@ -64,7 +65,7 @@ package player
 			this.addChild(aimer);
 		}
 
-		private function PlayerSetup():void
+		private function PlayerSetup() : void
 		{
 			health = GameSetings.PLAYERHP;
 			actor = new playerCaracterHolder();
@@ -77,25 +78,25 @@ package player
 			main.hud.lives = GameSetings.PLAYER_LIVES;
 		}
 
-		private function smokeSetup():void
+		private function smokeSetup() : void
 		{
 			smoke = new Cloud();
 			smoke.scaleX = 0.4;
 			smoke.scaleY = 0.4;
 			smoke.x = (actor.x - 30);
-			smoke.y = (actor.y - 45);
+			smoke.y = (actor.y - 60);
 
 			addChild(smoke);
 		}
 
-		private function resetSmoke():void
+		private function resetSmoke() : void
 		{
 			smoke.x = (actor.x - 30);
-			smoke.y = (actor.y - 45);
+			smoke.y = (actor.y - 60);
 			smoke.gotoAndPlay(1);
 		}
 
-		override public function update():void
+		override public function update() : void
 		{
 			if (main.gameState != GameSetings.PAUSED)
 			{
@@ -126,54 +127,87 @@ package player
 			}
 		}
 
-		private function updateAimer():void
+		private function updateAimer() : void
 		{
 			aimer.x = mouseX;
 			aimer.y = mouseY;
 		}
 
-		private function inputHandler():void
+		private function inputHandler() : void
 		{
 			if (main.keyBoard.D == "down" && this.x < GameSetings.PLAYERMAXRIGHT)
 			{
 				this.x += moveSpeed;
+				actor.changeAnimation("runLeft");
 				if (main.level == 0) this._tutorialMovedRight = true;
 			}
 			if (main.keyBoard.A == "down" && this.x > GameSetings.PLAYERMAXLEFT)
 			{
 				this.x -= moveSpeed;
+				actor.changeAnimation("runRight");
 				if (main.level == 0) this._tutorialMovedLeft = true;
 			}
 			if (main.keyBoard.one == "down")
 			{
+				if (actor.currentCaracter != GameSetings.ACTOR2D)
+				{
 				resetSmoke();
+				main.idleCaracters.swichCaracter(GameSetings.ACTOR2D, actor.currentCaracter);
 				actor.changeCaracterTo(GameSetings.ACTOR2D);
 				if (main.level == 2) this._tutorialSwitch1 = true;
+				}
 			}
 			if (main.keyBoard.two == "down")
 			{
+				if (actor.currentCaracter != GameSetings.ACTOR3D)
+				{
 				resetSmoke();
+				main.idleCaracters.swichCaracter(GameSetings.ACTOR3D, actor.currentCaracter);
 				actor.changeCaracterTo(GameSetings.ACTOR3D);
 				if (main.level == 2) this._tutorialSwitch2 = true;
+				}
 			}
 			if (main.keyBoard.three == "down")
 			{
-				resetSmoke();
-				actor.changeCaracterTo(GameSetings.ACTORPRO);
-				if (main.level == 2) this._tutorialSwitch3 = true;
+				if (actor.currentCaracter != GameSetings.ACTORPRO)
+				{
+					resetSmoke();
+					main.idleCaracters.swichCaracter(GameSetings.ACTORPRO, actor.currentCaracter);
+					actor.changeCaracterTo(GameSetings.ACTORPRO);
+					if (main.level == 2) this._tutorialSwitch3 = true;
+				}
 			}
-			if (main.keyBoard.leftMouse == "down") newProjectile();
+			if (main.keyBoard.D == "up" && main.keyBoard.A == "up")
+			{
+				actor.changeAnimation("idle");
+			}
+			if (main.keyBoard.leftMouse == "down")
+			{
+				newProjectile();
+				if (main.keyBoard.A == "down")
+				{
+					actor.changeAnimation("fireRunLeft");
+				}
+				else if (main.keyBoard.D == "down")
+				{
+					actor.changeAnimation("fireRunRight");
+				}
+				else if (main.keyBoard.D == "up" && main.keyBoard.A == "up")
+				{
+					actor.changeAnimation("fire");
+				}
+			}
 		}
 
-		private function newProjectile():void
+		private function newProjectile() : void
 		{
-			var distX:Number = main.stage.mouseX - this.x;
-			var distY:Number = main.stage.mouseY - (this.y - this.actor.height);
+			var distX : Number = main.stage.mouseX - this.x;
+			var distY : Number = main.stage.mouseY - (this.y - this.actor.height);
 
-			var radians:Number = Math.atan2(distY, distX);
-			var degrees:Number = radians * 180 / Math.PI;
+			var radians : Number = Math.atan2(distY, distX);
+			var degrees : Number = radians * 180 / Math.PI;
 
-			var newProjectile:Projectile;
+			var newProjectile : Projectile;
 
 			if (allowFire == true)
 			{
@@ -196,12 +230,12 @@ package player
 				allowFire = false;
 				shootTimer.reset();
 				shootTimer.start();
-				
+
 				SoundChannelKing.getInstance().playSound(Sounds.SOUND_CHARACERSHOOT);
 			}
 		}
 
-		private function checkColition():void
+		private function checkColition() : void
 		{
 			if (this.main)
 			{
@@ -237,7 +271,7 @@ package player
 			}
 		}
 
-		override public function destroy():void
+		override public function destroy() : void
 		{
 			this.actor.destroy();
 
@@ -251,12 +285,12 @@ package player
 			super.destroy();
 		}
 
-		public function get _shootTimer():Timer
+		public function get _shootTimer() : Timer
 		{
 			return this.shootTimer;
 		}
 
-		public function set _shootTimer(value:Timer):void
+		public function set _shootTimer(value : Timer) : void
 		{
 			this.shootTimer = value;
 		}

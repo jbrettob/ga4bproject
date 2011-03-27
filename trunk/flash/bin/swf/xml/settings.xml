@@ -9,7 +9,7 @@
 			<!-- specific 2D settings -->
 			<actor2d projectileSpeed="10" projectileDamage="2,5" reload="400" />
 			<!-- specific PRO settings -->
-			<actorPro projectileSpeed="20" projectileDamage="2.5" reload="600" />
+			<actorPro projectileSpeed="20" projectileDamage="2" reload="200" />
 			
 			<!-- specific DEADLINE settings -->
 			<deadline movingSpeed="0.2" accelerate="0" posY="-50" />

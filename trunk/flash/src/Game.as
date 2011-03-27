@@ -1,5 +1,7 @@
 package
 {
+	import player.IdleCaracters;
+	import objects.BackGround;
 	import enemies.DeathLine;
 
 	import objects.BGCastle;
@@ -26,22 +28,23 @@ package
 	 */
 	public class Game extends MovieClip
 	{
-		public var gameHandler:GameHandler;
-		public var player:Player;
-		public var gameSetings:GameSetings;
-		public var objectHolder:ObjectHolder;
-		public var keyBoard:InputHandler;
-		public var bgCastle:BGCastle;
-		public var hud:Hud;
-		public var bg:BG;
-		public var dl:DeathLine;
-		public var popUp:PopUp;
-		public var levelComplete:GameLevelComplete;
-		public var tutorial:GameTutorialScreen;
-		private var _gameState:String = GameSetings.PLAYING;
-		private var _backGround:Sprite;
-		private var _endScreen:GameEndScreen;
-		private var _currentLevel:Number;
+		public var gameHandler			:GameHandler;
+		public var player				:Player;
+		public var gameSetings			:GameSetings;
+		public var objectHolder			:ObjectHolder;
+		public var keyBoard				:InputHandler;
+		public var bgCastle				:BGCastle;
+		public var hud					:Hud;
+		public var bg					:BackGround;
+		public var dl					:DeathLine;
+		public var popUp				:PopUp;
+		public var levelComplete		:GameLevelComplete;
+		public var tutorial				:GameTutorialScreen;
+		private var _gameState			:String = GameSetings.PLAYING;
+		private var _backGround			:Sprite;
+		private var _endScreen			:GameEndScreen;
+		private var _currentLevel		:Number;
+		private var _idleCaracters		:IdleCaracters;
 
 		public function Game():void
 		{
@@ -57,17 +60,19 @@ package
 
 		private function newGame():void
 		{
-			this.bg = new BG();
+			this.bg = new BackGround();
 			this.bgCastle = new BGCastle();
 			this.gameSetings = new GameSetings();
 			this.objectHolder = new ObjectHolder(this);
-			this.gameHandler = new GameHandler(objectHolder);
+			this.gameHandler = new GameHandler(this);
 			this.keyBoard = new InputHandler();
 			this.player = new Player(this);
 			this.hud = new Hud();
 			this.objectHolder.player = player;
 			this.dl = new DeathLine(keyBoard);
 			this.popUp = new PopUp();
+			this._idleCaracters = new IdleCaracters();
+			
 
 			this._currentLevel = 0;
 			this.gameState = GameSetings.PLAYING;
@@ -81,6 +86,7 @@ package
 			this.addChild(dl);
 			this.addChild(hud);
 			this.addChild(popUp);
+			this.addChild(_idleCaracters);
 
 			this.showTutorial();
 
@@ -297,6 +303,46 @@ package
 				if (this.contains(this.dl)) this.removeChild(this.dl);
 				this.dl = null;
 			}
+		}
+
+		public function get _keyBoard() : InputHandler
+		{
+			return keyBoard;
+		}
+
+		public function set _keyBoard(keyBoard : InputHandler) : void
+		{
+			this.keyBoard = keyBoard;
+		}
+
+		public function get _hud() : Hud
+		{
+			return hud;
+		}
+
+		public function set _hud(hud : Hud) : void
+		{
+			this.hud = hud;
+		}
+
+		public function get _bg() : BackGround
+		{
+			return bg;
+		}
+
+		public function set _bg(bg : BackGround) : void
+		{
+			this.bg = bg;
+		}
+
+		public function get idleCaracters() : IdleCaracters
+		{
+			return _idleCaracters;
+		}
+
+		public function set idleCaracters(idleCaracters : IdleCaracters) : void
+		{
+			_idleCaracters = idleCaracters;
 		}
 	}
 }
