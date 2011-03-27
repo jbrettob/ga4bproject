@@ -14,4 +14,10 @@
 	<natures>
 		<nature>com.powerflasher.fdt.core.FlashNature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>src</name>
+			<value>file:/C:/Users/futago/WorkspaceSchool/KingGamion/src</value>
+		</variable>
+	</variableList>
 </projectDescription>

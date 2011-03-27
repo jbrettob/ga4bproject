@@ -1,13 +1,15 @@
 package
 {
-	import com.jbrettob.log.Log;
-
 	import enemies.ShapeShifter;
 
+	import objects.Hud;
 	import objects.Orb;
 
 	import com.greensock.TweenLite;
 	import com.jbrettob.display.Actor;
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.log.Log;
+	import com.jbrettob.media.sound.SoundChannelKing;
 
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
@@ -25,14 +27,20 @@ package
 		private var _canAddOrbTimer:Timer;
 		private var _gameState:String;
 		private var _tutorialEnemyCount:Number = 0;
+		private var thisParrent:Game;
+		private var hud:Hud;
+	
 
-		public function GameHandler(value:ObjectHolder):void
+		public function GameHandler(game:Game):void
 		{
-			this._objectHolder = value;
-
+			this._objectHolder = game.objectHolder;
+			
 			this._updateTimer = new Timer(GameSetings.GAMESPEED);
 			this._updateTimer.addEventListener(TimerEvent.TIMER, this.update);
 			this._updateTimer.start();
+			thisParrent = game;
+			hud = thisParrent.hud;
+			
 		}
 
 		private function handleAddOrbTimer(event:TimerEvent):void
@@ -71,6 +79,7 @@ package
 		{
 			if (this._gameState != GameSetings.PAUSED)
 			{
+				inputHandler();
 				var i:Number = numChildren;
 				while (i > 0)
 				{
@@ -121,6 +130,22 @@ package
 					if ((parent as Game).dl.y >= GameSetings.GAMEHEIGHT - 150)
 					{
 						(parent as Game).endGame(false);
+					}
+				}
+			}
+		}
+
+		private function inputHandler() : void
+		{
+			
+			if ((parent as Game).keyBoard.spaceBarr == "down")
+			{
+				if ((parent as Game)._hud.upgradeTimer)
+				{
+					if ((parent as Game)._hud.upgradeTimer.canUse == true)
+					{
+						thisParrent.dl.shotBack();
+						thisParrent.bg.goToNextStage();
 					}
 				}
 			}
