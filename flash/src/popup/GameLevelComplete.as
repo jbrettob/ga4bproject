@@ -4,13 +4,18 @@ package popup
 	import com.jbrettob.utils.TimelineFrameLabel;
 
 	import flash.events.Event;
+	import flash.text.TextField;
 	/**
 	 * @author Jayce Rettob
 	 */
 	public class GameLevelComplete extends PopUp_LevelComplete
 	{
-		public function GameLevelComplete()
+		private var _text:String;
+		
+		public function GameLevelComplete(text:String = 'Level Completed')
 		{
+			this._text = text;
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, handleAddedToStage);
 		}
 
@@ -21,12 +26,18 @@ package popup
 			this.mouseChildren = this.buttonMode = false;
 			
 			this.init();
+			this.setText();
 		}
 
 		private function init():void
 		{
 			this.addFrameScript(TimelineFrameLabel.getInstance().getLabelFrame('frame_pauze', this), this.handleAddFrameScript);
 			this.addFrameScript(TimelineFrameLabel.getInstance().getLabelFrame('frame_end', this) - 1, this.handleComplete);
+		}
+
+		private function setText():void
+		{
+			TextField(this.mcContainer['txtTitle']).text = this._text;
 		}
 		
 		private function handleAddFrameScript():void
