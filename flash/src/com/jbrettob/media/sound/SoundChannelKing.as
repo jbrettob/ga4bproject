@@ -31,6 +31,7 @@ package com.jbrettob.media.sound
 			if (!_INSTANCE)
 			{
 				_INSTANCE = new SoundChannelKing();
+				SoundChannelKing.getInstance().init();
 			}
 
 			return _INSTANCE;
@@ -46,11 +47,18 @@ package com.jbrettob.media.sound
 			this._soundMute = false;
 
 			// manual add
-			this._audioArray.push(Sounds.BACKGROUND_MUSIC_01 as Class);
+			this._audioArray.push(Sounds.MUSIC_MENU as Class);
+			this._audioArray.push(Sounds.MUSIC_INGAME as Class);
 			this._audioArray.push(Sounds.SOUND_BUTTONPRESSED as Class);
 			this._audioArray.push(Sounds.SOUND_CANONSHOOT as Class);
 			this._audioArray.push(Sounds.SOUND_CHARACERSHOOT as Class);
 			this._audioArray.push(Sounds.SOUND_CREATIVITYORB as Class);
+			this._audioArray.push(Sounds.SOUND_ENEMYDESTROYED as Class);
+			this._audioArray.push(Sounds.SOUND_SHOOTPRO as Class);
+			this._audioArray.push(Sounds.SOUND_SHOOT2D as Class);
+			this._audioArray.push(Sounds.SOUND_SHOOT3D as Class);
+			this._audioArray.push(Sounds.SOUND_CHARACTERHIT as Class);
+			this._audioArray.push(Sounds.SOUND_KINGMUMBLE as Class);
 
 			this.isInit = true;
 		}

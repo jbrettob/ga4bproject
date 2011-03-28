@@ -215,12 +215,15 @@ package player
 				{
 					case GameSetings.ACTOR2D:
 						newProjectile = new ProjectilePlayer2D(main.objectHolderFront, this.x, (this.y - this.actor.height), degrees);
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_SHOOT2D);
 						break;
 					case GameSetings.ACTOR3D:
 						newProjectile = new ProjectilePlayer3D(main.objectHolderFront, this.x, (this.y - 85), degrees);
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_SHOOT3D);
 						break;
 					case GameSetings.ACTORPRO:
 						newProjectile = new ProjectilePlayerPRO(main.objectHolderFront, this.x, (this.y - 85), degrees);
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_SHOOTPRO);
 						break;
 				}
 
@@ -230,8 +233,6 @@ package player
 				allowFire = false;
 				shootTimer.reset();
 				shootTimer.start();
-
-				SoundChannelKing.getInstance().playSound(Sounds.SOUND_CHARACERSHOOT);
 			}
 		}
 
@@ -246,6 +247,7 @@ package player
 						// can't be die while in tutorial mode, HAX ON!!
 						if (main.level >= 5) main.hud.lives -= 1;
 						this.hitColorTween();
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_CHARACTERHIT);
 						i.destroy();
 					}
 				}

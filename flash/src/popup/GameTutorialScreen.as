@@ -1,5 +1,7 @@
 package popup
 {
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.media.sound.SoundChannelKing;
 	import flash.events.Event;
 	/**
 	 * @author Jayce Rettob
@@ -21,7 +23,7 @@ package popup
 
 		private function init():void
 		{
-			
+			SoundChannelKing.getInstance().playSound(Sounds.SOUND_KINGMUMBLE);
 		}
 		
 		public function destroy():void
