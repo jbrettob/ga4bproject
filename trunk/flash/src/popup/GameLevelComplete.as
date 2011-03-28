@@ -1,7 +1,6 @@
 package popup
 {
 	import com.greensock.TweenLite;
-	import com.jbrettob.log.Log;
 	import com.jbrettob.utils.TimelineFrameLabel;
 
 	import flash.events.Event;
