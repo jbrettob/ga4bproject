@@ -155,7 +155,7 @@ package
 
 		public function createShapeShifter():void
 		{
-			var shapeShifter:ShapeShifter = new ShapeShifter(this._objectHolderFront,this._objectHolderBack);			var shapeShifter:ShapeShifter = new ShapeShifter(this._objectHolderFront,this._objectHolderBack);
+			var shapeShifter:ShapeShifter = new ShapeShifter(this._objectHolderFront,this._objectHolderBack);
 			this._objectHolderBack.addEnemy(shapeShifter);
 			shapeShifter.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
 			shapeShifter.y = -(Math.random() * 200);
