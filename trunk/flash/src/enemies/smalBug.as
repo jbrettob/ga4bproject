@@ -1,6 +1,7 @@
 package enemies
 {
 	import objectsHolder.ObjectHolderBack;
+	import objectsHolder.ObjectHolderFront;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
@@ -13,7 +14,7 @@ package enemies
 	{
 		private var _sprite:ActorBug;
 
-		public function smalBug(_objectHolderFront:ObjectHolderBack):void
+		public function smalBug(_objectHolderFront:ObjectHolderFront):void
 		{
 			this.objectHolderFront = _objectHolderFront;
 
@@ -57,7 +58,7 @@ package enemies
 
 		private function checkCollision():void
 		{
-			for each (var i:Projectile in this.objectHolder.playerProjectiles)
+			for each (var i:Projectile in this.objectHolderFront.playerProjectiles)
 			{
 				if (this.hitTestObject(i))
 				{
@@ -78,7 +79,7 @@ package enemies
 				this._sprite = null;
 			}
 
-			this.objectHolder.removeEnemy(this);
+			this.objectHolderFront.removeEnemy(this);
 
 			super.destroy();
 		}

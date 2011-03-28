@@ -45,7 +45,7 @@ package projectiles
 		{
 			if (parent)
 			{
-				if ((parent as ObjectHolderBack).gameState != GameSetings.PAUSED)
+				if ((parent as ObjectHolderFront).gameState != GameSetings.PAUSED)
 				{
 					this.x += this.xSpeed;
 					this.y += this.ySpeed;
