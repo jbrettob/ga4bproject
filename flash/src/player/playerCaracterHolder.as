@@ -1,7 +1,5 @@
 package player
 {
-	import com.jbrettob.log.Log;
-
 	import flash.display.MovieClip;
 	import flash.events.Event;
 
@@ -45,30 +43,30 @@ package player
 				{
 					case GameSetings.ACTOR2D:
 						{
-							actor2D.visible = true;
-							actor3D.visible = false;
-							actorPro.visible = false;
-							_currentCaracter = GameSetings.ACTOR2D;
-							(parent as Player)._shootTimer.delay = GameSetings.ACTOR2DPROJECTILERELOADSPEED;
-							break;
+						actor2D.visible = true;
+						actor3D.visible = false;
+						actorPro.visible = false;
+						_currentCaracter = GameSetings.ACTOR2D;
+						(parent as Player)._shootTimer.delay = GameSetings.ACTOR2DPROJECTILERELOADSPEED;
+						break;
 						}
 					case GameSetings.ACTOR3D:
 						{
-							actor2D.visible = false;
-							actor3D.visible = true;
-							actorPro.visible = false;
-							_currentCaracter = GameSetings.ACTOR3D;
-							(parent as Player)._shootTimer.delay = GameSetings.ACTOR3DPROJECTILERELOADSPEED;
-							break;
+						actor2D.visible = false;
+						actor3D.visible = true;
+						actorPro.visible = false;
+						_currentCaracter = GameSetings.ACTOR3D;
+						(parent as Player)._shootTimer.delay = GameSetings.ACTOR3DPROJECTILERELOADSPEED;
+						break;
 						}
 					case GameSetings.ACTORPRO:
 						{
-							actor3D.visible = false;
-							actor2D.visible = false;
-							actorPro.visible = true;
-							_currentCaracter = GameSetings.ACTORPRO;
-							(parent as Player)._shootTimer.delay = GameSetings.ACTORPROPROJECTILERELOADSPEED;
-							break;
+						actor3D.visible = false;
+						actor2D.visible = false;
+						actorPro.visible = true;
+						_currentCaracter = GameSetings.ACTORPRO;
+						(parent as Player)._shootTimer.delay = GameSetings.ACTORPROPROJECTILERELOADSPEED;
+						break;
 						}
 				}
 			}
@@ -82,75 +80,69 @@ package player
 				{
 					case "runLeft":
 						{
-							Log.log(animation, this);
-							actor3D.gotoAndPlay("run");
-							actor3D.scaleX = -1;
-							actor2D.gotoAndPlay("run");
-							actor2D.scaleX = -1;
-							actorPro.gotoAndPlay("run");
-							actorPro.scaleX = -1;
-							_currentAnimation = animation;
-							break;
+						actor3D.gotoAndPlay("run");
+						actor3D.scaleX = -1;
+						actor2D.gotoAndPlay("run");
+						actor2D.scaleX = -1;
+						actorPro.gotoAndPlay("run");
+						actorPro.scaleX = -1;
+						_currentAnimation = animation;
+						break;
 						}
 					case "runRight":
 						{
-							Log.log(animation, this);
-							actor3D.gotoAndPlay("run");
-							actor3D.scaleX = 1;
-							actor2D.gotoAndPlay("run");
-							actor2D.scaleX = 1;
-							actorPro.gotoAndPlay("run");
-							actorPro.scaleX = 1;
-							_currentAnimation = animation;
-							break;
+						actor3D.gotoAndPlay("run");
+						actor3D.scaleX = 1;
+						actor2D.gotoAndPlay("run");
+						actor2D.scaleX = 1;
+						actorPro.gotoAndPlay("run");
+						actorPro.scaleX = 1;
+						_currentAnimation = animation;
+						break;
 						}
 					case "idle":
 						{
-							Log.log(animation, this);
-							actor3D.gotoAndPlay("idle");
-							actor3D.scaleX = 1;
-							actor2D.gotoAndPlay("idle");
-							actor2D.scaleX = 1;
-							actorPro.gotoAndPlay("idle");
-							actorPro.scaleX = 1;
-							_currentAnimation = animation;
-							break;
+						actor3D.gotoAndPlay("idle");
+						actor3D.scaleX = 1;
+						actor2D.gotoAndPlay("idle");
+						actor2D.scaleX = 1;
+						actorPro.gotoAndPlay("idle");
+						actorPro.scaleX = 1;
+						_currentAnimation = animation;
+						break;
 						}
 					case "fireRunLeft":
 						{
-							Log.log(animation, this);
-							actor3D.gotoAndPlay("atackMoving");
-							actor3D.scaleX = -1;
-							actor2D.gotoAndPlay("atackMoving");
-							actor2D.scaleX = -1;
-							actorPro.gotoAndPlay("atackMoving");
-							actorPro.scaleX = -1;
-							_currentAnimation = animation;
-							break;
+						actor3D.gotoAndPlay("atackMoving");
+						actor3D.scaleX = -1;
+						actor2D.gotoAndPlay("atackMoving");
+						actor2D.scaleX = -1;
+						actorPro.gotoAndPlay("atackMoving");
+						actorPro.scaleX = -1;
+						_currentAnimation = animation;
+						break;
 						}
-						case "fireRunRight":
+					case "fireRunRight":
 						{
-							Log.log(animation, this);
-							actor3D.gotoAndPlay("atackMoving");
-							actor3D.scaleX = 1;
-							actor2D.gotoAndPlay("atackMoving");
-							actor2D.scaleX = 1;
-							actorPro.gotoAndPlay("atackMoving");
-							actorPro.scaleX = 1;
-							_currentAnimation = animation;
-							break;
+						actor3D.gotoAndPlay("atackMoving");
+						actor3D.scaleX = 1;
+						actor2D.gotoAndPlay("atackMoving");
+						actor2D.scaleX = 1;
+						actorPro.gotoAndPlay("atackMoving");
+						actorPro.scaleX = 1;
+						_currentAnimation = animation;
+						break;
 						}
-						case "fire":
+					case "fire":
 						{
-							Log.log(animation, this);
-							actor3D.gotoAndPlay("atack");
-							actor3D.scaleX = 1;
-							actor2D.gotoAndPlay("atack");
-							actor2D.scaleX = 1;
-							actorPro.gotoAndPlay("atack");
-							actorPro.scaleX = 1;
-							_currentAnimation = animation;
-							break;
+						actor3D.gotoAndPlay("atack");
+						actor3D.scaleX = 1;
+						actor2D.gotoAndPlay("atack");
+						actor2D.scaleX = 1;
+						actorPro.gotoAndPlay("atack");
+						actorPro.scaleX = 1;
+						_currentAnimation = animation;
+						break;
 						}
 				}
 			}

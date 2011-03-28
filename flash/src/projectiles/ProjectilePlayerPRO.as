@@ -1,5 +1,8 @@
 package projectiles
 {
+	import objectsHolder.ObjectHolderBack;
+	import objectsHolder.ObjectHolderFront;
+
 	import com.jbrettob.display.Projectile;
 
 	import flash.geom.Point;
@@ -12,7 +15,7 @@ package projectiles
 		private var _sprite:ProjectilePRO;		private var _mousePoint:Point;
 		
 
-		public function ProjectilePlayerPRO(_objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number):void
+		public function ProjectilePlayerPRO(_objectHolder:ObjectHolderFront, posX:Number, posY:Number, degrees:Number):void
 		{
 			super(_objectHolder, posX, posY);
 			
@@ -35,7 +38,7 @@ package projectiles
 
 		override public function update():void
 		{
-			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+			if ((parent as ObjectHolderBack).gameState != GameSetings.PAUSED)
 			{
 			this.x += this.xSpeed;
 			this.y += this.ySpeed;

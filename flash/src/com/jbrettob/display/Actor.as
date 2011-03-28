@@ -2,6 +2,9 @@ package com.jbrettob.display
 {
 	import objects.Hud;
 
+	import objectsHolder.ObjectHolderBack;
+	import objectsHolder.ObjectHolderFront;
+
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.ColorTransformPlugin;
 	import com.greensock.plugins.TintPlugin;
@@ -18,7 +21,7 @@ package com.jbrettob.display
 	 */
 	public class Actor extends MovieClip
 	{
-		public var objectHolder:ObjectHolder;
+		public var objectHolderBack:ObjectHolderBack;		public var objectHolderFront:ObjectHolderFront;
 		private var _health:Number;
 		private var _maxHealth:Number;
 		private var _alife:Boolean = true;

@@ -5,11 +5,12 @@ package
 	import objects.Hud;
 	import objects.Orb;
 
+	import objectsHolder.ObjectHolderBack;
+	import objectsHolder.ObjectHolderFront;
+
 	import com.greensock.TweenLite;
 	import com.jbrettob.display.Actor;
-	import com.jbrettob.enum.Sounds;
 	import com.jbrettob.log.Log;
-	import com.jbrettob.media.sound.SoundChannelKing;
 
 	import flash.display.MovieClip;
 	import flash.events.TimerEvent;
@@ -21,7 +22,7 @@ package
 	public class GameHandler extends MovieClip
 	{
 		private var _updateTimer:Timer;
-		private var _objectHolder:ObjectHolder;
+		private var _objectHolderBack:ObjectHolderBack;		private var _objectHolderFront:ObjectHolderFront;
 		private var _canAddEnemy:Boolean = false;
 		private var _canAddEnemyTimer:Timer;
 		private var _canAddOrbTimer:Timer;
@@ -33,7 +34,8 @@ package
 
 		public function GameHandler(game:Game):void
 		{
-			this._objectHolder = game.objectHolder;
+			this._objectHolderBack = game.objectHolderBack;
+			this._objectHolderFront = game.objectHolderFront;
 			
 			this._updateTimer = new Timer(GameSetings.GAMESPEED);
 			this._updateTimer.addEventListener(TimerEvent.TIMER, this.update);
@@ -45,13 +47,13 @@ package
 
 		private function handleAddOrbTimer(event:TimerEvent):void
 		{
-			if (this._objectHolder.orbs)
+			if (this._objectHolderFront.orbs)
 			{
-				if (this._objectHolder.orbs.length < 10)
+				if (this._objectHolderFront.orbs.length < 10)
 				{
 					var orb:Orb = new Orb();
-					this._objectHolder.addChild(orb);
-					this._objectHolder.addOrb(orb);
+					this._objectHolderFront.addChild(orb);
+					this._objectHolderFront.addOrb(orb);
 				}
 			}
 		}
@@ -85,7 +87,7 @@ package
 				{
 					if ((getChildAt(i - 1) as Actor).alife == false)
 					{
-						this._objectHolder.removeEnemy(i);
+						this._objectHolderBack.removeEnemy(i);
 						removeChildAt(i - 1);
 					}
 					i--;
@@ -97,7 +99,7 @@ package
 					{
 						if (Game(this.parent).level >= 1 && Game(this.parent).level < 4)
 						{
-							if (this._objectHolder.enemys.length <= 1)
+							if (this._objectHolderBack.enemys.length <= 1)
 							{
 								createShapeShifter();
 								this._canAddEnemy = false;
@@ -112,9 +114,9 @@ package
 						}
 						else if (Game(parent).level >= 5)
 						{
-							if (this._objectHolder.enemys)
+							if (this._objectHolderBack.enemys)
 							{
-								if (this._objectHolder.enemys.length <= GameSetings.SHAPESHIFTERMAXONSCREEN)
+								if (this._objectHolderBack.enemys.length <= GameSetings.SHAPESHIFTERMAXONSCREEN)
 								{
 									createShapeShifter();
 									this._canAddEnemy = false;
@@ -145,7 +147,7 @@ package
 					if ((parent as Game)._hud.upgradeTimer.canUse == true)
 					{
 						thisParrent.dl.shotBack();
-						thisParrent.bg.goToNextStage();
+						if (thisParrent.level >= 5)	thisParrent.bg.goToNextStage();
 					}
 				}
 			}
@@ -153,11 +155,11 @@ package
 
 		public function createShapeShifter():void
 		{
-			var shapeShifter:ShapeShifter = new ShapeShifter(this._objectHolder);
-			this._objectHolder.addEnemy(shapeShifter);
+			var shapeShifter:ShapeShifter = new ShapeShifter(this._objectHolderFront,this._objectHolderBack);			var shapeShifter:ShapeShifter = new ShapeShifter(this._objectHolderFront,this._objectHolderBack);
+			this._objectHolderBack.addEnemy(shapeShifter);
 			shapeShifter.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
 			shapeShifter.y = -(Math.random() * 200);
-			this._objectHolder.addChild(shapeShifter);
+			this._objectHolderBack.addChild(shapeShifter);
 		}
 
 		public function pauseGame():void

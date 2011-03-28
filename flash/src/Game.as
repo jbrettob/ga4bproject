@@ -1,12 +1,15 @@
 package
 {
-	import player.IdleCaracters;
-	import objects.BackGround;
 	import enemies.DeathLine;
 
 	import objects.BGCastle;
+	import objects.BackGround;
 	import objects.Hud;
 
+	import objectsHolder.ObjectHolderBack;
+	import objectsHolder.ObjectHolderFront;
+
+	import player.IdleCaracters;
 	import player.Player;
 
 	import popup.GameEndScreen;
@@ -28,51 +31,52 @@ package
 	 */
 	public class Game extends MovieClip
 	{
-		public var gameHandler			:GameHandler;
-		public var player				:Player;
-		public var gameSetings			:GameSetings;
-		public var objectHolder			:ObjectHolder;
-		public var keyBoard				:InputHandler;
-		public var bgCastle				:BGCastle;
-		public var hud					:Hud;
-		public var bg					:BackGround;
-		public var dl					:DeathLine;
-		public var popUp				:PopUp;
-		public var levelComplete		:GameLevelComplete;
-		public var tutorial				:GameTutorialScreen;
-		private var _gameState			:String = GameSetings.PLAYING;
-		private var _backGround			:Sprite;
-		private var _endScreen			:GameEndScreen;
-		private var _currentLevel		:Number;
-		private var _idleCaracters		:IdleCaracters;
+		public var gameHandler : GameHandler;
+		public var player : Player;
+		public var gameSetings : GameSetings;
+		public var objectHolderBack : ObjectHolderBack;
+		public var objectHolderFront : ObjectHolderFront;
+		public var keyBoard : InputHandler;
+		public var bgCastle : BGCastle;
+		public var hud : Hud;
+		public var bg : BackGround;
+		public var dl : DeathLine;
+		public var popUp : PopUp;
+		public var levelComplete : GameLevelComplete;
+		public var tutorial : GameTutorialScreen;
+		private var _gameState : String = GameSetings.PLAYING;
+		private var _backGround : Sprite;
+		private var _endScreen : GameEndScreen;
+		private var _currentLevel : Number;
+		private var _idleCaracters : IdleCaracters;
 
-		public function Game():void
+		public function Game() : void
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, addetToStage);
 		}
 
-		private function addetToStage(event:Event):void
+		private function addetToStage(event : Event) : void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, addetToStage);
 
 			this.newGame();
 		}
 
-		private function newGame():void
+		private function newGame() : void
 		{
 			this.bg = new BackGround();
 			this.bgCastle = new BGCastle();
 			this.gameSetings = new GameSetings();
-			this.objectHolder = new ObjectHolder(this);
+			this.objectHolderBack = new ObjectHolderBack(this);
+			this.objectHolderFront = new ObjectHolderFront(this);
 			this.gameHandler = new GameHandler(this);
 			this.keyBoard = new InputHandler();
 			this.player = new Player(this);
 			this.hud = new Hud();
-			this.objectHolder.player = player;
+			this.objectHolderBack.player = player;
 			this.dl = new DeathLine(keyBoard);
 			this.popUp = new PopUp();
 			this._idleCaracters = new IdleCaracters();
-			
 
 			this._currentLevel = 0;
 			this.gameState = GameSetings.PLAYING;
@@ -80,8 +84,9 @@ package
 			this.addChild(bg);
 			this.addChild(keyBoard);
 			this.addChild(gameHandler);
-			this.addChild(objectHolder);
+			this.addChild(objectHolderBack);
 			this.addChild(bgCastle);
+			this.addChild(objectHolderFront);
 			this.addChild(player);
 			this.addChild(dl);
 			this.addChild(hud);
@@ -94,14 +99,15 @@ package
 			this.popUp.addEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);
 		}
 
-		public function endGame(won:Boolean = false):void
+		public function endGame(won : Boolean = false) : void
 		{
 			if (this.gameHandler) gameHandler.destroy();
-			if (this.objectHolder)
+			if (this.objectHolderBack && this.objectHolderFront)
 			{
-				this.objectHolder.clearAll();
-				this.objectHolder.clearAll();
-				this.objectHolder.removeGame();
+				this.objectHolderFront.clearAll();
+				this.objectHolderBack.clearAll();
+				this.objectHolderFront.removeGame();
+				this.objectHolderBack.removeGame();
 			}
 			if (this.popUp)
 			{
@@ -121,7 +127,7 @@ package
 			this.showEndScreen(won);
 		}
 
-		private function showEndScreen(won:Boolean):void
+		private function showEndScreen(won : Boolean) : void
 		{
 			Mouse.show();
 			if (this._backGround)
@@ -149,22 +155,22 @@ package
 			this.addChild(this._endScreen);
 		}
 
-		private function handleGameToMainMenu(event:Event):void
+		private function handleGameToMainMenu(event : Event) : void
 		{
 			this.dispatchEvent(new Event('GAME_TOMAINMENU'));
 		}
 
-		private function handlePopupShowMenu(event:Event):void
+		private function handlePopupShowMenu(event : Event) : void
 		{
 			this.popUp.shown();
 		}
 
-		public function get gameState():String
+		public function get gameState() : String
 		{
 			return this._gameState;
 		}
 
-		public function set gameState(value:String):void
+		public function set gameState(value : String) : void
 		{
 			this._gameState = value;
 
@@ -179,17 +185,18 @@ package
 				if (this.levelComplete) this.levelComplete.play();
 			}
 
-			if (this.objectHolder) this.objectHolder.gameState = this._gameState;
+			if (this.objectHolderBack) this.objectHolderBack.gameState = this._gameState;
+			if (this.objectHolderFront) this.objectHolderFront.gameState = this._gameState;
 			if (this.gameHandler) this.gameHandler.gameState = this._gameState;
 			if (this.dl) this.dl.gameState = this._gameState;
 		}
 
-		public function get level():Number
+		public function get level() : Number
 		{
 			return _currentLevel;
 		}
 
-		public function set level(value:Number):void
+		public function set level(value : Number) : void
 		{
 			this.showLevelComplete();
 
@@ -225,7 +232,7 @@ package
 			}
 		}
 
-		private function showLevelComplete():void
+		private function showLevelComplete() : void
 		{
 			if (this.levelComplete)
 			{
@@ -233,16 +240,23 @@ package
 				this.levelComplete = null;
 			}
 
-			this.levelComplete = new GameLevelComplete();
+			if (this._currentLevel < 5)
+			{
+				this.levelComplete = new GameLevelComplete('Tutorial Completed');
+			}
+			else
+			{
+				this.levelComplete = new GameLevelComplete();
+			}
 			this.levelComplete.x = GameSetings.GAMEWITH / 2;
 			this.levelComplete.y = GameSetings.GAMEHEIGHT / 2;
 			this.levelComplete.addEventListener('POPUP_COMPLETE', this.handleLevelComplete);
 			this.addChildAt(this.levelComplete, (this.getChildIndex(this.popUp) - 1));
 
-			TweenLite.to(this.tutorial, .4, {x: 900, alpha:0, overwrite:true});
+			TweenLite.to(this.tutorial, .4, {x:900, alpha:0, overwrite:true});
 		}
 
-		private function handleLevelComplete(event:Event):void
+		private function handleLevelComplete(event : Event) : void
 		{
 			if (this.levelComplete)
 			{
@@ -255,7 +269,7 @@ package
 			if (this._currentLevel < 5) this.showTutorial();
 		}
 
-		private function showTutorial():void
+		private function showTutorial() : void
 		{
 			this.removeTutorial();
 
@@ -263,12 +277,12 @@ package
 			this.tutorial.x = 900;
 			this.tutorial.y = GameSetings.TUTORIALPOSY;
 			this.tutorial.alpha = 0;
-			this.addChildAt(this.tutorial, (this.getChildIndex(this.objectHolder) - 1));
-			
-			TweenLite.to(this.tutorial, .4, {x: GameSetings.TUTORIALPOSX, alpha:1, overwrite:true});
+			this.addChildAt(this.tutorial, (this.getChildIndex(this.objectHolderFront) - 1));
+
+			TweenLite.to(this.tutorial, .4, {x:GameSetings.TUTORIALPOSX, alpha:1, overwrite:true});
 		}
 
-		private function removeTutorial():void
+		private function removeTutorial() : void
 		{
 			if (this.tutorial)
 			{
@@ -278,12 +292,12 @@ package
 			}
 		}
 
-		public function pauseGamePlay():void
+		public function pauseGamePlay() : void
 		{
 			this.gameHandler.pauseAllTimers();
 		}
 
-		public function removeGame():void
+		public function removeGame() : void
 		{
 			this.hud.removeEventListener('POPUP_SHOW_MENU', this.handlePopupShowMenu);
 			if (this.contains(this.hud)) this.removeChild(this.hud);

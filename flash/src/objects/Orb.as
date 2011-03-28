@@ -1,5 +1,7 @@
 package objects 
 {
+	import objectsHolder.ObjectHolderFront;
+
 	import com.jbrettob.display.Actor;
 	/**
 	 * @author Rene Zwaan
@@ -18,7 +20,7 @@ package objects
 		// make the orb move down until it gets tuched ??
 		 override public function update() : void 
 		{
-			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+			if ((parent as ObjectHolderFront).gameState != GameSetings.PAUSED)
 			{
 				if(this.y <= (GameSetings.PLAYERYPOS - 45))
 				{
@@ -29,9 +31,9 @@ package objects
 		
 		override public function destroy():void 
 		{
-			if (this.parent) (parent as ObjectHolder).removeOrb(this);
+			if (this.parent) (parent as ObjectHolderFront).removeOrb(this);
 			if (this.contains(this._orb)) this.removeChild(this._orb);
-			if (this.parent) (parent as ObjectHolder).removeChild(this);
+			if (this.parent) (parent as ObjectHolderFront).removeChild(this);
 			
 			super.destroy();			
 		}
