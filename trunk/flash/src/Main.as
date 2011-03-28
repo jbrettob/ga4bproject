@@ -89,9 +89,8 @@ package
 			Mouse.show();
 			this.removeMenu();
 
-			SoundChannelKing.getInstance().init();
 			SoundChannelKing.getInstance().stopAllMusic();
-			SoundChannelKing.getInstance().playMusic(Sounds.BACKGROUND_MUSIC_01);
+			SoundChannelKing.getInstance().playMusic(Sounds.MUSIC_MENU);
 
 			this._menu = new MainMenu();
 			this._menu.addEventListener('MAINMENU_STARTGAME', this.handleMainMenuStartGame);
@@ -138,6 +137,9 @@ package
 		{
 			Mouse.hide();
 			this.removeGame();
+			
+			SoundChannelKing.getInstance().stopAllMusic();
+			SoundChannelKing.getInstance().playMusic(Sounds.MUSIC_INGAME);
 
 			this._game = new Game();
 			this._game.addEventListener('GAME_TOMAINMENU', this.handleGameToMainMenu);

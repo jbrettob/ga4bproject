@@ -1,7 +1,9 @@
 package objects
 {
 	import com.greensock.TweenLite;
+	import com.jbrettob.enum.Sounds;
 	import com.jbrettob.log.Log;
+	import com.jbrettob.media.sound.SoundChannelKing;
 
 	import flash.events.Event;
 
@@ -33,6 +35,7 @@ package objects
 				TweenLite.to(this, .6, {exp:this._maxExp, onUpdate:this.tweenFrames, overwrite:true});
 
 				this._canUse = true;
+				SoundChannelKing.getInstance().playSound(Sounds.SOUND_HORNALERT);
 			}
 			else
 			{

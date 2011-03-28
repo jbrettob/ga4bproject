@@ -1,5 +1,7 @@
 package enemies
 {
+	import com.jbrettob.media.sound.SoundChannelKing;
+	import com.jbrettob.enum.Sounds;
 	import objectsHolder.ObjectHolderBack;
 	import objectsHolder.ObjectHolderFront;
 
@@ -20,7 +22,7 @@ package enemies
 		private var _canShoot:Boolean = true;
 		private var _canShootTimer:Timer;
 
-		public function ShapeShifter(objectHolderFront:ObjectHolderFront,objectHolderBack:ObjectHolderBack):void
+		public function ShapeShifter(objectHolderFront:ObjectHolderFront, objectHolderBack:ObjectHolderBack):void
 		{
 			this.objectHolderFront = objectHolderFront;
 			this.objectHolderBack = objectHolderBack;
@@ -37,7 +39,7 @@ package enemies
 			this.health = GameSetings.SHAPESHIFTERHP;
 			this.score = GameSetings.SHAPESHIFTERSCORE;
 
-			var newTimer : Number = Math.round(Math.random() * GameSetings.SHAPESHIFTERMINSHOOTWAIT) + GameSetings.SHAPESHIFTERMINSHOOTWAIT;
+			var newTimer:Number = Math.round(Math.random() * GameSetings.SHAPESHIFTERMINSHOOTWAIT) + GameSetings.SHAPESHIFTERMINSHOOTWAIT;
 			this._canShootTimer = new Timer(newTimer, 1);
 			this._canShootTimer.addEventListener(TimerEvent.TIMER, this.handleCanShootTimer);
 			this._canShootTimer.start();
@@ -54,28 +56,31 @@ package enemies
 		{
 			if ((parent as ObjectHolderBack).gameState != GameSetings.PAUSED)
 			{
-				
 				this.y += this.moveSpeed;
-	
+
 				this.checkCollision();
-	
+
 				if (this._canShoot)
 				{
 					if (this.y < 400 && this.y > 0)
 					{
 						this.shootProjectile();
-	
+
 						this._canShoot = false;
 						this._canShootTimer.start();
 					}
 				}
-				
-	
+
 				if (this.y >= (GameSetings.GAMEHEIGHT - 50))
 				{
 					this.destroy();
 				}
-	
+
+				if (this.health <= 0)
+				{
+					SoundChannelKing.getInstance().playSound(Sounds.SOUND_ENEMYDESTROYED);
+				}
+
 				super.update();
 			}
 		}
@@ -103,7 +108,7 @@ package enemies
 			var degrees:Number = radians * 180 / Math.PI;
 
 			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolderFront, this.x, this.y, degrees);
-			
+
 			this.objectHolderFront.addChild(projectile);
 			this.objectHolderFront.addEnemyProjectiles(projectile);
 		}
