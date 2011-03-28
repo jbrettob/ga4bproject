@@ -21,5 +21,6 @@ package com.jbrettob.enum
 		public static const SOUND_SHOOT3D:Class = Sound_Shoot3D;
 		public static const SOUND_CHARACTERHIT:Class = Sound_CharacterHit;
 		public static const SOUND_KINGMUMBLE:Class = Sound_KingMumble;
+		public static const SOUND_CHARACTERSWITCH:Class = Sound_CharacterSwitch;
 	}
 }

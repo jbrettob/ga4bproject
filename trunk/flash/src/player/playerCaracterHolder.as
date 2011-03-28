@@ -1,5 +1,7 @@
 package player
 {
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.media.sound.SoundChannelKing;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 
@@ -69,6 +71,8 @@ package player
 						break;
 						}
 				}
+				
+				SoundChannelKing.getInstance().playSound(Sounds.SOUND_CHARACTERSWITCH);
 			}
 		}
 
