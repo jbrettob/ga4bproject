@@ -1,4 +1,4 @@
-package
+package objectsHolder
 {
 	import player.Player;
 
@@ -14,22 +14,20 @@ package
 	 * you can get a collision check on all of them
 	 * 
 	 */
-	public class ObjectHolder extends MovieClip
+	public class ObjectHolderBack extends MovieClip
 	{
 		private var _player:Player;
 		private var _enemys:Array;
 		private var _enemyProjectiles:Array;
-		private var _orbs:Array;
 		private var _playerProjectiles:Array;
 		private var _gameState:String;
 		private var _parent:Game;
 
-		public function ObjectHolder(value:Game):void
+		public function ObjectHolderBack(value:Game):void
 		{
 			this._parent = value;
 			this._enemys = new Array();
 			this._enemyProjectiles = new Array();
-			this._orbs = new Array();
 			this._playerProjectiles = new Array();
 		}
 
@@ -112,31 +110,7 @@ package
 		}
 
 		// Orbs
-		public function addOrb(_Orb:*):void
-		{
-			if (this._orbs) this._orbs.push(_Orb);
-		}
-
-		public function removeOrb(_Orb:*):void
-		{
-			if (this._orbs) this._orbs.splice(_Orb, 1);
-		}
-
-		public function clearOrbs():void
-		{
-			for each (var i : Actor in  this._orbs)
-			{
-				if (this.contains(i))
-				{
-//					this.removeChild(i);
-				}
-
-				i.destroy();
-			}
-
-			if (this._orbs) this._orbs.splice(0, this._orbs.length);
-		}
-
+		
 		/**
 		 * @info clears
 		 * - enemy
@@ -148,7 +122,6 @@ package
 		{
 			this.clearEnemys();
 			this.clearEnemyProjectiles();
-			this.clearOrbs();
 			this.clearPlayerProjectiles();
 		}
 
@@ -160,7 +133,6 @@ package
 			this.clearAll();
 			this._enemys = null;
 			this._enemyProjectiles = null;
-			this._orbs = null;
 			this._playerProjectiles = null;
 		}
 
@@ -184,15 +156,7 @@ package
 			_enemyProjectiles = enemyProjectiles;
 		}
 
-		public function get orbs():Array
-		{
-			return _orbs;
-		}
 
-		public function set orbs(orbs:Array):void
-		{
-			_orbs = orbs;
-		}
 
 		public function get playerProjectiles():Array
 		{

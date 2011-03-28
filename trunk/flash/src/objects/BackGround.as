@@ -1,6 +1,5 @@
 package objects
 {
-	import com.jbrettob.log.Log;
 	import flash.display.MovieClip;
 	/**
 	 * @author Rene Zwaan

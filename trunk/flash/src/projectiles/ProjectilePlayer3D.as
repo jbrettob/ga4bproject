@@ -1,5 +1,8 @@
 package projectiles
 {
+	import objectsHolder.ObjectHolderBack;
+	import objectsHolder.ObjectHolderFront;
+
 	import com.jbrettob.display.Projectile;
 
 	/**
@@ -9,7 +12,7 @@ package projectiles
 	{
 		private var _sprite:Projectile3D;
 
-		public function ProjectilePlayer3D(_objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number):void
+		public function ProjectilePlayer3D(_objectHolder:ObjectHolderFront, posX:Number, posY:Number, degrees:Number):void
 		{
 			super(_objectHolder, posX, posY);
 
@@ -34,7 +37,7 @@ package projectiles
 		{
 			if (parent)
 			{
-				if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+				if ((parent as ObjectHolderFront).gameState != GameSetings.PAUSED)
 				{
 					this.x += this.xSpeed;
 					this.y += this.ySpeed;
@@ -54,9 +57,9 @@ package projectiles
 		{
 			if (parent)
 			{
-				if ((parent as ObjectHolder))
+				if ((parent as ObjectHolderFront))
 				{
-					for each (var p : Projectile in (parent as ObjectHolder).enemyProjectiles)
+					for each (var p : Projectile in (parent as ObjectHolderFront).enemyProjectiles)
 					{
 						if (this.hitTestObject(p))
 						{

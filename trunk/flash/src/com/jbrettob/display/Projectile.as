@@ -1,5 +1,7 @@
 package com.jbrettob.display
 {
+	import objectsHolder.ObjectHolderFront;
+
 	import flash.display.MovieClip;
 
 	/**
@@ -13,9 +15,9 @@ package com.jbrettob.display
 		public var sprite:MovieClip;
 		private var _damage:Number = 1;
 
-		public function Projectile(getObjectHolder:ObjectHolder, posX:Number, posY:Number)
+		public function Projectile(getObjectHolder:ObjectHolderFront, posX:Number, posY:Number)
 		{
-			this.objectHolder = getObjectHolder;
+			this.objectHolderFront = getObjectHolder;
 
 			this.x = posX;
 			this.y = posY;

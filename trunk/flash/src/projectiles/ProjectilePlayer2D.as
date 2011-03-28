@@ -1,5 +1,8 @@
 package projectiles
 {
+	import objectsHolder.ObjectHolderFront;
+	import objectsHolder.ObjectHolderBack;
+
 	import com.jbrettob.display.Projectile;
 
 	import flash.display.MovieClip;
@@ -14,7 +17,7 @@ package projectiles
 		private var _mousePos:Point;
 		private var _splashed:Boolean = false;
 
-		public function ProjectilePlayer2D(_objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number):void
+		public function ProjectilePlayer2D(_objectHolder:ObjectHolderFront, posX:Number, posY:Number, degrees:Number):void
 		{
 			super(_objectHolder, posX, posY);
 
@@ -42,7 +45,7 @@ package projectiles
 		{
 			if (parent)
 			{
-				if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+				if ((parent as ObjectHolderBack).gameState != GameSetings.PAUSED)
 				{
 					this.x += this.xSpeed;
 					this.y += this.ySpeed;
@@ -90,7 +93,7 @@ package projectiles
 				this._sprite = null;
 			}
 
-			this.objectHolder.removePlayerProjectiles(this);
+			this.objectHolderFront.removePlayerProjectiles(this);
 
 			super.destroy();
 		}

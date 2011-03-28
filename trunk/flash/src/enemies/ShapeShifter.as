@@ -1,5 +1,8 @@
 package enemies
 {
+	import objectsHolder.ObjectHolderBack;
+	import objectsHolder.ObjectHolderFront;
+
 	import projectiles.ProjectileActorShapeShifter;
 
 	import com.jbrettob.display.Actor;
@@ -17,9 +20,10 @@ package enemies
 		private var _canShoot:Boolean = true;
 		private var _canShootTimer:Timer;
 
-		public function ShapeShifter(objectHolder:ObjectHolder):void
+		public function ShapeShifter(objectHolderFront:ObjectHolderFront,objectHolderBack:ObjectHolderBack):void
 		{
-			this.objectHolder = objectHolder;
+			this.objectHolderFront = objectHolderFront;
+			this.objectHolderBack = objectHolderBack;
 
 			super();
 		}
@@ -48,7 +52,7 @@ package enemies
 
 		override public function update():void
 		{
-			if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+			if ((parent as ObjectHolderBack).gameState != GameSetings.PAUSED)
 			{
 				
 				this.y += this.moveSpeed;
@@ -78,7 +82,7 @@ package enemies
 
 		private function checkCollision():void
 		{
-			for each (var i:Projectile in this.objectHolder.playerProjectiles)
+			for each (var i:Projectile in this.objectHolderFront.playerProjectiles)
 			{
 				if (this.hitTestObject(i))
 				{
@@ -92,15 +96,16 @@ package enemies
 
 		private function shootProjectile():void
 		{
-			var distX:Number = this.objectHolder.player.x - (this.x);
-			var distY:Number = (this.objectHolder.player.y) - (this.y);
+			var distX:Number = this.objectHolderBack.player.x - (this.x);
+			var distY:Number = (this.objectHolderBack.player.y) - (this.y);
 
 			var radians:Number = Math.atan2(distY, distX);
 			var degrees:Number = radians * 180 / Math.PI;
+
+			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolderFront, this.x, this.y, degrees);
 			
-			var projectile:ProjectileActorShapeShifter = new ProjectileActorShapeShifter(this.objectHolder, this.x, this.y, degrees);
-			this.objectHolder.addChild(projectile);
-			this.objectHolder.addEnemyProjectiles(projectile);
+			this.objectHolderFront.addChild(projectile);
+			this.objectHolderFront.addEnemyProjectiles(projectile);
 		}
 
 		override public function destroy():void
@@ -111,7 +116,7 @@ package enemies
 				this._sprite = null;
 			}
 
-			this.objectHolder.removeEnemy(this);
+			this.objectHolderBack.removeEnemy(this);
 
 			super.destroy();
 		}

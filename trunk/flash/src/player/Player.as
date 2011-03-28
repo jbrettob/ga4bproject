@@ -1,8 +1,5 @@
 package player
 {
-	import com.jbrettob.media.sound.SoundChannelKing;
-	import com.jbrettob.enum.Sounds;
-
 	import objects.Orb;
 
 	import projectiles.ProjectilePlayer2D;
@@ -11,6 +8,8 @@ package player
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.media.sound.SoundChannelKing;
 
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -45,7 +44,8 @@ package player
 
 		override public function init() : void
 		{
-			objectHolder = main.objectHolder;
+			objectHolderBack = main.objectHolderBack;
+			objectHolderFront = main.objectHolderFront;
 
 			shootTimer = new Timer(GameSetings.ACTOR3DPROJECTILERELOADSPEED);
 			shootTimer.addEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
@@ -214,18 +214,18 @@ package player
 				switch(actor.currentCaracter)
 				{
 					case GameSetings.ACTOR2D:
-						newProjectile = new ProjectilePlayer2D(main.objectHolder, this.x, (this.y - this.actor.height), degrees);
+						newProjectile = new ProjectilePlayer2D(main.objectHolderFront, this.x, (this.y - this.actor.height), degrees);
 						break;
 					case GameSetings.ACTOR3D:
-						newProjectile = new ProjectilePlayer3D(main.objectHolder, this.x, (this.y - 85), degrees);
+						newProjectile = new ProjectilePlayer3D(main.objectHolderFront, this.x, (this.y - 85), degrees);
 						break;
 					case GameSetings.ACTORPRO:
-						newProjectile = new ProjectilePlayerPRO(main.objectHolder, this.x, (this.y - 85), degrees);
+						newProjectile = new ProjectilePlayerPRO(main.objectHolderFront, this.x, (this.y - 85), degrees);
 						break;
 				}
 
-				objectHolder.addplayerProjectiles(newProjectile);
-				objectHolder.addChild(newProjectile);
+				objectHolderFront.addplayerProjectiles(newProjectile);
+				objectHolderFront.addChild(newProjectile);
 
 				allowFire = false;
 				shootTimer.reset();
@@ -239,7 +239,7 @@ package player
 		{
 			if (this.main)
 			{
-				for each (var i : Projectile in main.objectHolder.enemyProjectiles)
+				for each (var i : Projectile in main.objectHolderFront.enemyProjectiles)
 				{
 					if (actor.hitTestObject(i) == true)
 					{
@@ -250,7 +250,7 @@ package player
 					}
 				}
 
-				for each (var o : Orb in main.objectHolder.orbs)
+				for each (var o : Orb in main.objectHolderFront.orbs)
 				{
 					if (this.actor.hitTestObject(o.orb) == true)
 					{

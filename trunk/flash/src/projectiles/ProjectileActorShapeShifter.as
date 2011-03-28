@@ -1,5 +1,8 @@
 package projectiles
 {
+	import objectsHolder.ObjectHolderFront;
+	import objectsHolder.ObjectHolderBack;
+
 	import com.jbrettob.display.Projectile;
 
 	/**
@@ -7,9 +10,9 @@ package projectiles
 	 */
 	public class ProjectileActorShapeShifter extends Projectile
 	{
-		public function ProjectileActorShapeShifter(objectHolder:ObjectHolder, posX:Number, posY:Number, degrees:Number)
+		public function ProjectileActorShapeShifter(objectHolderFront:ObjectHolderFront, posX:Number, posY:Number, degrees:Number)
 		{
-			super(objectHolder, posX, posY);
+			super(objectHolderFront, posX, posY);
 
 			this.speed = GameSetings.SHAPESHIFTERPROJECTILESPEED;
 
@@ -36,7 +39,7 @@ package projectiles
 		{
 			if (parent)
 			{
-				if ((parent as ObjectHolder).gameState != GameSetings.PAUSED)
+				if ((parent as ObjectHolderFront).gameState != GameSetings.PAUSED)
 				{
 					this.x += this.xSpeed;
 					this.y += this.ySpeed;
@@ -58,8 +61,7 @@ package projectiles
 				this.removeChild(this.sprite);
 				this.sprite = null;
 			}
-
-			this.objectHolder.removeEnemyProjectiles(this);
+			this.objectHolderFront.removeEnemyProjectiles(this);
 
 			super.destroy();
 		}
