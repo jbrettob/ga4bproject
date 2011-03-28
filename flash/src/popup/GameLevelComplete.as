@@ -1,5 +1,7 @@
 package popup
 {
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.media.sound.SoundChannelKing;
 	import com.greensock.TweenLite;
 	import com.jbrettob.utils.TimelineFrameLabel;
 
@@ -33,6 +35,7 @@ package popup
 
 		private function init():void
 		{
+			SoundChannelKing.getInstance().playSound(Sounds.SOUND_HORNALERT);
 			this.addFrameScript(TimelineFrameLabel.getInstance().getLabelFrame('frame_pauze', this), this.handleAddFrameScript);
 			this.addFrameScript(TimelineFrameLabel.getInstance().getLabelFrame('frame_end', this) - 1, this.handleComplete);
 		}
