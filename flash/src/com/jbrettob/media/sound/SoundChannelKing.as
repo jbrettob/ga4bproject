@@ -59,6 +59,7 @@ package com.jbrettob.media.sound
 			this._audioArray.push(Sounds.SOUND_SHOOT3D as Class);
 			this._audioArray.push(Sounds.SOUND_CHARACTERHIT as Class);
 			this._audioArray.push(Sounds.SOUND_KINGMUMBLE as Class);
+			this._audioArray.push(Sounds.SOUND_HORNALERT as Class);
 
 			this.isInit = true;
 		}

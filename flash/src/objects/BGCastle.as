@@ -20,6 +20,7 @@ package objects
 		public function shoot():void
 		{
 			this._castle.mcExplode.gotoAndPlay(2);
+			this._castle.gotoAndPlay("fire");
 		}
 		
 		public function destroy():void
