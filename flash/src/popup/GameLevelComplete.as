@@ -1,6 +1,7 @@
 package popup
 {
 	import com.greensock.TweenLite;
+	import com.jbrettob.log.Log;
 	import com.jbrettob.utils.TimelineFrameLabel;
 
 	import flash.events.Event;
@@ -10,11 +11,13 @@ package popup
 	 */
 	public class GameLevelComplete extends PopUp_LevelComplete
 	{
-		private var _text:String;
+		private var _title:String;
+		private var _content:String;
 		
-		public function GameLevelComplete(text:String = 'Level Completed')
+		public function GameLevelComplete(title:String = 'Level Completed', content:String = 'You were succesful.<br /> Well done my companion.')
 		{
-			this._text = text;
+			this._title = title;
+			this._content = content;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, handleAddedToStage);
 		}
@@ -37,7 +40,8 @@ package popup
 
 		private function setText():void
 		{
-			TextField(this.mcContainer['txtTitle']).text = this._text;
+			TextField(this.mcContainer['txtTitle']).text = this._title;
+			TextField(this.mcContainer['txtContent']).htmlText = this._content;
 		}
 		
 		private function handleAddFrameScript():void
