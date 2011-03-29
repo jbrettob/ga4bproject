@@ -6,8 +6,8 @@ package objects
 	 */
 	public class BackGround extends MovieClip
 	{
-		private var bgState:String = "one";
-		private var bgHolder:BG;
+		private var bgState		:String = "one";
+		private var bgHolder	:BG;
 		
 		public function BackGround():void
 		{
@@ -18,8 +18,16 @@ package objects
 		public function goToNextStage():void
 		{
 			{
-				bgHolder.gotoAndStop("two");
-				bgState= "two";
+				if (bgHolder.currentFrameLabel == "one")
+				{
+					bgHolder.gotoAndStop("two");
+					bgState= "two";
+				}
+				else if(bgHolder.currentFrameLabel == "two")
+				{
+					bgHolder.gotoAndStop("tre");
+					bgState= "tre";
+				}
 			}
 		}
 	}

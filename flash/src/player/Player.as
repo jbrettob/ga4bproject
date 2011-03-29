@@ -1,5 +1,7 @@
 package player
 {
+	import com.jbrettob.log.Log;
+	import enemies.SmalBug;
 	import objects.Orb;
 
 	import projectiles.ProjectilePlayer2D;
@@ -19,17 +21,17 @@ package player
 	 */
 	public class Player extends Actor
 	{
-		private var actor : playerCaracterHolder;
-		private var main : Game;
-		private var aimer : Aimer;
-		private var shootTimer : Timer;
-		private var allowFire : Boolean = true;
-		private var smoke : Cloud;
-		private var _tutorialMovedLeft : Boolean = false;
-		private var _tutorialMovedRight : Boolean = false;
-		private var _tutorialSwitch1 : Boolean = false;
-		private var _tutorialSwitch2 : Boolean = false;
-		private var _tutorialSwitch3 : Boolean = false;
+		private var actor 						: playerCaracterHolder;
+		private var main 						: Game;
+		private var aimer 						: Aimer;
+		private var shootTimer 					: Timer;
+		private var allowFire 					: Boolean = true;
+		private var smoke 						: Cloud;
+		private var _tutorialMovedLeft 			: Boolean = false;
+		private var _tutorialMovedRight 		: Boolean = false;
+		private var _tutorialSwitch1 			: Boolean = false;
+		private var _tutorialSwitch2 			: Boolean = false;
+		private var _tutorialSwitch3 			: Boolean = false;
 
 		public function Player(_main : Game) : void
 		{
@@ -44,8 +46,8 @@ package player
 
 		override public function init() : void
 		{
-			objectHolderBack = main.objectHolderBack;
-			objectHolderFront = main.objectHolderFront;
+			objectHolderBack 		= main.objectHolderBack;
+			objectHolderFront 		= main.objectHolderFront;
 
 			shootTimer = new Timer(GameSetings.ACTOR3DPROJECTILERELOADSPEED);
 			shootTimer.addEventListener(TimerEvent.TIMER, setAlouwFiretoTrue);
@@ -223,7 +225,7 @@ package player
 						break;
 					case GameSetings.ACTORPRO:
 						newProjectile = new ProjectilePlayerPRO(main.objectHolderFront, this.x, (this.y - 85), degrees);
-						SoundChannelKing.getInstance().playSound(Sounds.SOUND_SHOOTPRO);
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_CHARACERSHOOT);
 						break;
 				}
 
@@ -249,6 +251,18 @@ package player
 						this.hitColorTween();
 						SoundChannelKing.getInstance().playSound(Sounds.SOUND_CHARACTERHIT);
 						i.destroy();
+					}
+				}
+				
+				for each (var r : SmalBug in main.objectHolderFront.enemys)
+				{
+					if (actor.hitTestObject(r) == true)
+					{
+						// can't be die while in tutorial mode, HAX ON!!
+						if (main.level >= 5) main.hud.lives -= 1;
+						this.hitColorTween();
+						SoundChannelKing.getInstance().playSound(Sounds.SOUND_CHARACTERHIT);
+						r.destroy();
 					}
 				}
 
