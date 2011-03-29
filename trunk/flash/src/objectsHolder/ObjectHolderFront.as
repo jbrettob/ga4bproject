@@ -1,5 +1,6 @@
 package objectsHolder
 {
+	import com.jbrettob.log.Log;
 	import player.Player;
 
 	import com.jbrettob.display.Actor;
@@ -27,6 +28,7 @@ package objectsHolder
 		public function ObjectHolderFront(value:Game):void
 		{
 			this._parent = value;
+			this._enemys = new Array();
 			this._enemyProjectiles = new Array();
 			this._orbs = new Array();
 			this._playerProjectiles = new Array();
@@ -35,7 +37,7 @@ package objectsHolder
 		// Enemy
 		public function addEnemy(_enemy:*):void
 		{
-			this._enemys.push(_enemy);
+			if(this._enemys) (this._enemys.push(_enemy));
 		}
 
 		public function removeEnemy(_enemy:*):void
@@ -54,7 +56,6 @@ package objectsHolder
 
 				i.destroy();
 			}
-
 			if (this._enemys) this._enemys.splice(0, this._enemys.length);
 		}
 

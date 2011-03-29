@@ -1,5 +1,6 @@
 package
 {
+	import enemies.SmalBug;
 	import enemies.ShapeShifter;
 
 	import objects.Hud;
@@ -21,68 +22,82 @@ package
 	 */
 	public class GameHandler extends MovieClip
 	{
-		private var _updateTimer:Timer;
-		private var _objectHolderBack:ObjectHolderBack;		private var _objectHolderFront:ObjectHolderFront;
-		private var _canAddEnemy:Boolean = false;
-		private var _canAddEnemyTimer:Timer;
-		private var _canAddOrbTimer:Timer;
-		private var _gameState:String;
-		private var _tutorialEnemyCount:Number = 0;
-		private var thisParrent:Game;
-		private var hud:Hud;
-	
+		private var _updateTimer : Timer;
+		private var _objectHolderBack : ObjectHolderBack;
+		private var _objectHolderFront : ObjectHolderFront;
+		private var _canAddEnemy : Boolean = false;
+		private var _canAddSmalEnemy : Boolean = false;
+		private var _canAddEnemyTimer : Timer;
+		private var _canAddSmalEnemyTimer : Timer;
+		private var _canAddOrbTimer : Timer;
+		private var _gameState : String;
+		private var _tutorialEnemyCount : Number = 0;
+		private var thisParrent : Game;
+		private var hud : Hud;
 
-		public function GameHandler(game:Game):void
+		public function GameHandler(game : Game) : void
 		{
 			this._objectHolderBack = game.objectHolderBack;
 			this._objectHolderFront = game.objectHolderFront;
-			
+
 			this._updateTimer = new Timer(GameSetings.GAMESPEED);
 			this._updateTimer.addEventListener(TimerEvent.TIMER, this.update);
 			this._updateTimer.start();
 			thisParrent = game;
 			hud = thisParrent.hud;
-			
 		}
 
-		private function handleAddOrbTimer(event:TimerEvent):void
+		private function handleAddOrbTimer(event : TimerEvent) : void
 		{
 			if (this._objectHolderFront.orbs)
 			{
 				if (this._objectHolderFront.orbs.length < 10)
 				{
-					var orb:Orb = new Orb();
+					var orb : Orb = new Orb();
 					this._objectHolderFront.addChild(orb);
 					this._objectHolderFront.addOrb(orb);
 				}
 			}
 		}
 
-		private function handleAddEnemyTimer(event:TimerEvent):void
+		private function handleAddEnemyTimer(event : TimerEvent) : void
 		{
 			this._canAddEnemy = true;
 		}
 
-		public function createEnemyTimer():void
+		private function handleAddSmalEnemyTimer(event : TimerEvent) : void
+		{
+			this._canAddSmalEnemy = true;
+		}
+
+		public function createEnemyTimer() : void
 		{
 			this._canAddEnemyTimer = new Timer(1000, 1);
 			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddEnemyTimer.start();
+			createEnemySmalTimer();
 		}
 
-		public function createOrbTimer():void
+		public function createEnemySmalTimer() : void
+		{
+			this._canAddSmalEnemyTimer = new Timer(1000, 1);
+			this._canAddSmalEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddSmalEnemyTimer);
+			this._canAddSmalEnemyTimer.start();
+		}
+
+		public function createOrbTimer() : void
 		{
 			this._canAddOrbTimer = new Timer(GameSetings.ORBSPAWNTIMER, 0);
 			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
 			this._canAddOrbTimer.start();
 		}
 
-		public function update(event:TimerEvent):void
+		public function update(event : TimerEvent) : void
 		{
 			if (this._gameState != GameSetings.PAUSED)
 			{
 				inputHandler();
-				var i:Number = numChildren;
+				var i : Number = numChildren;
 				while (i > 0)
 				{
 					if ((getChildAt(i - 1) as Actor).alife == false)
@@ -94,6 +109,76 @@ package
 				}
 
 				if (this._canAddEnemy)
+				{
+					if (parent)
+					{
+						if (Game(this.parent).level >= 1 && Game(this.parent).level < 4)
+						{
+							if (this._objectHolderBack.enemys.length <= 1)
+							{
+								createShapeShifter();
+								createSmalBug();
+								this._canAddEnemy = false;
+								this._canAddEnemyTimer.start();
+								this._tutorialEnemyCount++;
+								if (this._tutorialEnemyCount >= GameSetings.TUTORIALENEMYCOUNT && Game(this.parent).level == 1)
+								{
+									Log.log('finished tutorial: aim shoot and destroy', this);
+									Game(this.parent).level = 2;
+								}
+							}
+						}
+						else if (Game(parent).level >= 5)
+						{
+							if (this._objectHolderBack.enemys)
+							{
+								if (this._objectHolderBack.enemys.length <= GameSetings.SHAPESHIFTERMAXONSCREEN)
+								{
+									createShapeShifter();
+									this._canAddEnemy = false;
+									this._canAddEnemyTimer.start();
+								}
+							}
+						}
+					}
+
+					if (this._canAddSmalEnemy)
+					{
+						if (parent && this._objectHolderFront.enemys)
+						{
+							if (Game(this.parent).level >= 1 && Game(this.parent).level < 4)
+							{
+								if (this._objectHolderFront.enemys.length <= 1)
+								{
+									createShapeShifter();
+									createSmalBug();
+									this._canAddSmalEnemy = false;
+									this._canAddSmalEnemyTimer.start();
+									this._tutorialEnemyCount++;
+									if (this._tutorialEnemyCount >= GameSetings.TUTORIALENEMYCOUNT && Game(this.parent).level == 1)
+									{
+										Log.log('finished tutorial: aim shoot and destroy', this);
+										Game(this.parent).level = 2;
+									}
+								}
+							}
+							else if (Game(parent).level >= 5)
+							{
+								if (this._objectHolderBack.enemys)
+								{
+									if (this._objectHolderBack.enemys.length <= GameSetings.SHAPESHIFTERMAXONSCREEN)
+									{
+										createSmalBug();
+										this._canAddSmalEnemy = false;
+										this._canAddSmalEnemyTimer.start();
+									}
+								}
+							}
+						}
+					}
+				}
+
+				if (this._canAddSmalEnemy)
 				{
 					if (parent)
 					{
@@ -139,7 +224,6 @@ package
 
 		private function inputHandler() : void
 		{
-			
 			if ((parent as Game).keyBoard.spaceBarr == "down")
 			{
 				if ((parent as Game)._hud.upgradeTimer)
@@ -147,37 +231,46 @@ package
 					if ((parent as Game)._hud.upgradeTimer.canUse == true)
 					{
 						thisParrent.dl.shotBack();
-						if (thisParrent.level >= 5)	thisParrent.bg.goToNextStage();
+						if (thisParrent.level >= 5) thisParrent.bg.goToNextStage();
 					}
 				}
 			}
 		}
 
-		public function createShapeShifter():void
+		public	function createShapeShifter() : void
 		{
-			var shapeShifter:ShapeShifter = new ShapeShifter(this._objectHolderFront,this._objectHolderBack);
+			var shapeShifter : ShapeShifter = new ShapeShifter(this._objectHolderFront, this._objectHolderBack);
 			this._objectHolderBack.addEnemy(shapeShifter);
 			shapeShifter.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
 			shapeShifter.y = -(Math.random() * 200);
 			this._objectHolderBack.addChild(shapeShifter);
 		}
 
-		public function pauseGame():void
+		public function createSmalBug() : void
+		{
+			var _smalBug : SmalBug = new SmalBug(this._objectHolderFront);
+			_smalBug.x = Math.random() * GameSetings.PLAYERMAXRIGHT;
+			_smalBug.y = -(Math.random() * 200);
+			this._objectHolderFront.addEnemy(_smalBug);
+			this._objectHolderFront.addChild(_smalBug);
+		}
+
+		public function pauseGame() : void
 		{
 			this._updateTimer.stop();
 		}
 
-		public function unpauseGame():void
+		public function unpauseGame() : void
 		{
 			this._updateTimer.start();
 		}
 
-		public function removeThisChild(child:*):void
+		public function removeThisChild(child : *) : void
 		{
 			this.removeChild(child);
 		}
 
-		public function destroy():void
+		public function destroy() : void
 		{
 			if (this._canAddEnemyTimer)
 			{
@@ -200,7 +293,7 @@ package
 			TweenLite.killTweensOf(this);
 		}
 
-		public function pauseAllTimers():void
+		public function pauseAllTimers() : void
 		{
 			this._canAddEnemyTimer.removeEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddOrbTimer.removeEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
@@ -213,7 +306,7 @@ package
 			TweenLite.to(this, 10, {onComplete:this.unPauseAllTimers, overwrite:true});
 		}
 
-		private function unPauseAllTimers():void
+		private function unPauseAllTimers() : void
 		{
 			this._canAddEnemyTimer.addEventListener(TimerEvent.TIMER, this.handleAddEnemyTimer);
 			this._canAddOrbTimer.addEventListener(TimerEvent.TIMER, this.handleAddOrbTimer);
@@ -226,7 +319,7 @@ package
 			Game(this.parent).dl.canMove = true;
 		}
 
-		public function set gameState(value:String):void
+		public function set gameState(value : String) : void
 		{
 			this._gameState = value;
 		}
