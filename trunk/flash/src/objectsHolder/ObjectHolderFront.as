@@ -1,6 +1,5 @@
 package objectsHolder
 {
-	import com.jbrettob.log.Log;
 	import player.Player;
 
 	import com.jbrettob.display.Actor;

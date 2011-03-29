@@ -1,14 +1,11 @@
 package enemies
 {
-	import com.jbrettob.enum.Sounds;
-	import com.jbrettob.media.sound.SoundChannelKing;
-	import mx.core.ButtonAsset;
-
-	import objectsHolder.ObjectHolderBack;
 	import objectsHolder.ObjectHolderFront;
 
 	import com.jbrettob.display.Actor;
 	import com.jbrettob.display.Projectile;
+	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.media.sound.SoundChannelKing;
 
 	/**
 	 * @author Jayce Rettob
