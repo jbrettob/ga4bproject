@@ -1,7 +1,7 @@
 package player
 {
-	import com.jbrettob.log.Log;
 	import enemies.SmalBug;
+
 	import objects.Orb;
 
 	import projectiles.ProjectilePlayer2D;

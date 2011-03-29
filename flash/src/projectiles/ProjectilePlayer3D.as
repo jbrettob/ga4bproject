@@ -1,6 +1,5 @@
 package projectiles
 {
-	import objectsHolder.ObjectHolderBack;
 	import objectsHolder.ObjectHolderFront;
 
 	import com.jbrettob.display.Projectile;
