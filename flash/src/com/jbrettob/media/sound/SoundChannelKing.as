@@ -1,6 +1,7 @@
 package com.jbrettob.media.sound
 {
 	import com.jbrettob.enum.Sounds;
+	import com.jbrettob.log.Log;
 
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -14,7 +15,6 @@ package com.jbrettob.media.sound
 	public class SoundChannelKing extends Sprite
 	{
 		private static var _INSTANCE:SoundChannelKing;
-		
 		private var _musicArray:Array = new Array();
 		private var _soundArray:Array = new Array();
 		private var _audioArray:Array = new Array();
@@ -43,7 +43,7 @@ package com.jbrettob.media.sound
 			{
 				return;
 			}
-			
+
 			this._soundMute = false;
 
 			// manual add
@@ -68,9 +68,9 @@ package com.jbrettob.media.sound
 		public function playSound(url:Class, value:Number = 0):void
 		{
 			if (this._soundMute) return;
-			
+
 			var S_Sound:Class = this.getAudio(url);
-			
+
 			var newSound:Sound = new S_Sound();
 			if (value >= 1)
 			{
@@ -85,21 +85,24 @@ package com.jbrettob.media.sound
 
 		public function playMusic(url:Class, value:Number = 0):void
 		{
-			if(this._musicArray.length >= 1)
+			if (this._musicArray.length >= 1)
 			{
 				SoundChannelKing.getInstance().stopAllMusic();
 			}
-			
+
 			var Music:Class = this.getAudio(url);
 
 			var newSound:Sound = new Music();
-			if (value >= 1)
-			{
-				newSound.addEventListener(Event.COMPLETE, handleSoundComplete);
-			}
 
 			var newSoundChannel:SoundChannel = new SoundChannel();
-			newSoundChannel = newSound.play();
+			if (value >= 1)
+			{
+				newSoundChannel = newSound.play(0, int.MAX_VALUE);
+			}
+			else
+			{
+				newSoundChannel = newSound.play();
+			}
 			newSoundChannel.soundTransform = new SoundTransform(.9);
 
 			this._musicArray.push(newSoundChannel);
@@ -117,11 +120,6 @@ package com.jbrettob.media.sound
 				}
 			}
 			return returnClass;
-		}
-
-		private function handleSoundComplete(event:Event):void
-		{
-			Sound(event.target).play();
 		}
 
 		public function unMuteAllMusic():void
@@ -166,7 +164,7 @@ package com.jbrettob.media.sound
 				i.soundTransform = soundTransform;
 			}
 		}
-		
+
 		public function stopAllMusic():void
 		{
 			for each (var i:SoundChannel in this._musicArray)
@@ -174,7 +172,7 @@ package com.jbrettob.media.sound
 				i.stop();
 			}
 		}
-		
+
 		public function unMuteAllSound():void
 		{
 			var soundTransform:SoundTransform;
@@ -239,11 +237,12 @@ package com.jbrettob.media.sound
 		public function set soundMute(value:Boolean):void
 		{
 			this._soundMute = value;
-			
+
 			if (this._soundMute)
 			{
 				this.unMuteAllSound();
-			} else 
+			}
+			else
 			{
 				this.muteALlSound();
 			}
