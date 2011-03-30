@@ -90,7 +90,7 @@ package
 			this.removeMenu();
 
 			SoundChannelKing.getInstance().stopAllMusic();
-			SoundChannelKing.getInstance().playMusic(Sounds.MUSIC_MENU);
+			SoundChannelKing.getInstance().playMusic(Sounds.MUSIC_MENU, 1);
 
 			this._menu = new MainMenu();
 			this._menu.addEventListener('MAINMENU_STARTGAME', this.handleMainMenuStartGame);
