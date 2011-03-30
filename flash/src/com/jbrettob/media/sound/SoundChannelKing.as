@@ -1,10 +1,8 @@
 package com.jbrettob.media.sound
 {
 	import com.jbrettob.enum.Sounds;
-	import com.jbrettob.log.Log;
 
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
@@ -72,13 +70,15 @@ package com.jbrettob.media.sound
 			var S_Sound:Class = this.getAudio(url);
 
 			var newSound:Sound = new S_Sound();
+			var newSoundChannel:SoundChannel = new SoundChannel();
 			if (value >= 1)
 			{
-				newSound.addEventListener(Event.COMPLETE, handleSoundComplete);
+				newSoundChannel = newSound.play(0, int.MAX_VALUE);
 			}
-
-			var newSoundChannel:SoundChannel = new SoundChannel();
-			newSoundChannel = newSound.play();
+			else
+			{
+				newSoundChannel = newSound.play();
+			}
 
 			this._soundArray.push(newSoundChannel);
 		}
